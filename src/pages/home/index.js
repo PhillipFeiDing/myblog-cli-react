@@ -1,12 +1,20 @@
 import React, { Component } from 'react'
+import {
+    GlobalStyle,
+    MainWrapper
+} from './style'
+import PageHeader from './PageHeader'
 
 class Home extends Component {
-    
     render() {
         return (
-            <div>
-                home
-            </div>
+            <MainWrapper>
+                <GlobalStyle />
+                <PageHeader />
+                <div style={{height: '800px'}}>
+
+                </div>
+            </MainWrapper>
         )
     }
 }
