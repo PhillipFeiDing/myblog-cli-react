@@ -9,6 +9,13 @@ import {
 import Typing from './Typing'
 import TopicDisplay from './TopicDisplay.js'
 
+const typingStrings = [
+    "I'm Fei (Phillip). Glad to meet you here",
+    "I study at Georgia Tech and major in CS",
+    "I enjoy doing web dev, big data, and ML",
+    "I love cycling, badminton, and movies"
+]
+
 class PageHeader extends Component {
 
     constructor(props) {
@@ -46,12 +53,7 @@ class PageHeader extends Component {
                             Hi,
                                 <Typing
                                     params={{
-                                        strings: [
-                                            "I'm Fei (Phillip). Glad to meet you here",
-                                            "I study at Georgia Tech and major in CS",
-                                            "I enjoy doing web dev, big data, and ML",
-                                            "I love cycling, badminton, and movies"
-                                        ],
+                                        strings: typingStrings,
                                         typeSpeed: 30,
                                         backSpeed: 20,
                                         startDelay: 25,

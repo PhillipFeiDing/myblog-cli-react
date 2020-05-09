@@ -1,12 +1,18 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import {
     SidePanelWrapper,
     ToolsWrapper,
     MenuButton,
     ToTopButton,
-    Menu
+    Menu,
+    MenuTitle,
+    MenuItem
 } from './style'
 import SearchBar from './SearchBar'
+import { actionCreators } from './store'
+
 
 class SidePanel extends Component {
 
@@ -23,14 +29,16 @@ class SidePanel extends Component {
 
     componentDidMount() {
         this.bindEvents(true)
+        this.props.getTopicList()
+        this.props.getFriendList()
     }
 
     componentWillUnmount() {
         this.bindEvents(false)
     }
 
-    bindEvents(mount) {
-        if (mount) {
+    bindEvents(isMounting) {
+        if (isMounting) {
             window.addEventListener('scroll', this.changeScrollTopShow)
         } else {
             window.removeEventListener('scroll', this.changeScrollTopShow)
@@ -57,6 +65,7 @@ class SidePanel extends Component {
 
     render() {
         const { showMenu } = this.state
+        const { topicList, friendList } = this.props
         return (
             <SidePanelWrapper>
                 <ToolsWrapper>
@@ -78,9 +87,30 @@ class SidePanel extends Component {
                 </ToolsWrapper>
                 <Menu
                     ref={(el) => {this.menuDOMNode = el}}
-                    onBlur={() => {this.setState(() => ({showMenu: false}))}}
+                    onClick={() => {this.setState(() => ({showMenu: true}))}}
                     className={ showMenu? '' : 'hidden'}
                 >
+                    <MenuTitle>Topics</MenuTitle>
+                    {
+                        topicList.map((item) => {
+                            return (
+                                <Link to={item.get('link')} key={'topicList-' + item.get('id')}>
+                                    <MenuItem>{item.get('itemname')}</MenuItem>
+                                </Link>
+                            )
+                        })
+                    }
+                    <hr />
+                    <MenuTitle>Friends</MenuTitle>
+                    {
+                        friendList.map((item) => {
+                            return (
+                                <a href={item.get('link')} key={'friendList-' + item.get('id')}>
+                                    <MenuItem>{item.get('itemname')}</MenuItem>
+                                </a>
+                            )
+                        })
+                    }
                 </Menu>
             </SidePanelWrapper>
         )
@@ -95,4 +125,18 @@ const handleScrollTop = () => {
     })
 }
 
-export default SidePanel
+const mapStateToProps = (state) => ({
+    topicList: state.getIn(['sidePanel', 'topicList']),
+    friendList: state.getIn(['sidePanel', 'friendList'])
+})
+
+const mapDispatchToProps = (dispatch) => ({
+    getTopicList() {
+        dispatch(actionCreators.getTopicList())
+    },
+    getFriendList() {
+        dispatch(actionCreators.getFriendList())
+    }
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(SidePanel)

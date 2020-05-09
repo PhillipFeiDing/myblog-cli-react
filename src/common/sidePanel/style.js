@@ -7,7 +7,7 @@ export const SidePanelWrapper = styled.div`
   z-index: 99;
   text-align: right;
   height: 100vh;
-  overflow: hidden;
+  overflow: visible;
 `
 
 export const ToolsWrapper = styled.div`
@@ -30,18 +30,50 @@ export const MenuButton = styled.label`
   text-transform: uppercase;
 `
 
+export const SearchBarWrapper = styled.div`
+  position: relative;
+  overflow: visible;
+  height: 42px;
+`
+
 export const SearchIcon = styled.img.attrs({
-  src: '/common/search.svg',
+  src: '/common/sidePanel/search.svg',
   alt: ''
 })`
   opacity: 0.6;
   cursor: pointer;
   width: 35px;
   height: 35px;
+  position: absolute;
+  right: 5px;
+  top: 2px;
+`
+
+export const SearchInput = styled.input.attrs({
+    placeholder: 'Enter to Search'
+})`
+  &.display {
+    width: 300px;
+    opacity: 1;
+  }
+  &.hidden {
+    opacity: 0;
+    width: 42px;
+  }
+  height: 100%;
+  padding-left: 15px;
+  border-radius: 42px;
+  border: 1px solid rgba(127,140,141,0.6);
+  background: #fff;
+  outline: none;
+  position: absolute;
+  right: 0;
+  transition: all 0.4s;
+  color: #555;
 `
 
 export const ToTopButton = styled.img.attrs({
-  src: '/common/toTop.svg',
+  src: '/common/sidePanel/toTop.svg',
   alt: ''
 })`
   opacity: 0.6;
@@ -61,8 +93,29 @@ export const Menu = styled.ul`
   height: 100%;
   overflow: auto;
   float: left;
+  hr {
+    border-top: 1px solid #eee;
+  }
   &.hidden {
     width: 0px;
   }
   transition: all 0.2s ease-out;
+`
+
+export const MenuTitle = styled.p`
+  font-size: 14px;
+  padding-left: 15%;
+  line-height: 48px;
+  text-align: left;
+  color: #ffff00;
+  margin-bottom: 0;
+`
+
+export const MenuItem = styled.li`
+  color: #fff;
+  font-size: 12px;
+  line-height: 48px;
+  text-align: left;
+  width: 100%;
+  padding-left: 30%;
 `
