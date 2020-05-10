@@ -1,0 +1,31 @@
+{
+    "data": [
+        {
+            "name": "github",
+            "to": "http://www.github.com/PhillipFeiDing",
+            "imgURL": "common/footer/github.svg",
+            "hoverable": false
+        },{
+            "name": "linkedin",
+            "to": "https://www.linkedin.com/in/fei-phillip-ding-9a5410173/",
+            "imgURL": "common/footer/linkedin.svg",
+            "hoverable": false
+        },{
+            "name": "facebook",
+            "to": "https://www.facebook.com/people/Fei-Ding/100011045418439",
+            "imgURL": "common/footer/facebook.svg",
+            "hoverable": false
+        },{
+            "name": "wechat",
+            "barCodeURL": "common/footer/wechat-qr.jpg",
+            "imgURL": "common/footer/wechat.svg",
+            "hoverable": true
+        },{
+            "name": "qq",
+            "barCodeURL": "common/footer/qq-qr.png",
+            "imgURL": "common/footer/qq.svg",
+            "hoverable": true
+        }
+    ],
+    "errno": 0
+}

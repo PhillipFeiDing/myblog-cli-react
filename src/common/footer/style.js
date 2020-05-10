@@ -6,8 +6,6 @@ export const FooterWrapper = styled.div`
   padding: 50px 15px;
   width: 100%;
   position: relative;
-  left: 0;
-  top: 0;
   z-index: 100;
 `
 

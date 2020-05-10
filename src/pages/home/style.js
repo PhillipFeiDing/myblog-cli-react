@@ -27,6 +27,7 @@ export const PageHeaderDisplayWrapper = styled.div`
   text-align: center;
   height: 30vh;
   min-height: 160px;
+  position: relative;
 `
 
 export const PageHeaderDisplay = styled.div`
@@ -63,11 +64,19 @@ export const AuthorIntroduction = styled.p`
   margin: 10px auto 20px auto;
 `
 
-export const ContentWrapper = styled.div.attrs({
+export const ContentWrapper = styled.div`
+  width: 100%;
+  position: relative;
+  overflow: display;
+`
+
+export const Content = styled.div.attrs({
   className: 'container'
 })`
-  position: relative;
+  height: 100%;
   min-height: 400px;
+  position: relative;
+  overflow: display;
 `
 
 export const BlogListWrapper = styled.div.attrs({
@@ -77,8 +86,8 @@ export const BlogListWrapper = styled.div.attrs({
 export const BlogList = styled.ul`
   padding-left: 0px;
   opacity: 1;
-  margin: 72px auto 0 auto;
-  padding: 2px 24px;
+  margin: 0 auto 0 auto;
+  padding: 36px 24px 2px 24px;
   list-style: none;
 `
 

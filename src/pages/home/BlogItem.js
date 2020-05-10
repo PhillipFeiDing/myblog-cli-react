@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import {
     BlogItemWrapper,
@@ -31,7 +32,8 @@ class BlogItem extends Component {
     }
 
     render() {
-        const { id, time, title, exerpt, imageURL, author, tagList } = this.props.data
+        const { id, time, title, exerpt, imageURL, tagList } = this.props.data
+        const { authorName } = this.props
         const { hovering, hasImage } = this.state
         return (
             <BlogItemWrapper
@@ -60,7 +62,7 @@ class BlogItem extends Component {
                     </BlogExerptImageWrapper>
                 </BlogExerptWrapper>
                 <BlogMetaList>
-                    <BlogMetaListItem>{author}</BlogMetaListItem>
+                    <BlogMetaListItem>{authorName}</BlogMetaListItem>
                     {
                         tagList.map((item, index) => (
                             <BlogMetaListItem
@@ -78,4 +80,8 @@ class BlogItem extends Component {
     }
 }
 
-export default BlogItem
+const mapStateToProps = (state) => ({
+    authorName: state.getIn(['app', 'authorName'])
+})
+
+export default connect(mapStateToProps, null)(BlogItem)
