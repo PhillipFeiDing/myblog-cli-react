@@ -129,7 +129,7 @@ export const config = {
         "area": 800
       },
       "limit": 0,
-      "value": 50
+      "value": 25
     },
     "opacity": {
       "animation": {

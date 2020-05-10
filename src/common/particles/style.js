@@ -1,12 +1,7 @@
 import styled from 'styled-components'
 
 export const ParticlesWrapper = styled.div`
-  &.normal {
-    position: absolute;
-  }
-  &.sticky {
-    position: sticky;
-  }
+  position: absolute;
   top: ${(props) => (props.offsetTop + 'px')};
   height: 100vh;
   width: 100%;

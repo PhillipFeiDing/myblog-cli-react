@@ -8,6 +8,7 @@ export const SidePanelWrapper = styled.div`
   text-align: right;
   height: 100vh;
   overflow: visible;
+  pointer-events: none;
 `
 
 export const ToolsWrapper = styled.div`
@@ -28,12 +29,14 @@ export const MenuButton = styled.label`
   padding: 0 15px;
   cursor: pointer;
   text-transform: uppercase;
+  pointer-events: auto;
 `
 
 export const SearchBarWrapper = styled.div`
   position: relative;
   overflow: visible;
   height: 42px;
+  pointer-events: auto;
 `
 
 export const SearchIcon = styled.img.attrs({
@@ -47,6 +50,7 @@ export const SearchIcon = styled.img.attrs({
   position: absolute;
   right: 5px;
   top: 2px;
+  pointer-events: auto;
 `
 
 export const SearchInput = styled.input.attrs({
@@ -70,6 +74,7 @@ export const SearchInput = styled.input.attrs({
   right: 0;
   transition: all 0.4s;
   color: #555;
+  pointer-events: auto;
 `
 
 export const ToTopButton = styled.img.attrs({
@@ -83,6 +88,7 @@ export const ToTopButton = styled.img.attrs({
   position: absolute;
   right: 20px;
   bottom: 50px;
+  pointer-events: auto;
 `
 
 export const Menu = styled.ul`
@@ -100,6 +106,7 @@ export const Menu = styled.ul`
     width: 0px;
   }
   transition: all 0.2s ease-out;
+  pointer-events: auto;
 `
 
 export const MenuTitle = styled.p`
@@ -109,6 +116,7 @@ export const MenuTitle = styled.p`
   text-align: left;
   color: #ffff00;
   margin-bottom: 0;
+  pointer-events: auto;
 `
 
 export const MenuItem = styled.li`
@@ -118,4 +126,5 @@ export const MenuItem = styled.li`
   text-align: left;
   width: 100%;
   padding-left: 30%;
+  pointer-events: auto;
 `

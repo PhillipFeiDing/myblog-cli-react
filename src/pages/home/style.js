@@ -67,7 +67,7 @@ export const AuthorIntroduction = styled.p`
 export const ContentWrapper = styled.div`
   width: 100%;
   position: relative;
-  overflow: display;
+  overflow: hidden;
 `
 
 export const Content = styled.div.attrs({
@@ -77,6 +77,25 @@ export const Content = styled.div.attrs({
   min-height: 400px;
   position: relative;
   overflow: display;
+  background-image: linear-gradient(
+    to right, 
+    rgba(255,255,255,0),
+    rgba(255,255,255,0.6),
+    rgba(255,255,255,0.7),
+    rgba(255,255,255,0.8),
+    rgba(255,255,255,0.8),
+    rgba(255,255,255,0.8),
+    rgba(255,255,255,0.8),
+    rgba(255,255,255,0.8),
+    rgba(255,255,255,0.8),
+    rgba(255,255,255,0.8),
+    rgba(255,255,255,0.8),
+    rgba(255,255,255,0.8),
+    rgba(255,255,255,0.7),
+    rgba(255,255,255,0.6),
+    rgba(255,255,255,0)
+  );
+  box-shadow: 0 0 5px #95a5a6;
 `
 
 export const BlogListWrapper = styled.div.attrs({
@@ -95,7 +114,8 @@ export const BlogItemWrapper = styled.li`
   padding: 10px;
   margin-bottom: 20px;
   &.hovering {
-    background: #eee;
+    background: #ecf0f1;
+    box-shadow: 0 0 5px #95a5a6;
   }
 `
 
@@ -169,7 +189,7 @@ export const BlogExerptImage = styled.img`
 
 export const BlogMetaList = styled.ul`
   margin-top: 20px;
-  border: 1px solid #ecf0f1;
+  border: 1px solid #ccd0d1;
   border-width: 1px 0 0 0;
   padding: 22px 10px;
   font-size: 9px;
