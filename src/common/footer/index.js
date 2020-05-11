@@ -20,6 +20,9 @@ class Footer extends Component {
     render() {
         const { authorName } = this.props
         const footerIconList = this.props.footerIconList.toJS()
+        const initialTemplate = (letter) => (
+            <span style={{color: '#ff0', fontWeight: 'bolder'}}>{letter}</span>
+        )
         return (
             <FooterWrapper>
                 <IconGroupWrapper>
@@ -35,12 +38,14 @@ class Footer extends Component {
                 </IconGroupWrapper>
                 <FooterNoteWrapper>
                     Built with&nbsp;
-                    <FooterLink href='https://reactjs.org/'>React</FooterLink>
+                    <FooterLink href='https://www.mongodb.com/'>{initialTemplate('M')}ongoDB</FooterLink>
                     &nbsp;|&nbsp;
-                    <FooterLink href='https://expressjs.com/'>Express</FooterLink>
+                    <FooterLink href='https://expressjs.com/'>{initialTemplate('E')}xpress</FooterLink>
                     &nbsp;|&nbsp;
-                    <FooterLink href='https://www.mongodb.com/'>MongoDB</FooterLink>
-                    .<br /><br/>
+                    <FooterLink href='https://nodejs.org/en/'>{initialTemplate('N')}ode</FooterLink>
+                    &nbsp;|&nbsp;
+                    <FooterLink href='https://reactjs.org/'>{initialTemplate('R')}eact</FooterLink>
+                    .<br /> <br />
                     Created by {authorName} © {new Date().getFullYear()}
                 </FooterNoteWrapper>
             </FooterWrapper>
