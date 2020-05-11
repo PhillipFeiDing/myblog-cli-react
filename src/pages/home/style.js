@@ -74,14 +74,15 @@ export const Content = styled.div.attrs({
   className: 'container'
 })`
   height: 100%;
-  min-height: 400px;
+  min-height: 100vh;
   position: relative;
-  overflow: display;
+  overflow: hidden;
   background-image: linear-gradient(
-    to right, 
-    rgba(255,255,255,0),
+    to right,
+    rgba(255,255,255,0.4),
     rgba(255,255,255,0.6),
     rgba(255,255,255,0.7),
+    rgba(255,255,255,0.75),
     rgba(255,255,255,0.8),
     rgba(255,255,255,0.8),
     rgba(255,255,255,0.8),
@@ -91,16 +92,40 @@ export const Content = styled.div.attrs({
     rgba(255,255,255,0.8),
     rgba(255,255,255,0.8),
     rgba(255,255,255,0.8),
+    rgba(255,255,255,0.8),
+    rgba(255,255,255,0.8),
+    rgba(255,255,255,0.8),
+    rgba(255,255,255,0.8),
+    rgba(255,255,255,0.8),
+    rgba(255,255,255,0.8),
+    rgba(255,255,255,0.8),
+    rgba(255,255,255,0.75),
     rgba(255,255,255,0.7),
     rgba(255,255,255,0.6),
-    rgba(255,255,255,0)
+    rgba(255,255,255,0.4)
   );
   box-shadow: 0 0 5px #95a5a6;
 `
 
 export const BlogListWrapper = styled.div.attrs({
   className: 'col-lg-8 col-lg-offset-1 col-md-8 col-md-offset-1'
-})``
+})`
+  float: left;
+`
+
+export const DashBoardWrapper = styled.div`
+  float: left;
+  width: 30%;
+  top: 0;
+  margin: 36px auto 36px auto;
+  padding: 10px 25px 0 25px;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  max-height: max(90%, 90vh);
+  background: rgba(236,240,241,0.8);
+  box-shadow: 0 0 5px #95a5a6;
+`
 
 export const BlogList = styled.ul`
   padding-left: 0px;
@@ -206,3 +231,100 @@ export const linkStyle = {
   color: '#2c3e50',
   cursor: 'pointer'
 }
+
+export const PagingWrapper = styled.div`
+  text-align: center;
+  bottom: 0;
+  width: 100%;
+`
+
+export const PageList = styled.ul`
+  display: inline-block;
+  padding: 0;
+  margin: 0 auto 30px auto;
+  pointer-events: auto;
+`
+
+export const PageItem = styled.li`
+  display: inline-block;
+  padding: 6px 0;
+  box-sizing: border-box;
+  font-size: 16px;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  line-height: 28px;
+  box-shadow: 0 0 5px #95a5a6;
+  &.start {
+    border-radius: 20px 0 0 20px;
+    clip-path: inset(-5px 0px -5px -5px);
+  }
+  &.end {
+    border-radius: 0 20px 20px 0;
+    clip-path: inset(-5px -5px -5px 0px);
+  }
+  &.middle {
+    clip-path: inset(-5px 0px -5px 0px);
+  }
+  &.active {
+    cursor: pointer;
+    &:hover {
+      background-color: #ddd;
+      color: #2c3e50;
+    }
+  }
+  &.current {
+    background: #ccc;
+    color: #fff;
+  }
+`
+
+export const TitleSpan = styled.span`
+  line-height: 1.1;
+  font-weight: 700;
+  color: #808080;
+`
+
+export const TagGroup = styled.div`
+  margin-top: 10px;
+`
+
+export const TagSpan = styled.span`
+  display: inline-block;
+  border: 1px solid rgba(255,255,255,.8);
+  border-radius: 999em;
+  padding: 0 10px;
+  line-height: 24px;
+  font-size: 12px;
+  text-decoration: none;
+  margin-bottom: 6px;
+  margin-right: 5px;
+  color: #bfbfbf;
+  border-color: #bfbfbf;
+  &.bold {
+    font-weight: bolder;
+  }
+  &.current {
+    color: rgb(44, 62, 80);
+    background-color: rgb(206, 210, 211);
+  }
+  cursor: pointer;
+`
+
+export const ProfileImageWrapper = styled.div`
+  margin-top: 16px;
+  width: 100%;
+  img {
+    width: 100%;
+  }
+`
+
+export const ProfileTextWrapper = styled.div`
+  margin-top: 16px;
+  color: ##2c3e50;
+  width: 100%;
+  font-size: 11px;
+  p {
+    line-height: 16px;
+  }
+`

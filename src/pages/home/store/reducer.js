@@ -7,7 +7,10 @@ const defaultState = fromJS({
     titleName: null,
     titleBlogCount: null,
     tagList: [],
-    blogList: []
+    blogList: [],
+    currBlogList: [],
+    numPages: 1,
+    currPage: 0
 })
 
 export default (state=defaultState, action) => {
@@ -15,7 +18,47 @@ export default (state=defaultState, action) => {
         case constants.FILL_TAG_LIST:
             return state.set('tagList', fromJS(action.tagList))
         case constants.FILL_BLOG_LIST:
-            return state.set('blogList', fromJS(action.blogList))
+            return state.merge({
+                blogList: fromJS(action.blogList),
+                currBlogList: fromJS(action.blogList),
+                numPages: fromJS(Math.max(1, Math.ceil(action.blogList.length / constants.BLOGS_PER_PAGE)))
+            })
+        case constants.CHANGE_PAGE_NUM:
+            return state.set('currPage', fromJS(action.pageNum))
+        case constants.SET_TAG_NAME:
+            if (action.tagName === null) {
+                const blogList = state.get('blogList').toJS()
+                return state.merge({
+                    topicDisplayType: fromJS(constants.NONE_DISPLAY),
+                    tagName: fromJS(null),
+                    titleName: fromJS(null),
+                    titleBlogCount: fromJS(null),
+                    currBlogList: fromJS(blogList),
+                    numPages: fromJS(Math.max(1, Math.ceil(blogList.length / constants.BLOGS_PER_PAGE))),
+                    currPage: fromJS(0)
+                })
+            }
+            const tagFilterResult = state.get('blogList').toJS().filter((item) => (item.tagList.indexOf(action.tagId) !== -1))
+            return state.merge({
+                topicDisplayType: fromJS(constants.TAG_DISPLAY),
+                tagName: fromJS(action.tagName),
+                titleName: fromJS(null),
+                titleBlogCount: fromJS(null),
+                currBlogList: fromJS(tagFilterResult),
+                numPages: fromJS(Math.max(1, Math.ceil(tagFilterResult.length / constants.BLOGS_PER_PAGE))),
+                currPage: fromJS(0)
+            })
+        case constants.SEARCH_TITLE:
+            const titleFilterResult = state.get('blogList').toJS().filter((item) => (item.title.toLocaleLowerCase().indexOf(action.title.toLocaleLowerCase()) !== -1))
+            return state.merge({
+                topicDisplayType: fromJS(constants.TITLE_DISPLAY),
+                tagName: fromJS(null),
+                titleName: fromJS(action.title),
+                titleBlogCount: fromJS(titleFilterResult.length),
+                currBlogList: fromJS(titleFilterResult),
+                numPages: fromJS(Math.max(1, Math.ceil(titleFilterResult.length / constants.BLOGS_PER_PAGE))),
+                currPage: fromJS(0)
+            })
         default:
             return state
     }

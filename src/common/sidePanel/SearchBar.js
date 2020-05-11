@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import {
     SearchBarWrapper,
     SearchInput,
     SearchIcon
 } from './style'
+import {actionCreators} from '../../pages/home/store'
 
 class SearchBar extends Component {
 
@@ -38,8 +40,9 @@ class SearchBar extends Component {
 
     handleSearch() {
         const searchInput = this.inputDOMNode.value
-        window.alert('Search keyword: ' + searchInput)
         this.inputDOMNode.value = ''
+        const {searchTitle} = this.props
+        searchTitle(searchInput)
     }
     
     render() {
@@ -64,4 +67,10 @@ class SearchBar extends Component {
     }
 }
 
-export default SearchBar
+const mapDispatchToProps = (dispatch) => ({
+    searchTitle(title) {
+        dispatch(actionCreators.searchTitle(title))
+    }
+})
+
+export default connect(null, mapDispatchToProps)(SearchBar)

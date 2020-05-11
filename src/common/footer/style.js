@@ -52,6 +52,7 @@ export const BarCodeImage = styled.img`
     z-index: 99;
     opacity: 1;
   }
+  pointer-events: none;
 `
 
 export const FooterNoteWrapper = styled.div`

@@ -12,6 +12,22 @@ const fillBlogList = (blogList) => ({
     blogList
 })
 
+export const changePageNum = (pageNum) => ({
+    type: constants.CHANGE_PAGE_NUM,
+    pageNum
+})
+
+export const setTagName = (tagName, tagId) => ({
+    type: constants.SET_TAG_NAME,
+    tagName,
+    tagId
+})
+
+export const searchTitle = (title) => ({
+    type: constants.SEARCH_TITLE,
+    title
+})
+
 export const getTagList = () => {
     return async (dispatch) => {
         try {

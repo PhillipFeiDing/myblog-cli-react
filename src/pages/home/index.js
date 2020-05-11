@@ -8,11 +8,15 @@ import {
     ContentWrapper,
     Content,
     BlogListWrapper,
-    BlogList
+    BlogList,
+    DashBoardWrapper
 } from './style'
 import PageHeader from './PageHeader'
 import BlogItem from './BlogItem'
 import ParticlesContainer from '../../common/particles'
+import Paging from './Paging'
+import DashBoard from './DashBoard'
+import { BLOGS_PER_PAGE } from './store/constants'
 
 class Home extends Component {
 
@@ -25,18 +29,19 @@ class Home extends Component {
 
     render() {
         const tagList = this.props.tagList.toJS()
-        const blogList = this.props.blogList.toJS()
+        const currBlogList = this.props.currBlogList.toJS()
+        const currPage = this.props.currPage
         return (
             <MainWrapper>
                 <GlobalStyle />
                 <PageHeader />
                 <ContentWrapper>
                     <ParticlesContainer />
-                    <Content>
+                    <Content ref={(el) => {this.contentDOMNode = el}}>
                         <BlogListWrapper>
                             <BlogList>
                                 {
-                                    blogList.map((item) => {
+                                    currBlogList.splice(currPage * BLOGS_PER_PAGE, BLOGS_PER_PAGE).map((item) => {
                                         return (
                                             <BlogItem
                                                 key={'blog-' + item.id}
@@ -60,8 +65,12 @@ class Home extends Component {
                                         )
                                     })
                                 }
+                                <Paging contentDOMNode={this.contentDOMNode}/>
                             </BlogList>
                         </BlogListWrapper>
+                        <DashBoardWrapper>
+                            <DashBoard />
+                        </DashBoardWrapper>
                     </Content>
                 </ContentWrapper>
             </MainWrapper>
@@ -72,7 +81,8 @@ class Home extends Component {
 const mapStateToProps = (state) => ({
     authorName: state.getIn(['app', 'authorName']),
     tagList: state.getIn(['home', 'tagList']),
-    blogList: state.getIn(['home', 'blogList'])
+    currBlogList: state.getIn(['home', 'currBlogList']),
+    currPage: state.getIn(['home', 'currPage'])
 })
 
 const mapDispatchToProps = (dispatch) => ({
