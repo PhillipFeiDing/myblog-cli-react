@@ -73,9 +73,12 @@ class PageHeader extends Component {
     }
     
     componentDidUpdate() {
-        this.pageHeaderDisplayWrapperDOMRef.scrollIntoView({
-            behavior: 'smooth'
-        })
+        const { tagName, titleName, showTagBoard } = this.props
+        if (tagName !== null || titleName !== null || showTagBoard) {
+            this.pageHeaderDisplayWrapperDOMRef.scrollIntoView({
+                behavior: 'smooth'
+            })
+        }
     }
 }
 
