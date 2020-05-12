@@ -4,6 +4,8 @@ import {
     PageHeaderImage,
     PageHeaderDisplayWrapper,
     PageHeaderDisplay,
+    PageHeaderImageTitle,
+    TitleLine,
     AuthorAvatarImage,
     AuthorIntroduction,
 } from './style'
@@ -45,6 +47,11 @@ class PageHeader extends Component {
         return (
             <Fragment>
                 <PageHeaderImage imgURL='/home/page_background.jpg'/>
+                <PageHeaderImageTitle>
+                    <TitleLine paddingLeft='30vw' className='italic'>Welcome to Phillip Ding's</TitleLine>
+                    <TitleLine paddingLeft='35vw' className='italic'>Online Blog!</TitleLine>
+                    <TitleLine paddingLeft='40vw' className='italic cursive'>-- Stay hungry, stay foolish</TitleLine>
+                </PageHeaderImageTitle>
                 <PageHeaderDisplayWrapper ref={(el) => {this.pageHeaderDisplayWrapperDOMRef = el}}>
                     <PageHeaderDisplay className={this.state.pageLoaded ? 'animation-after' : 'animation-before'}>
                         <AuthorAvatarImage>

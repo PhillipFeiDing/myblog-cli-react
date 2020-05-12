@@ -13,13 +13,37 @@ export const MainWrapper = styled.div`
   transform: translateX(0px);
   min-height: 100vh;
   transition: all 0.4s;
+  position: relative;
 `
 
 export const PageHeaderImage = styled.div`
   width: 100%;
   height: 70vh;
   position: relative;
-  background: url(${(props) => (props.imgURL)});
+  background: url(${(props) => (props.imgURL)}) no-repeat;
+`
+
+export const PageHeaderImageTitle = styled.div`
+  position: absolute;
+  top: 0;
+  left: 50%;
+  top: 35vh;
+  width: 100vw;
+  transform: translate(-50%, 0%);
+  color: #ecf011;
+  font-size: 24px;
+`
+
+export const TitleLine = styled.p`
+  padding-left: ${(props) => (props.paddingLeft)};
+  &.italic {
+    font-style: italic;
+  }
+  &.cursive {
+    font-family: Apple Chancery, cursive;
+  }
+  transform: translate(-75px, 0);
+  white-space: nowrap;
 `
 
 export const PageHeaderDisplayWrapper = styled.div`
