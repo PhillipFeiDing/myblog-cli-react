@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import {
@@ -8,10 +8,13 @@ import {
     ToTopButton,
     Menu,
     MenuTitle,
-    MenuItem
+    MenuItem,
+    TagButton,
+    AboutMeButton
 } from './style'
 import SearchBar from './SearchBar'
 import { actionCreators } from './store'
+import { actionCreators as appActionCreators } from '../../store'
 
 
 class SidePanel extends Component {
@@ -65,7 +68,7 @@ class SidePanel extends Component {
 
     render() {
         const { showMenu } = this.state
-        const { topicList, friendList } = this.props
+        const { topicList, friendList, isMobile, showTag, showAboutMe } = this.props
         return (
             <SidePanelWrapper>
                 <ToolsWrapper>
@@ -83,6 +86,15 @@ class SidePanel extends Component {
                       this.state.showScroll ?
                       <ToTopButton onClick={handleScrollTop}></ToTopButton>:
                       null
+                    }
+                    {
+                        isMobile ? (
+                            <Fragment>
+                                <TagButton onClick={showTag} />
+                                <br />
+                                <AboutMeButton onClick={showAboutMe} />
+                            </Fragment>
+                        ) : null
                     }
                 </ToolsWrapper>
                 <Menu
@@ -127,7 +139,8 @@ const handleScrollTop = () => {
 
 const mapStateToProps = (state) => ({
     topicList: state.getIn(['sidePanel', 'topicList']),
-    friendList: state.getIn(['sidePanel', 'friendList'])
+    friendList: state.getIn(['sidePanel', 'friendList']),
+    isMobile: state.getIn(['app', 'isMobile'])
 })
 
 const mapDispatchToProps = (dispatch) => ({
@@ -136,6 +149,12 @@ const mapDispatchToProps = (dispatch) => ({
     },
     getFriendList() {
         dispatch(actionCreators.getFriendList())
+    },
+    showTag() {
+        dispatch(appActionCreators.showTagBoard(true))
+    },
+    showAboutMe() {
+        dispatch(appActionCreators.showAboutMeBoard(true))
     }
 })
 

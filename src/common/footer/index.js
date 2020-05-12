@@ -42,9 +42,9 @@ class Footer extends Component {
                     &nbsp;|&nbsp;
                     <FooterLink href='https://expressjs.com/'>{initialTemplate('E')}xpress</FooterLink>
                     &nbsp;|&nbsp;
-                    <FooterLink href='https://nodejs.org/en/'>{initialTemplate('N')}ode</FooterLink>
-                    &nbsp;|&nbsp;
                     <FooterLink href='https://reactjs.org/'>{initialTemplate('R')}eact</FooterLink>
+                    &nbsp;|&nbsp;
+                    <FooterLink href='https://nodejs.org/en/'>{initialTemplate('N')}ode</FooterLink>
                     .<br /> <br />
                     Created by {authorName} © {new Date().getFullYear()}
                 </FooterNoteWrapper>

@@ -19,7 +19,9 @@ class Paging extends Component {
         if (pageNum >= 0 && pageNum < numPages && pageNum !== currPage) {
             changePageNum(pageNum)
             if (contentDOMNode) {
-                contentDOMNode.scrollIntoView()
+                contentDOMNode.scrollIntoView({
+                    behavior: 'smooth'
+                })
             }
         }
     }

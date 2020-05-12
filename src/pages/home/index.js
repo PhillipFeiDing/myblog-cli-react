@@ -30,7 +30,7 @@ class Home extends Component {
     render() {
         const tagList = this.props.tagList.toJS()
         const currBlogList = this.props.currBlogList.toJS()
-        const currPage = this.props.currPage
+        const { currPage, isMobile } = this.props
         return (
             <MainWrapper>
                 <GlobalStyle />
@@ -38,7 +38,7 @@ class Home extends Component {
                 <ContentWrapper>
                     <ParticlesContainer />
                     <Content ref={(el) => {this.contentDOMNode = el}}>
-                        <BlogListWrapper>
+                        <BlogListWrapper className={isMobile ? 'mobile' : 'desktop'}>
                             <BlogList>
                                 {
                                     currBlogList.splice(currPage * BLOGS_PER_PAGE, BLOGS_PER_PAGE).map((item) => {
@@ -68,7 +68,7 @@ class Home extends Component {
                                 <Paging contentDOMNode={this.contentDOMNode}/>
                             </BlogList>
                         </BlogListWrapper>
-                        <DashBoardWrapper>
+                        <DashBoardWrapper className={isMobile ? 'mobile' : 'desktop'}>
                             <DashBoard />
                         </DashBoardWrapper>
                     </Content>
@@ -76,13 +76,24 @@ class Home extends Component {
             </MainWrapper>
         )
     }
+
+    componentDidUpdate() {
+        const { showAboutMeBoard } = this.props
+        if (showAboutMeBoard) {
+            this.contentDOMNode.scrollIntoView({
+                behavior: 'smooth'
+            })
+        }
+    }
 }
 
 const mapStateToProps = (state) => ({
     authorName: state.getIn(['app', 'authorName']),
     tagList: state.getIn(['home', 'tagList']),
     currBlogList: state.getIn(['home', 'currBlogList']),
-    currPage: state.getIn(['home', 'currPage'])
+    currPage: state.getIn(['home', 'currPage']),
+    isMobile: state.getIn(['app', 'isMobile']),
+    showAboutMeBoard: state.getIn(['app', 'mobile', 'showAboutMe'])
 })
 
 const mapDispatchToProps = (dispatch) => ({

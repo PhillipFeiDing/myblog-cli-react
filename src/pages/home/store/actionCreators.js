@@ -1,6 +1,7 @@
 import axios from 'axios'
 import * as apis from '../../../constants'
 import * as constants from './constants'
+import * as appConstants from '../../../store/constants'
 
 const fillTagList = (tagList) => ({
     type: constants.FILL_TAG_LIST,
@@ -26,6 +27,11 @@ export const setTagName = (tagName, tagId) => ({
 export const searchTitle = (title) => ({
     type: constants.SEARCH_TITLE,
     title
+})
+
+export const updateLayout = (viewportWidth) => ({
+    type: appConstants.UPDATE_LAYOUT,
+    viewportWidth
 })
 
 export const getTagList = () => {

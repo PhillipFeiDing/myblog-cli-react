@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react'
+import { connect } from 'react-redux'
 import {
     PageHeaderImage,
     PageHeaderDisplayWrapper,
@@ -44,7 +45,7 @@ class PageHeader extends Component {
         return (
             <Fragment>
                 <PageHeaderImage imgURL='/home/page_background.jpg'/>
-                <PageHeaderDisplayWrapper>
+                <PageHeaderDisplayWrapper ref={(el) => {this.pageHeaderDisplayWrapperDOMRef = el}}>
                     <PageHeaderDisplay className={this.state.pageLoaded ? 'animation-after' : 'animation-before'}>
                         <AuthorAvatarImage>
                             <img src='/home/avatar.jpg' alt='' />
@@ -70,6 +71,18 @@ class PageHeader extends Component {
             </Fragment>
         )
     }
+    
+    componentDidUpdate() {
+        this.pageHeaderDisplayWrapperDOMRef.scrollIntoView({
+            behavior: 'smooth'
+        })
+    }
 }
 
-export default PageHeader
+const mapStateToProps = (state) => ({
+    tagName: state.getIn(['home', 'tagName']),
+    titleName: state.getIn(['home', 'titleName']),
+    showTagBoard: state.getIn(['app', 'mobile', 'showTag'])
+}) 
+
+export default connect(mapStateToProps, null)(PageHeader)

@@ -107,24 +107,90 @@ export const Content = styled.div.attrs({
   box-shadow: 0 0 5px #95a5a6;
 `
 
-export const BlogListWrapper = styled.div.attrs({
-  className: 'col-lg-8 col-lg-offset-1 col-md-8 col-md-offset-1'
-})`
+export const BlogListWrapper = styled.div`
   float: left;
+  width: 70%;
+  position: relative;
+  &.mobile {
+    width: 100%;
+  }
+  overflow: display;
 `
 
 export const DashBoardWrapper = styled.div`
   float: left;
   width: 30%;
   top: 0;
-  margin: 36px auto 36px auto;
-  padding: 10px 25px 0 25px;
+  padding-right: 24px;
+  margin: 36px auto 16px auto;
   &::-webkit-scrollbar {
     display: none;
   }
+  &.mobile {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    pointer-events: none;
+  }
   max-height: max(90%, 90vh);
-  background: rgba(236,240,241,0.8);
+`
+
+export const DashBoardItemWrapper = styled.div`
   box-shadow: 0 0 5px #95a5a6;
+  margin-bottom: 20px;
+  padding: 10px 25px 10px 25px;
+  background: rgba(236,240,241,0.8);
+  box-sizing: border-box;
+  &.mobile {
+    &.hidden {
+      display: none;
+    }
+    &.display {
+      margin: 0 auto;
+      margin-top: 36px;
+      padding-top: 0;
+      position: relative;
+      width: 80%;
+      background: rgba(236,240,241,1);
+      pointer-events: auto;
+      box-shadow: 0 0 15px #95a5a6;
+      border: 1px solid #2c3e50;
+      border-radius: 10px 10px 2px 2px;
+      padding-right: 0;
+    }
+  }
+`
+
+export const DashBoardContentWrapper = styled.div`
+  padding-top: 10px;
+  &.mobile {
+    padding-right: 25px;
+    max-height: 85vh;
+    overflow: auto;
+    margin-top: 25px;
+  }
+`
+
+export const MobileDashBoardNavBar = styled.div`
+  width: calc(100% + 2px);
+  position: absolute;
+  height: 25px;
+  left: -1px;
+  top: -1px;
+  background: #2c3e50;
+  border-radius: 10px 10px 2px 2px;
+`
+
+export const CloseTabIcon = styled.img.attrs({
+  src: '/home/dashboard/close.svg',
+  alt: ''
+})`
+  height: 15px;
+  padding-left: 5px;
+  cursor: pointer;
 `
 
 export const BlogList = styled.ul`
@@ -321,7 +387,7 @@ export const ProfileImageWrapper = styled.div`
 
 export const ProfileTextWrapper = styled.div`
   margin-top: 16px;
-  color: ##2c3e50;
+  color: #2c3e50;
   width: 100%;
   font-size: 11px;
   p {

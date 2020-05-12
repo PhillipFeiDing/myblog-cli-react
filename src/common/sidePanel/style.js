@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { constants } from './store'
 
 export const SidePanelWrapper = styled.div`
   position: fixed;
@@ -75,6 +76,32 @@ export const SearchInput = styled.input.attrs({
   transition: all 0.4s;
   color: #555;
   pointer-events: auto;
+  box-shadow: 0 0 5px #95a5a6;
+`
+
+export const TagButton = styled.img.attrs({
+  src: '/common/sidePanel/tag.svg',
+  id: constants.TAG_BUTTON,
+  alt: ''
+})`
+  opacity: 0.6;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  pointer-events: auto;
+  margin-top: 8px;
+`
+export const AboutMeButton = styled.img.attrs({
+  src: '/common/sidePanel/aboutMe.svg',
+  id: constants.ABOUT_ME_BUTTON,
+  alt: ''
+})`
+  opacity: 0.6;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  pointer-events: auto;
+  margin-top: 8px;
 `
 
 export const ToTopButton = styled.img.attrs({
@@ -107,6 +134,7 @@ export const Menu = styled.ul`
   }
   transition: all 0.2s ease-out;
   pointer-events: auto;
+  box-shadow: 0 0 5px #95a5a6;
 `
 
 export const MenuTitle = styled.p`
