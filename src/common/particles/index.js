@@ -42,6 +42,10 @@ class ParticlesContainer extends Component {
             }))
         }
     }
+
+    shouldComponentUpdate(prevProps) {
+        return this.props.show || prevProps.show !== this.props.show
+    }
     
     render() {
         return (
@@ -49,7 +53,12 @@ class ParticlesContainer extends Component {
                 ref={(el) => {this.domNode = el}}
                 offsetTop={this.state.offsetTop}
             >
-                <Particles params={config} width={window.innerWidth + 'px'} height={window.innerHeight + 'px'}/>
+                <Particles
+                    params={config}
+                    width={window.innerWidth + 'px'}
+                    height={window.innerHeight + 'px'}
+                    style={this.props.show? {} : {display: 'none'}}
+                />
             </ParticlesWrapper>
         )
     }

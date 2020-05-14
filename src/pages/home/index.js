@@ -16,7 +16,6 @@ import BlogItem from './BlogItem'
 import ParticlesContainer from '../../common/particles'
 import Paging from './Paging'
 import DashBoard from './DashBoard'
-import { BLOGS_PER_PAGE } from './store/constants'
 
 class Home extends Component {
 
@@ -30,18 +29,18 @@ class Home extends Component {
     render() {
         const tagList = this.props.tagList.toJS()
         const currBlogList = this.props.currBlogList.toJS()
-        const { currPage, isMobile } = this.props
+        const { currPage, isMobile, showBackground, blogsPerPage } = this.props
         return (
             <MainWrapper>
                 <GlobalStyle />
                 <PageHeader />
                 <ContentWrapper>
-                    <ParticlesContainer />
+                    <ParticlesContainer show={showBackground}/>
                     <Content ref={(el) => {this.contentDOMNode = el}}>
                         <BlogListWrapper className={isMobile ? 'mobile' : 'desktop'}>
                             <BlogList>
                                 {
-                                    currBlogList.splice(currPage * BLOGS_PER_PAGE, BLOGS_PER_PAGE).map((item) => {
+                                    currBlogList.splice(currPage * blogsPerPage, blogsPerPage).map((item) => {
                                         return (
                                             <BlogItem
                                                 key={'blog-' + item.id}
@@ -61,7 +60,6 @@ class Home extends Component {
                                                     })
                                                 }}
                                             />
-
                                         )
                                     })
                                 }
@@ -77,9 +75,9 @@ class Home extends Component {
         )
     }
 
-    componentDidUpdate() {
+    componentDidUpdate(prevProps) {
         const { showAboutMeBoard } = this.props
-        if (showAboutMeBoard) {
+        if (showAboutMeBoard || prevProps.blogsPerPage !== this.props.blogsPerPage) {
             this.contentDOMNode.scrollIntoView({
                 behavior: 'smooth'
             })
@@ -93,7 +91,9 @@ const mapStateToProps = (state) => ({
     currBlogList: state.getIn(['home', 'currBlogList']),
     currPage: state.getIn(['home', 'currPage']),
     isMobile: state.getIn(['app', 'isMobile']),
-    showAboutMeBoard: state.getIn(['app', 'mobile', 'showAboutMe'])
+    showAboutMeBoard: state.getIn(['app', 'mobile', 'showAboutMe']),
+    showBackground: state.getIn(['app', 'showBackground']),
+    blogsPerPage: state.getIn(['home', 'blogsPerPage'])
 })
 
 const mapDispatchToProps = (dispatch) => ({

@@ -8,7 +8,8 @@ const defaultState = fromJS({
     mobile: {
         showTag: false,
         showAboutMe: false
-    }
+    },
+    showBackground: true
 })
 
 export const reducer = (state=defaultState, action) => {
@@ -21,6 +22,8 @@ export const reducer = (state=defaultState, action) => {
             return state.set('mobile', fromJS({showTag: action.show, showAboutMe: action.show ? false : state.get('mobile').toJS().showAboutMe}))
         case constants.SHOW_ABOUT_ME_BOARD:
             return state.set('mobile', fromJS({showTag: action.show ? false : state.get('mobile').toJS().showTag, showAboutMe: action.show}))
+        case constants.SHOW_BACKGROUND:
+            return state.set('showBackground', action.show)
         default:
             return state
     }

@@ -13,6 +13,13 @@ export const config = {
   "detectRetina": true,
   "emitters": [],
   "fpsLimit": 60,
+  "infection": {
+    "cure": false,
+    "delay": 0,
+    "enable": false,
+    "infections": 0,
+    "stages": []
+  },
   "interactivity": {
     "detectsOn": "canvas",
     "events": {
@@ -21,13 +28,13 @@ export const config = {
         "mode": "push"
       },
       "onDiv": {
-        "elementId": "",
+        "elementId": "repulse-div",
         "enable": false,
-        "mode": []
+        "mode": "repulse"
       },
       "onHover": {
         "enable": true,
-        "mode": "bubble",
+        "mode": "connect",
         "parallax": {
           "enable": false,
           "force": 60,
@@ -41,7 +48,7 @@ export const config = {
       "bubble": {
         "distance": 400,
         "duration": 2,
-        "opacity": 1,
+        "opacity": 0.8,
         "size": 40
       },
       "connect": {
@@ -81,12 +88,12 @@ export const config = {
       "mode": "bounce"
     },
     "color": {
-      "value": "#ffffff"
+      "value": "random"
     },
     "lineLinked": {
       "blink": false,
       "color": {
-        "value": "#323031"
+        "value": "#ffffff"
       },
       "consent": false,
       "distance": 150,
@@ -111,7 +118,27 @@ export const config = {
       },
       "direction": "none",
       "enable": true,
-      "outMode": "bounce",
+      "noise": {
+        "delay": {
+          "random": {
+            "enable": false,
+            "minimumValue": 0
+          },
+          "value": 0
+        },
+        "enable": false,
+        "factor": {
+          "horizontal": {
+            "value": 50,
+            "offset": 0
+          },
+          "vertical": {
+            "value": 10,
+            "offset": 40000
+          }
+        }
+      },
+      "outMode": "out",
       "random": false,
       "speed": 6,
       "straight": false,
@@ -121,15 +148,17 @@ export const config = {
         "fillColor": {
           "value": "#000000"
         }
-      }
+      },
+      "vibrate": false
     },
     "number": {
       "density": {
         "enable": true,
-        "area": 800
+        "area": 800,
+        "factor": 1000
       },
-      "limit": 0,
-      "value": 25
+      "limit": 500,
+      "value": 300
     },
     "opacity": {
       "animation": {
@@ -142,7 +171,7 @@ export const config = {
         "enable": false,
         "minimumValue": 1
       },
-      "value": 1
+      "value": 0.5
     },
     "rotate": {
       "animation": {
@@ -168,20 +197,36 @@ export const config = {
     "shape": {
       "options": {
         "character": {
-          "fill": false,
+          "fill": true,
           "close": true,
           "font": "Verdana",
           "style": "",
-          "value": "*",
+          "value": "M",
           "weight": "400"
         },
         "char": {
-          "fill": false,
+          "fill": true,
           "close": true,
           "font": "Verdana",
           "style": "",
-          "value": "*",
+          "value": "M",
           "weight": "400"
+        },
+        "image": {
+          "fill": true,
+          "close": true,
+          "height": 100,
+          "replaceColor": true,
+          "src": "https://cdn.matteobruni.it/images/particles/github.svg",
+          "width": 100
+        },
+        "images": {
+          "fill": true,
+          "close": true,
+          "height": 100,
+          "replaceColor": true,
+          "src": "https://cdn.matteobruni.it/images/particles/github.svg",
+          "width": 100
         },
         "polygon": {
           "fill": true,
@@ -194,28 +239,22 @@ export const config = {
           "sides": 5
         }
       },
-      "image": {
-        "fill": true,
-        "close": true,
-        "height": 32,
-        "replaceColor": true,
-        "src": "https://cdn.matteobruni.it/images/particles/sars-cov-2.png",
-        "width": 32
-      },
-      "type": "image"
+      "type": "circle"
     },
     "size": {
       "animation": {
+        "destroy": "none",
         "enable": false,
         "minimumValue": 0.1,
         "speed": 40,
+        "startValue": "max",
         "sync": false
       },
       "random": {
-        "enable": false,
+        "enable": true,
         "minimumValue": 1
       },
-      "value": 16
+      "value": 5
     },
     "stroke": {
       "color": {

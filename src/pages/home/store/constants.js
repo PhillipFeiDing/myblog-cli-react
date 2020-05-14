@@ -1,5 +1,5 @@
 export const NONE_DISPLAY = null
-export const BLOGS_PER_PAGE = 5
+export const PAGING_OPTIONS = [2, 4, 5, 8, 10, 15, 20]
 export const MOBILE_LAYOUT_THRESHOLD = 992
 export const TAG_DISPLAY = '/home/TAG_DISPLAY'
 export const TITLE_DISPLAY = '/home/TITLE_DISPLAY'
@@ -8,3 +8,4 @@ export const FILL_BLOG_LIST = '/home/FILL_BLOG_LIST'
 export const CHANGE_PAGE_NUM = '/home/CHANGE_PAGE_NUM'
 export const SET_TAG_NAME = '/home/SET_TAG_NAME'
 export const SEARCH_TITLE = '/home/SEARCH_TITLE'
+export const BLOGS_PER_PAGE = '/home/BLOGS_PER_PAGE'

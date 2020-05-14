@@ -79,6 +79,101 @@ export const SearchInput = styled.input.attrs({
   box-shadow: 0 0 5px #95a5a6;
 `
 
+export const SettingsBox = styled.div`
+  display: inline;
+  position: relative;
+`
+
+export const SettingsButton = styled.img.attrs({
+  src: '/common/sidePanel/settings.svg',
+  alt: ''
+})`
+  opacity: 0.6;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  pointer-events: auto;
+  margin-top: 8px;
+  margin-bottom: 8px;
+`
+
+export const SettingsPanel = styled.div`
+  position: absolute;
+  top: -40px;
+  width: 250px;
+  right: calc(100% + 15px);
+  background: #fff;
+  box-shadow: 0 0 15px #95a5a6;
+  padding: 10px;
+  border-radius: 5px;
+  pointer-events: auto;
+`
+
+export const SettingsPanelTip = styled.div`
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid #fff;
+  position: absolute;
+  left: 100%;
+  top: 40px;
+`
+
+export const SettingsItem = styled.div`
+  text-align: left;
+  padding: 10px;
+  color: #969696;
+  font-size: 14px;
+`
+
+export const SettingsComponentWrapper = styled.div`
+  float: right;
+  position: relative;
+  top: ${(props) => (props.offset)};
+`
+
+export const DropdownButtonGroupWrapper = styled.div.attrs({
+  className: 'btn-group'
+})``
+
+export const DropdownButton = styled.button.attrs({
+  className: 'btn btn-secondary btn-sm dropdown-toggle',
+  type: 'button',
+  dataToggle: 'dropdown',
+  ariaHaspopup: 'true',
+  ariaExpanded: 'false'
+})``
+
+export const DropdownMenu = styled.div.attrs({
+  className: 'dropdown-menu'
+})`
+  &.showMenu {
+    display: inline;
+  }
+  min-width: 100%;
+  transform: translateX(-100%);
+  left: 100%;
+`
+
+export const DropdownItem = styled.a.attrs({
+  className: 'dropdown-item'
+})`
+  font-size: 14px;
+  color: #2c3e50 !important;
+`
+
+export const AdminIcon = styled.img.attrs({
+  src: '/common/sidePanel/admin.svg',
+  alt: ''
+})`
+  opacity: 0.6;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  pointer-events: auto;
+`
+
 export const TagButton = styled.img.attrs({
   src: '/common/sidePanel/tag.svg',
   id: constants.TAG_BUTTON,

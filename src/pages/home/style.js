@@ -4,6 +4,7 @@ import { createGlobalStyle } from 'styled-components'
 export const GlobalStyle = createGlobalStyle`
   body {
     background: #2c3e50;
+    overflow-x: hidden;
   }
 `
 
@@ -335,15 +336,16 @@ export const PageList = styled.ul`
   pointer-events: auto;
 `
 
+export const PAGING_ITEM_WIDTH = 26
 export const PageItem = styled.li`
   display: inline-block;
-  padding: 6px 0;
+  padding: 4px 0;
   box-sizing: border-box;
-  font-size: 16px;
-  width: 40px;
-  height: 40px;
+  font-size: 14px;
+  width: ${PAGING_ITEM_WIDTH}px;
+  height: ${PAGING_ITEM_WIDTH}px;
   text-align: center;
-  line-height: 28px;
+  line-height: 18px;
   box-shadow: 0 0 5px #95a5a6;
   &.start {
     border-radius: 20px 0 0 20px;

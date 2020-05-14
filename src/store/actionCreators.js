@@ -17,6 +17,11 @@ export const showAboutMeBoard = (show) => ({
     show
 })
 
+export const showBackground = (show) => ({
+    type: constants.SHOW_BACKGROUND,
+    show
+})
+
 export const getAuthorName = () => {
     return async (dispatch) => {
         try {

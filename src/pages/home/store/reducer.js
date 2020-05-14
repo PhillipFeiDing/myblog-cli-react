@@ -10,7 +10,8 @@ const defaultState = fromJS({
     blogList: [],
     currBlogList: [],
     numPages: 1,
-    currPage: 0
+    currPage: 0,
+    blogsPerPage: 4
 })
 
 export default (state=defaultState, action) => {
@@ -21,7 +22,7 @@ export default (state=defaultState, action) => {
             return state.merge({
                 blogList: fromJS(action.blogList),
                 currBlogList: fromJS(action.blogList),
-                numPages: fromJS(Math.max(1, Math.ceil(action.blogList.length / constants.BLOGS_PER_PAGE)))
+                numPages: fromJS(Math.max(1, Math.ceil(action.blogList.length / state.get('blogsPerPage'))))
             })
         case constants.CHANGE_PAGE_NUM:
             return state.set('currPage', fromJS(action.pageNum))
@@ -34,7 +35,7 @@ export default (state=defaultState, action) => {
                     titleName: fromJS(null),
                     titleBlogCount: fromJS(null),
                     currBlogList: fromJS(blogList),
-                    numPages: fromJS(Math.max(1, Math.ceil(blogList.length / constants.BLOGS_PER_PAGE))),
+                    numPages: fromJS(Math.max(1, Math.ceil(blogList.length / state.get('blogsPerPage')))),
                     currPage: fromJS(0)
                 })
             }
@@ -45,7 +46,7 @@ export default (state=defaultState, action) => {
                 titleName: fromJS(null),
                 titleBlogCount: fromJS(null),
                 currBlogList: fromJS(tagFilterResult),
-                numPages: fromJS(Math.max(1, Math.ceil(tagFilterResult.length / constants.BLOGS_PER_PAGE))),
+                numPages: fromJS(Math.max(1, Math.ceil(tagFilterResult.length / state.get('blogsPerPage')))),
                 currPage: fromJS(0)
             })
         case constants.SEARCH_TITLE:
@@ -56,8 +57,15 @@ export default (state=defaultState, action) => {
                 titleName: fromJS(action.title),
                 titleBlogCount: fromJS(titleFilterResult.length),
                 currBlogList: fromJS(titleFilterResult),
-                numPages: fromJS(Math.max(1, Math.ceil(titleFilterResult.length / constants.BLOGS_PER_PAGE))),
+                numPages: fromJS(Math.max(1, Math.ceil(titleFilterResult.length / state.get('blogsPerPage')))),
                 currPage: fromJS(0)
+            })
+        case constants.BLOGS_PER_PAGE:
+            const currBlogList = state.get('currBlogList').toJS()
+            return state.merge({
+                numPages: fromJS(Math.max(1, Math.ceil(currBlogList.length / action.blogsPerPage))),
+                currPage: 0,
+                blogsPerPage: action.blogsPerPage
             })
         default:
             return state

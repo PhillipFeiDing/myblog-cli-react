@@ -34,6 +34,11 @@ export const updateLayout = (viewportWidth) => ({
     viewportWidth
 })
 
+export const setBlogsPerPage = (blogsPerPage) => ({
+    type: constants.BLOGS_PER_PAGE,
+    blogsPerPage
+})
+
 export const getTagList = () => {
     return async (dispatch) => {
         try {

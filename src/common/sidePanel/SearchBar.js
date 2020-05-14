@@ -28,7 +28,6 @@ class SearchBar extends Component {
             document.removeEventListener('click', this.outInputClickHandler)
             document.removeEventListener('keypress', this.handleKeyPressed)
         }
-
     }
 
     handleKeyPressed(e) {
