@@ -22,6 +22,7 @@ import {
 import SearchBar from './SearchBar'
 import Switch from './Switch'
 import Dropdown from './Dropdown'
+import ButtonGroup from './ButtonGroup'
 import { actionCreators } from './store'
 import { actionCreators as appActionCreators } from '../../store'
 import { actionCreators as homeActionCreators } from '../../pages/home/store'
@@ -43,6 +44,8 @@ class SidePanel extends Component {
         this.outPanelClickHandler = this.outPanelClickHandler.bind(this)
         this.handleBackgroundShowChange = this.handleBackgroundShowChange.bind(this)
         this.handleBlogsPerPageChange = this.handleBlogsPerPageChange.bind(this)
+        this.handleFontFamilyChange = this.handleFontFamilyChange.bind(this)
+        this.handleDisplayChange = this.handleDisplayChange.bind(this)
     }
 
     componentDidMount() {
@@ -97,9 +100,17 @@ class SidePanel extends Component {
         this.props.setBlogsPerPage(blogsPerPage)
     }
 
+    handleFontFamilyChange(font) {
+        this.props.setFontFamily(font)
+    }
+
+    handleDisplayChange(display) {
+        this.props.setDisplay(display)
+    }
+
     render() {
         const { showMenu, showSettings } = this.state
-        const { topicList, friendList, isMobile, showTag, showAboutMe, showBackground, blogsPerPage } = this.props
+        const { topicList, friendList, isMobile, showTag, showAboutMe, showBackground, blogsPerPage, fontFamily, display } = this.props
         return (
             <SidePanelWrapper>
                 <ToolsWrapper>
@@ -150,6 +161,26 @@ class SidePanel extends Component {
                                         </SettingsComponentWrapper>
                                     </SettingsItem>
                                     <SettingsItem>
+                                        Display
+                                        <SettingsComponentWrapper offset={'-5px'}>
+                                        <ButtonGroup
+                                            defaultValue={display}
+                                            options={['Dark', 'Light']}
+                                            statusOnChange={this.handleDisplayChange}
+                                        />
+                                        </SettingsComponentWrapper>
+                                    </SettingsItem>
+                                    <SettingsItem>
+                                        Font Family
+                                        <SettingsComponentWrapper offset={'-5px'}>
+                                            <Dropdown
+                                                defaultValue={fontFamily}
+                                                options={['Arial', 'Georgia']}
+                                                statusOnChange={this.handleFontFamilyChange}
+                                            />
+                                        </SettingsComponentWrapper>
+                                    </SettingsItem>
+                                    <SettingsItem>
                                         Blogs Per Page
                                         <SettingsComponentWrapper offset={'-5px'}>
                                             <Dropdown
@@ -160,8 +191,11 @@ class SidePanel extends Component {
                                         </SettingsComponentWrapper>
                                     </SettingsItem>
                                     <SettingsItem>
-                                        <SettingsComponentWrapper offset={'-5px'}>
+                                        <SettingsComponentWrapper offset={'-5px'} style={{float: 'left'}}>
                                             <AdminIcon />
+                                        </SettingsComponentWrapper>
+                                        <SettingsComponentWrapper>
+                                            « Admin Entry
                                         </SettingsComponentWrapper>
                                     </SettingsItem>
                                 </SettingsPanel>
@@ -214,7 +248,9 @@ const mapStateToProps = (state) => ({
     friendList: state.getIn(['sidePanel', 'friendList']),
     isMobile: state.getIn(['app', 'isMobile']),
     showBackground: state.getIn(['app', 'showBackground']),
-    blogsPerPage: state.getIn(['home', 'blogsPerPage'])
+    blogsPerPage: state.getIn(['home', 'blogsPerPage']),
+    fontFamily: state.getIn(['app', 'fontFamily']),
+    display: state.getIn(['app', 'display'])
 })
 
 const mapDispatchToProps = (dispatch) => ({
@@ -235,6 +271,12 @@ const mapDispatchToProps = (dispatch) => ({
     },
     setBlogsPerPage(blogsPerPage) {
         dispatch(homeActionCreators.setBlogsPerPage(blogsPerPage))
+    },
+    setFontFamily(font) {
+        dispatch(appActionCreators.setFontFamily(font))
+    },
+    setDisplay(display) {
+        dispatch(appActionCreators.setDisplay(display))
     }
 })
 

@@ -9,7 +9,9 @@ const defaultState = fromJS({
         showTag: false,
         showAboutMe: false
     },
-    showBackground: true
+    showBackground: true,
+    fontFamily: 'Georgia',
+    display: 'Dark'
 })
 
 export const reducer = (state=defaultState, action) => {
@@ -24,6 +26,10 @@ export const reducer = (state=defaultState, action) => {
             return state.set('mobile', fromJS({showTag: action.show ? false : state.get('mobile').toJS().showTag, showAboutMe: action.show}))
         case constants.SHOW_BACKGROUND:
             return state.set('showBackground', action.show)
+        case constants.SET_FONT_FAMILY:
+            return state.set('fontFamily', action.font)
+        case constants.SET_DISPLAY:
+            return state.set('display', action.display)
         default:
             return state
     }

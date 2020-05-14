@@ -6,10 +6,12 @@ import Home from './pages/home'
 import Detail from './pages/detail'
 import Footer from './common/footer'
 import store from './store'
+import GlobalStyle from './GlobalStyle'
 
 function App() {
   return (
     <Provider store={store}>
+      <GlobalStyle />
       <BrowserRouter>
         <Fragment>
           <Route path='/(|home|index|detail)' exact component={SidePanel}></Route>

@@ -5,7 +5,7 @@ export const SidePanelWrapper = styled.div`
   position: fixed;
   right: 0;
   top: 0;
-  z-index: 99;
+  z-index: 999;
   text-align: right;
   height: 100vh;
   overflow: visible;
@@ -161,6 +161,20 @@ export const DropdownItem = styled.a.attrs({
 })`
   font-size: 14px;
   color: #2c3e50 !important;
+`
+
+export const ButtonGroup = styled.div.attrs({
+  className: 'btn-group btn-group-sm',
+  role: 'group',
+  ariaLabel: 'Basic example'
+})``
+
+export const ButtonGroupButton = styled.button.attrs({
+  type: 'button'
+})`
+  &.inactive {
+    color: #969696 !important;
+  }
 `
 
 export const AdminIcon = styled.img.attrs({

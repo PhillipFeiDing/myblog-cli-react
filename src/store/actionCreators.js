@@ -22,6 +22,16 @@ export const showBackground = (show) => ({
     show
 })
 
+export const setFontFamily = (font) => ({
+    type: constants.SET_FONT_FAMILY,
+    font
+})
+
+export const setDisplay = (display) => ({
+    type: constants.SET_DISPLAY,
+    display
+})
+
 export const getAuthorName = () => {
     return async (dispatch) => {
         try {

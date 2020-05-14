@@ -1,12 +1,4 @@
 import styled from 'styled-components'
-import { createGlobalStyle } from 'styled-components'
-
-export const GlobalStyle = createGlobalStyle`
-  body {
-    background: #2c3e50;
-    overflow-x: hidden;
-  }
-`
 
 export const MainWrapper = styled.div`
   width: 100%;
@@ -41,7 +33,7 @@ export const TitleLine = styled.p`
     font-style: italic;
   }
   &.cursive {
-    font-family: Apple Chancery, cursive;
+    font-family: cursive;
   }
   transform: translate(-75px, 0);
   white-space: nowrap;
@@ -134,7 +126,7 @@ export const Content = styled.div.attrs({
 
 export const BlogListWrapper = styled.div`
   float: left;
-  width: 70%;
+  width: 65%;
   position: relative;
   &.mobile {
     width: 100%;
@@ -144,7 +136,7 @@ export const BlogListWrapper = styled.div`
 
 export const DashBoardWrapper = styled.div`
   float: left;
-  width: 30%;
+  width: 35%;
   top: 0;
   padding-right: 24px;
   margin: 36px auto 16px auto;
@@ -300,6 +292,7 @@ export const BlogExerptImageWrapper = styled.div`
 
 export const BlogExerptImage = styled.img`
   padding-left: 10px;
+  padding-right: 10px;
   height: 100%;
 `
 
@@ -320,7 +313,7 @@ export const BlogMetaListItem = styled.li`
 
 export const linkStyle = {
   color: '#2c3e50',
-  cursor: 'pointer'
+  cursor: 'pointer',
 }
 
 export const PagingWrapper = styled.div`
@@ -334,6 +327,8 @@ export const PageList = styled.ul`
   padding: 0;
   margin: 0 auto 30px auto;
   pointer-events: auto;
+  background: #fff;
+  border-radius: 13px 13px 13px 13px;
 `
 
 export const PAGING_ITEM_WIDTH = 26
@@ -348,11 +343,11 @@ export const PageItem = styled.li`
   line-height: 18px;
   box-shadow: 0 0 5px #95a5a6;
   &.start {
-    border-radius: 20px 0 0 20px;
+    border-radius: ${PAGING_ITEM_WIDTH / 2}px 0 0 ${PAGING_ITEM_WIDTH / 2}px;
     clip-path: inset(-5px 0px -5px -5px);
   }
   &.end {
-    border-radius: 0 20px 20px 0;
+    border-radius: 0 ${PAGING_ITEM_WIDTH / 2}px ${PAGING_ITEM_WIDTH / 2}px 0;
     clip-path: inset(-5px -5px -5px 0px);
   }
   &.middle {

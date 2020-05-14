@@ -8,10 +8,10 @@ class TopicDisplay extends Component {
         const { topicDisplayType, tagName, titleName, titleBlogCount } = this.props
 
         const tagDisplayTempate = (
-            <h2>{tagName}</h2>
+            <h2 id='topic-display'>{tagName}</h2>
         )
         const titleDisplayTemplate = (
-            <h4>
+            <h4 id='topic-display'>
                 {generateBlogCountTemplate(titleBlogCount)}
                 &nbsp;titled with "<span style={{color: '#7f8c8d'}}>{titleName}</span>".
             </h4>

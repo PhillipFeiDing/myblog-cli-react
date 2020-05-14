@@ -65,7 +65,7 @@ class DashBoard extends Component {
         return (
             <Fragment>
                 <DashBoardItemWrapper
-                    className={(isMobile ? 'mobile ' : 'desktop ') + (showTag ? 'display' : 'hidden')}
+                    className={(isMobile ? 'mobile ' : 'desktop dashboard-item-wrapper ') + (showTag ? 'display' : 'hidden')}
                     ref={(el) => {this.tagBoardWrapper = el}}
                 >
                     {
@@ -87,7 +87,7 @@ class DashBoard extends Component {
                             </TagSpan>
                         </TagGroup>
                         <hr />
-                        <TitleSpan>FEATURED TAGS</TitleSpan>
+                        <TitleSpan className='dashboard-title-span'>FEATURED TAGS</TitleSpan>
                         <TagGroup>
                             {
                                 tagList.map((item) => (
@@ -102,7 +102,7 @@ class DashBoard extends Component {
                     </DashBoardContentWrapper>
                 </DashBoardItemWrapper>
                 <DashBoardItemWrapper
-                    className={(isMobile ? 'mobile ' : 'desktop ') + (showAboutMe ? 'display' : 'hidden')}
+                    className={(isMobile ? 'mobile ' : 'desktop dashboard-item-wrapper ') + (showAboutMe ? 'display' : 'hidden')}
                     ref={(el) => {this.aboutMeBoardWrapper = el}}
                 >
                     {
@@ -115,7 +115,7 @@ class DashBoard extends Component {
                         ) : null
                     }
                     <DashBoardContentWrapper className={isMobile ? 'mobile ' : 'desktop '}>
-                        <TitleSpan>ABOUT ME</TitleSpan>
+                        <TitleSpan className='dashboard-title-span'>ABOUT ME</TitleSpan>
                         <ProfileImageWrapper>
                             <img src='/home/profile.jpg' alt='' />
                         </ProfileImageWrapper>

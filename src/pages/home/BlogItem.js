@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { actionCreators } from './store'
 import { Link } from 'react-router-dom'
 import {
     BlogItemWrapper,
@@ -28,7 +29,7 @@ class BlogItem extends Component {
 
     handleTagClick(index) {
         const { tagList } = this.props.data
-        window.alert('clicked: ' + tagList[index].name)
+        this.props.setTagName(tagList[index].name, tagList[index].id)
     }
 
     render() {
@@ -37,13 +38,13 @@ class BlogItem extends Component {
         const { hovering, hasImage } = this.state
         return (
             <BlogItemWrapper
-                className={hovering ? 'hovering' : ''}
+                className={hovering ? 'hovering blog-item-wrapper' : 'blog-item-wrapper'}
                 onMouseEnter={() => {this.setState(() => ({hovering: true}))}}
                 onMouseLeave={() => {this.setState(() => ({hovering: false}))}}
             >
-                <BlogDateDisplay>{stampToDate(time)}</BlogDateDisplay>
+                <BlogDateDisplay className='blog-date-display'>{stampToDate(time)}</BlogDateDisplay>
                 <BlogTitleDisplay>
-                    <Link to={'/detail?id=' + id} style={linkStyle}>
+                    <Link to={'/detail?id=' + id} className='blog-title-display' style={linkStyle}>
                         {title}
                     </Link>
                 </BlogTitleDisplay>
@@ -51,10 +52,10 @@ class BlogItem extends Component {
                     className={hovering && hasImage ? 'mouseIn' : 'mouseOut'}
                     ref={(el) => {this.blogWrapper = el}}
                 >
-                    <BlogExerptText>
+                    <BlogExerptText className='blog-exerpt-text'>
                         {exerpt}
                     </BlogExerptText>
-                    <BlogExerptImageWrapper>
+                    <BlogExerptImageWrapper className='blog-exerpt-image-wrapper'>
                         <BlogExerptImage
                             src={imageURL}
                             alt=''
@@ -62,10 +63,11 @@ class BlogItem extends Component {
                     </BlogExerptImageWrapper>
                 </BlogExerptWrapper>
                 <BlogMetaList>
-                    <BlogMetaListItem>{authorName}</BlogMetaListItem>
+                    <BlogMetaListItem className='blog-meta-list-item-authorName'>{authorName}</BlogMetaListItem>
                     {
                         tagList.map((item, index) => (
                             <BlogMetaListItem
+                                className='blog-meta-list-item link-style'
                                 key={'blog-' + id + '-tag-' + item.id}
                                 style={linkStyle}
                                 onClick={() => {this.handleTagClick(index)}}
@@ -84,4 +86,10 @@ const mapStateToProps = (state) => ({
     authorName: state.getIn(['app', 'authorName'])
 })
 
-export default connect(mapStateToProps, null)(BlogItem)
+const mapDispatchToProps = (dispatch) => ({
+    setTagName(tagName, tagId) {
+        dispatch(actionCreators.setTagName(tagName, tagId))
+    }
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(BlogItem)

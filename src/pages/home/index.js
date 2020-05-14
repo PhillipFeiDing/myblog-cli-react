@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { actionCreators as appActionCreators } from '../../store'
 import { actionCreators } from './store'
 import {
-    GlobalStyle,
     MainWrapper,
     ContentWrapper,
     Content,
@@ -32,11 +31,10 @@ class Home extends Component {
         const { currPage, isMobile, showBackground, blogsPerPage } = this.props
         return (
             <MainWrapper>
-                <GlobalStyle />
                 <PageHeader />
-                <ContentWrapper>
+                <ContentWrapper id='content-wrapper'>
                     <ParticlesContainer show={showBackground}/>
-                    <Content ref={(el) => {this.contentDOMNode = el}}>
+                    <Content id='content' ref={(el) => {this.contentDOMNode = el}}>
                         <BlogListWrapper className={isMobile ? 'mobile' : 'desktop'}>
                             <BlogList>
                                 {
