@@ -42,10 +42,6 @@ class ParticlesContainer extends Component {
             }))
         }
     }
-
-    shouldComponentUpdate(prevProps) {
-        return this.props.show || prevProps.show !== this.props.show
-    }
     
     render() {
         return (

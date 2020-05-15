@@ -5,28 +5,22 @@ import {
     SidePanelWrapper,
     ToolsWrapper,
     MenuButton,
+    HomeButton,
     ToTopButton,
     Menu,
     MenuTitle,
     MenuItem,
     TagButton,
+    CVButton,
     AboutMeButton,
     SettingsBox,
-    SettingsButton,
-    SettingsPanel,
-    SettingsPanelTip,
-    SettingsItem,
-    SettingsComponentWrapper,
-    AdminIcon
+    SettingsButton
 } from './style'
 import SearchBar from './SearchBar'
-import Switch from './Switch'
-import Dropdown from './Dropdown'
-import ButtonGroup from './ButtonGroup'
+import Settings from './Settings'
 import { actionCreators } from './store'
 import { actionCreators as appActionCreators } from '../../store'
-import { actionCreators as homeActionCreators } from '../../pages/home/store'
-import { PAGING_OPTIONS } from '../../pages/home/store/constants'
+import { CV_URL } from '../../constants'
 
 
 class SidePanel extends Component {
@@ -42,10 +36,7 @@ class SidePanel extends Component {
         this.changeScrollTopShow = this.changeScrollTopShow.bind(this)
         this.outMenuClickHandler = this.outMenuClickHandler.bind(this)
         this.outPanelClickHandler = this.outPanelClickHandler.bind(this)
-        this.handleBackgroundShowChange = this.handleBackgroundShowChange.bind(this)
-        this.handleBlogsPerPageChange = this.handleBlogsPerPageChange.bind(this)
-        this.handleFontFamilyChange = this.handleFontFamilyChange.bind(this)
-        this.handleDisplayChange = this.handleDisplayChange.bind(this)
+        this.testURL = this.testURL.bind(this)
     }
 
     componentDidMount() {
@@ -92,25 +83,13 @@ class SidePanel extends Component {
         }
     }
 
-    handleBackgroundShowChange(show) {
-        this.props.setShowBackground(show)
-    }
-
-    handleBlogsPerPageChange(blogsPerPage) {
-        this.props.setBlogsPerPage(blogsPerPage)
-    }
-
-    handleFontFamilyChange(font) {
-        this.props.setFontFamily(font)
-    }
-
-    handleDisplayChange(display) {
-        this.props.setDisplay(display)
+    testURL(url) {
+        return url === '/' || url.indexOf('home') !== -1 || url.indexOf('index') !== -1
     }
 
     render() {
         const { showMenu, showSettings } = this.state
-        const { topicList, friendList, isMobile, showTag, showAboutMe, showBackground, blogsPerPage, fontFamily, display } = this.props
+        const { topicList, friendList, isMobile, showTag, showAboutMe } = this.props
         return (
             <SidePanelWrapper>
                 <ToolsWrapper>
@@ -124,13 +103,17 @@ class SidePanel extends Component {
                     </MenuButton>
                     <br />
                     <SearchBar />
+                    <Link to='/'>
+                        <HomeButton />
+                    </Link>
+                    <br />
                     {
                       this.state.showScroll ?
                       <ToTopButton onClick={handleScrollTop}></ToTopButton>:
                       null
                     }
                     {
-                        isMobile ? (
+                        isMobile && this.testURL(window.location.pathname) ? (
                             <Fragment>
                                 <TagButton onClick={showTag} />
                                 <br />
@@ -139,6 +122,10 @@ class SidePanel extends Component {
                             </Fragment>
                         ) : null
                     }
+                    <a href={CV_URL} rel='noopener noreferrer' target='_blank'>
+                        <CVButton />
+                    </a>
+                    <br />
                     <SettingsBox>
                         <SettingsButton
                             onClick={() => {
@@ -147,60 +134,7 @@ class SidePanel extends Component {
                             }}
                             ref={(el) => {this.settingsButtonDOMRef = el}}
                         />
-                        {
-                            showSettings? (
-                                <SettingsPanel ref={(el) => {this.settingsPanelDOMRef = el}}>
-                                    <SettingsPanelTip />
-                                    <SettingsItem>
-                                        Background
-                                        <SettingsComponentWrapper offset={'-3px'}>
-                                            <Switch
-                                                status={showBackground}
-                                                statusOnChange={this.handleBackgroundShowChange}
-                                            />
-                                        </SettingsComponentWrapper>
-                                    </SettingsItem>
-                                    <SettingsItem>
-                                        Display
-                                        <SettingsComponentWrapper offset={'-5px'}>
-                                        <ButtonGroup
-                                            defaultValue={display}
-                                            options={['Dark', 'Light']}
-                                            statusOnChange={this.handleDisplayChange}
-                                        />
-                                        </SettingsComponentWrapper>
-                                    </SettingsItem>
-                                    <SettingsItem>
-                                        Font Family
-                                        <SettingsComponentWrapper offset={'-5px'}>
-                                            <Dropdown
-                                                defaultValue={fontFamily}
-                                                options={['Arial', 'Georgia']}
-                                                statusOnChange={this.handleFontFamilyChange}
-                                            />
-                                        </SettingsComponentWrapper>
-                                    </SettingsItem>
-                                    <SettingsItem>
-                                        Blogs Per Page
-                                        <SettingsComponentWrapper offset={'-5px'}>
-                                            <Dropdown
-                                                defaultValue={blogsPerPage}
-                                                options={PAGING_OPTIONS}
-                                                statusOnChange={this.handleBlogsPerPageChange}
-                                            />
-                                        </SettingsComponentWrapper>
-                                    </SettingsItem>
-                                    <SettingsItem>
-                                        <SettingsComponentWrapper offset={'-5px'} style={{float: 'left'}}>
-                                            <AdminIcon />
-                                        </SettingsComponentWrapper>
-                                        <SettingsComponentWrapper>
-                                            « Admin Entry
-                                        </SettingsComponentWrapper>
-                                    </SettingsItem>
-                                </SettingsPanel>
-                            ) : null
-                        }
+                        { showSettings ? <Settings childRef={(el) => {this.settingsPanelDOMRef = el}} /> : null }
                     </SettingsBox>
                 </ToolsWrapper>
                 <Menu
@@ -223,7 +157,7 @@ class SidePanel extends Component {
                     {
                         friendList.map((item) => {
                             return (
-                                <a href={item.get('link')} key={'friendList-' + item.get('id')}>
+                                <a href={item.get('link')} key={'friendList-' + item.get('id')} rel='noopener noreferrer' target='_blank'>
                                     <MenuItem>{item.get('itemname')}</MenuItem>
                                 </a>
                             )
@@ -246,11 +180,7 @@ const handleScrollTop = () => {
 const mapStateToProps = (state) => ({
     topicList: state.getIn(['sidePanel', 'topicList']),
     friendList: state.getIn(['sidePanel', 'friendList']),
-    isMobile: state.getIn(['app', 'isMobile']),
-    showBackground: state.getIn(['app', 'showBackground']),
-    blogsPerPage: state.getIn(['home', 'blogsPerPage']),
-    fontFamily: state.getIn(['app', 'fontFamily']),
-    display: state.getIn(['app', 'display'])
+    isMobile: state.getIn(['app', 'isMobile'])
 })
 
 const mapDispatchToProps = (dispatch) => ({
@@ -265,18 +195,6 @@ const mapDispatchToProps = (dispatch) => ({
     },
     showAboutMe() {
         dispatch(appActionCreators.showAboutMeBoard(true))
-    },
-    setShowBackground(show) {
-        dispatch(appActionCreators.showBackground(show))
-    },
-    setBlogsPerPage(blogsPerPage) {
-        dispatch(homeActionCreators.setBlogsPerPage(blogsPerPage))
-    },
-    setFontFamily(font) {
-        dispatch(appActionCreators.setFontFamily(font))
-    },
-    setDisplay(display) {
-        dispatch(appActionCreators.setDisplay(display))
     }
 })
 

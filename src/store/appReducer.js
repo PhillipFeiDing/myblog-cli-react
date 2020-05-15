@@ -10,8 +10,8 @@ const defaultState = fromJS({
         showAboutMe: false
     },
     showBackground: true,
-    fontFamily: 'Georgia',
-    display: 'Dark'
+    fontFamily: 'Arial',
+    display: 'Light'
 })
 
 export const reducer = (state=defaultState, action) => {

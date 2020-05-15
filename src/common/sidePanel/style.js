@@ -188,6 +188,18 @@ export const AdminIcon = styled.img.attrs({
   pointer-events: auto;
 `
 
+export const HomeButton = styled.img.attrs({
+  src: '/common/sidePanel/home.svg',
+  alt: ''
+})`
+  opacity: 0.6;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  pointer-events: auto;
+  margin-top: 4px;
+`
+
 export const TagButton = styled.img.attrs({
   src: '/common/sidePanel/tag.svg',
   id: constants.TAG_BUTTON,
@@ -200,6 +212,20 @@ export const TagButton = styled.img.attrs({
   pointer-events: auto;
   margin-top: 8px;
 `
+
+export const CVButton = styled.img.attrs({
+  src: '/common/sidePanel/cv.svg',
+  id: constants.CV_BUTTON,
+  alt: ''
+})`
+  opacity: 0.6;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  pointer-events: auto;
+  margin-top: 8px;
+`
+
 export const AboutMeButton = styled.img.attrs({
   src: '/common/sidePanel/aboutMe.svg',
   id: constants.ABOUT_ME_BUTTON,

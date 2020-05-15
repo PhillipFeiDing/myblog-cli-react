@@ -8,7 +8,7 @@ import {
     Content,
     BlogListWrapper,
     BlogList,
-    DashBoardWrapper
+    DashBoardWrapper,
 } from './style'
 import PageHeader from './PageHeader'
 import BlogItem from './BlogItem'
@@ -34,7 +34,7 @@ class Home extends Component {
                 <PageHeader />
                 <ContentWrapper id='content-wrapper'>
                     <ParticlesContainer show={showBackground}/>
-                    <Content id='content' ref={(el) => {this.contentDOMNode = el}}>
+                    <Content className='main-content' ref={(el) => {this.contentDOMNode = el}}>
                         <BlogListWrapper className={isMobile ? 'mobile' : 'desktop'}>
                             <BlogList>
                                 {

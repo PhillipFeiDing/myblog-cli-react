@@ -49,11 +49,13 @@ class DashBoard extends Component {
     }
 
     outDashBoardClickHandler(e) {
-        if (e.target.id !== sidePanelConstants.TAG_BUTTON && this.tagBoardWrapper && e.target !== this.tagBoardWrapper && !this.tagBoardWrapper.contains(e.target)) {
+        if (e.target.id !== sidePanelConstants.TAG_BUTTON && this.tagBoardWrapper && e.target !== this.tagBoardWrapper
+            && !this.tagBoardWrapper.contains(e.target)) {
             const { closeTagBoard } = this.props
             closeTagBoard()
         }
-        if (e.target.id !== sidePanelConstants.ABOUT_ME_BUTTON && this.aboutMeBoardWrapper && e.target !== this.aboutMeBoardWrapper && !this.aboutMeBoardWrapper.contains(e.target)) {
+        if (e.target.id !== sidePanelConstants.ABOUT_ME_BUTTON && this.aboutMeBoardWrapper && e.target !== this.aboutMeBoardWrapper
+            && !this.aboutMeBoardWrapper.contains(e.target)) {
             const { closeAboutMeBoard } = this.props
             closeAboutMeBoard()
         }
@@ -61,7 +63,7 @@ class DashBoard extends Component {
 
     render() {
         const tagList = this.props.tagList.toJS()
-        const { currTagName, currTitleName, isMobile, showTag, showAboutMe, closeTagBoard, closeAboutMeBoard } = this.props
+        const { currTagName, currTitleName, isMobile, showTag, showAboutMe,closeTagBoard, closeAboutMeBoard } = this.props
         return (
             <Fragment>
                 <DashBoardItemWrapper

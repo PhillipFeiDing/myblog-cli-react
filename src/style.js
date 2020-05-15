@@ -30,7 +30,7 @@ export const DarkMode = createGlobalStyle`
     #topic-display {
       color: #fff;
     }
-    #content {
+    .main-content {
       background-image: linear-gradient(
         to right,
         rgba(0,0,0,0.4),
@@ -76,21 +76,6 @@ export const DarkMode = createGlobalStyle`
         background: #231f1e;
       }
     }
-    .blog-exerpt-image-wrapper {
-      background-image: linear-gradient(
-        to right,
-        rgba(255,232,221,0.0),
-        rgba(255,232,221,0.8),
-        rgba(255,232,221,0.8),
-        rgba(255,232,221,0.8),
-        rgba(255,232,221,0.8),
-        rgba(255,232,221,0.8),
-        rgba(255,232,221,0.8),
-        rgba(255,232,221,0.8),
-        rgba(255,232,221,0.8),
-        rgba(255,232,221,0.0)
-      );
-    }
     .dashboard-item-wrapper {
       background: #231f1e;
       .dashboard-title-span {
@@ -102,6 +87,16 @@ export const DarkMode = createGlobalStyle`
       p,span {
         color: #d3c1af;
       }
+    }
+    #container-wrapper {
+      background-color: #000;
+    }
+    #header-wrapper {
+      color: #dedad6;
+      background: #130f0e
+    }
+    #detail-content {
+      color: #ddd;
     }
   }
 `

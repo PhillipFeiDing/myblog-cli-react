@@ -19,6 +19,16 @@ const typingStrings = [
     "I love cycling, badminton, and movies"
 ]
 
+const typingParams = {
+    strings: typingStrings,
+    typeSpeed: 30,
+    backSpeed: 20,
+    startDelay: 25,
+    showCursor: true,
+    shuffle: false,
+    loop:true
+}
+
 class PageHeader extends Component {
 
     constructor(props) {
@@ -60,15 +70,7 @@ class PageHeader extends Component {
                         <AuthorIntroduction id='author-introduction'>
                             Hi,
                                 <Typing
-                                    params={{
-                                        strings: typingStrings,
-                                        typeSpeed: 30,
-                                        backSpeed: 20,
-                                        startDelay: 25,
-                                        showCursor: true,
-                                        shuffle: false,
-                                        loop:true
-                                    }}
+                                    params={typingParams}
                                 />
                             !
                         </AuthorIntroduction>
