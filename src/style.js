@@ -97,6 +97,11 @@ export const DarkMode = createGlobalStyle`
     }
     #detail-content {
       color: #ddd;
+      pre {
+        background: #0a0a0a;
+        color: #ddd;
+        border: #4a4a4a solid 1px;
+      }
     }
   }
 `

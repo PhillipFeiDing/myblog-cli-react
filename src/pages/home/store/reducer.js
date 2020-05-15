@@ -8,7 +8,7 @@ const defaultState = fromJS({
     titleBlogCount: null,
     tagList: [],
     blogList: [],
-    currBlogList: [],
+    currBlogList: null,
     numPages: 1,
     currPage: 0,
     blogsPerPage: 4
@@ -19,10 +19,11 @@ export default (state=defaultState, action) => {
         case constants.FILL_TAG_LIST:
             return state.set('tagList', fromJS(action.tagList))
         case constants.FILL_BLOG_LIST:
+            const nextBlogList = state.get('currBlogList') === null ? action.blogList : state.get('currBlogList').toJS()
             return state.merge({
                 blogList: fromJS(action.blogList),
-                currBlogList: fromJS(action.blogList),
-                numPages: fromJS(Math.max(1, Math.ceil(action.blogList.length / state.get('blogsPerPage'))))
+                currBlogList: fromJS(nextBlogList),
+                numPages: fromJS(Math.max(1, Math.ceil(nextBlogList.length / state.get('blogsPerPage'))))
             })
         case constants.CHANGE_PAGE_NUM:
             return state.set('currPage', fromJS(action.pageNum))

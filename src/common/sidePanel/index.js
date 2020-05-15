@@ -102,8 +102,8 @@ class SidePanel extends Component {
                         MENU
                     </MenuButton>
                     <br />
-                    <SearchBar />
-                    <Link to='/'>
+                    <SearchBar onSearch={() => {this.homeButtonRef.click()}} />
+                    <Link to='/' onClick={() => {window.scrollTo(0, 0)}} ref={(el) => {this.homeButtonRef = el}}>
                         <HomeButton />
                     </Link>
                     <br />

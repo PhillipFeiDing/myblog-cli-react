@@ -44,7 +44,7 @@ class BlogItem extends Component {
             >
                 <BlogDateDisplay className='blog-date-display'>{stampToDate(time)}</BlogDateDisplay>
                 <BlogTitleDisplay>
-                    <Link to={'/detail?id=' + id} className='blog-title-display' style={linkStyle}>
+                    <Link to={'/detail?id=' + id} className='blog-title-display' style={linkStyle} onClick={() => {window.scrollTo(0, 0)}}>
                         {title}
                     </Link>
                 </BlogTitleDisplay>

@@ -27,7 +27,7 @@ class Home extends Component {
 
     render() {
         const tagList = this.props.tagList.toJS()
-        const currBlogList = this.props.currBlogList.toJS()
+        const currBlogList = this.props.currBlogList === null ? [] : this.props.currBlogList.toJS()
         const { currPage, isMobile, showBackground, blogsPerPage } = this.props
         return (
             <MainWrapper>

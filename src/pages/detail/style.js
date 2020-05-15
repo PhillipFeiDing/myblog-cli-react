@@ -16,7 +16,9 @@ export const HeaderWrapper = styled.div.attrs({
   border-radius: 0;
 `
 
-export const TitleDisplay = styled.h1``
+export const TitleDisplay = styled.h1`
+  font-size: 48px;
+`
 
 export const TimeDisplay = styled.p``
 

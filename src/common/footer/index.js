@@ -9,12 +9,16 @@ import {
 } from './style'
 import Icon from './Icon'
 import HoverableIcon from './HoverableIcon'
+import { actionCreators as appActionCreators } from '../../store'
 
 class Footer extends Component {
 
     componentDidMount() {
-        const { getFooterIconList } = this.props
+        const { getFooterIconList, authorName } = this.props
         getFooterIconList()
+        if (authorName === null) {
+            this.props.getAuthorName()
+        }
     }
 
     render() {
@@ -61,6 +65,9 @@ export const mapStateToProps = (state) => ({
 export const mapDispatchToState = (dispatch) => ({
     getFooterIconList() {
         dispatch(actionCreators.getFooterIconList())
+    },
+    getAuthorName() {
+        dispatch(appActionCreators.getAuthorName())
     }
 })
 

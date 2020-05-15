@@ -41,6 +41,7 @@ class SearchBar extends Component {
         const searchInput = this.inputDOMNode.value
         this.inputDOMNode.value = ''
         const {searchTitle} = this.props
+        this.props.onSearch()
         searchTitle(searchInput)
     }
     
