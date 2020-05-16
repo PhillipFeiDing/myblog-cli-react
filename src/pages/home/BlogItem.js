@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { actionCreators } from './store'
+import { actionCreators as detailActionCreators } from '../detail/store'
 import { Link } from 'react-router-dom'
 import {
     BlogItemWrapper,
@@ -34,7 +35,7 @@ class BlogItem extends Component {
 
     render() {
         const { id, time, title, exerpt, imageURL, tagList } = this.props.data
-        const { authorName } = this.props
+        const { authorName, setBlogId } = this.props
         const { hovering, hasImage } = this.state
         return (
             <BlogItemWrapper
@@ -44,7 +45,7 @@ class BlogItem extends Component {
             >
                 <BlogDateDisplay className='blog-date-display'>{stampToDate(time)}</BlogDateDisplay>
                 <BlogTitleDisplay>
-                    <Link to={'/detail?id=' + id} className='blog-title-display' style={linkStyle} onClick={() => {window.scrollTo(0, 0)}}>
+                    <Link to='/detail' className='blog-title-display' style={linkStyle} onClick={() => {window.scrollTo(0, 0); setBlogId(id)}}>
                         {title}
                     </Link>
                 </BlogTitleDisplay>
@@ -89,6 +90,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
     setTagName(tagName, tagId) {
         dispatch(actionCreators.setTagName(tagName, tagId))
+    },
+    setBlogId(currBlogId) {
+        dispatch(detailActionCreators.setBlogId(currBlogId))
     }
 })
 

@@ -6,12 +6,13 @@ const defaultState = fromJS({
     tagName: null,
     titleName: null,
     titleBlogCount: null,
-    tagList: [],
-    blogList: [],
+    tagList: null,
+    blogList: null,
     currBlogList: null,
     numPages: 1,
     currPage: 0,
-    blogsPerPage: 4
+    blogsPerPage: 4,
+    yScroll: 0
 })
 
 export default (state=defaultState, action) => {
@@ -29,7 +30,7 @@ export default (state=defaultState, action) => {
             return state.set('currPage', fromJS(action.pageNum))
         case constants.SET_TAG_NAME:
             if (action.tagName === null) {
-                const blogList = state.get('blogList').toJS()
+                const blogList = state.get('blogList') === null ? [] : state.get('blogList').toJS()
                 return state.merge({
                     topicDisplayType: fromJS(constants.NONE_DISPLAY),
                     tagName: fromJS(null),
@@ -40,7 +41,7 @@ export default (state=defaultState, action) => {
                     currPage: fromJS(0)
                 })
             }
-            const tagFilterResult = state.get('blogList').toJS().filter((item) => (item.tagList.indexOf(action.tagId) !== -1))
+            const tagFilterResult = (state.get('blogList') === null ? [] : state.get('blogList').toJS()).filter((item) => (item.tagList.indexOf(action.tagId) !== -1))
             return state.merge({
                 topicDisplayType: fromJS(constants.TAG_DISPLAY),
                 tagName: fromJS(action.tagName),
@@ -51,7 +52,7 @@ export default (state=defaultState, action) => {
                 currPage: fromJS(0)
             })
         case constants.SEARCH_TITLE:
-            const titleFilterResult = state.get('blogList').toJS().filter((item) => (item.title.toLocaleLowerCase().indexOf(action.title.toLocaleLowerCase()) !== -1))
+            const titleFilterResult = (state.get('blogList') === null ? [] : state.get('blogList').toJS()).filter((item) => (item.title.toLocaleLowerCase().indexOf(action.title.toLocaleLowerCase()) !== -1))
             return state.merge({
                 topicDisplayType: fromJS(constants.TITLE_DISPLAY),
                 tagName: fromJS(null),
@@ -68,6 +69,8 @@ export default (state=defaultState, action) => {
                 currPage: 0,
                 blogsPerPage: action.blogsPerPage
             })
+        case constants.UPDATE_Y_SCROLL:
+            return state.set('yScroll', action.yScroll)
         default:
             return state
     }

@@ -82,8 +82,8 @@ class PageHeader extends Component {
     }
     
     componentDidUpdate(prevProps) {
-        const { tagName, titleName, showTagBoard } = this.props
-        if (tagName !== prevProps.tagName || titleName !== null || showTagBoard) {
+        const { showTagBoard } = this.props
+        if (showTagBoard) {
             this.pageHeaderDisplayWrapperDOMRef.scrollIntoView({
                 behavior: 'smooth'
             })

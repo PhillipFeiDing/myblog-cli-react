@@ -2,7 +2,7 @@ import * as constants from './constants'
 import { fromJS } from 'immutable'
 
 const defaultState = fromJS({
-    footerIconList: []
+    footerIconList: null
 })
 
 export default (state=defaultState, action) => {

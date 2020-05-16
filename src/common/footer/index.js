@@ -14,16 +14,14 @@ import { actionCreators as appActionCreators } from '../../store'
 class Footer extends Component {
 
     componentDidMount() {
-        const { getFooterIconList, authorName } = this.props
-        getFooterIconList()
-        if (authorName === null) {
-            this.props.getAuthorName()
-        }
+        const { getFooterIconList, footerIconList, authorName } = this.props
+        footerIconList || getFooterIconList()
+        authorName === null || this.props.getAuthorName()
     }
 
     render() {
         const { authorName } = this.props
-        const footerIconList = this.props.footerIconList.toJS()
+        const footerIconList = this.props.footerIconList === null ? [] : this.props.footerIconList.toJS()
         const initialTemplate = (letter) => (
             <span style={{color: '#ff0', fontWeight: 'bolder'}}>{letter}</span>
         )

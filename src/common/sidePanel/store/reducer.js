@@ -2,8 +2,8 @@ import * as constants from './constants'
 import { fromJS } from 'immutable'
 
 const defaultState = fromJS({
-    topicList: [],
-    friendList: []
+    topicList: null,
+    friendList: null
 })
 
 export default (state=defaultState, action) => {

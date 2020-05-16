@@ -39,6 +39,7 @@ class DashBoard extends Component {
     handleTagClick(tagId) {
         const { setTagName, closeTagBoard } = this.props
         closeTagBoard()
+        document.querySelector('#page-header-display-wrapper').scrollIntoView({behavior: 'smooth'})
         if (tagId === null) {
             setTagName(null, null)
             return
@@ -62,7 +63,7 @@ class DashBoard extends Component {
     }
 
     render() {
-        const tagList = this.props.tagList.toJS()
+        const tagList = this.props.tagList === null ? [] : this.props.tagList.toJS()
         const { currTagName, currTitleName, isMobile, showTag, showAboutMe,closeTagBoard, closeAboutMeBoard } = this.props
         return (
             <Fragment>

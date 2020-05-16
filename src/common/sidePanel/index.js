@@ -41,8 +41,8 @@ class SidePanel extends Component {
 
     componentDidMount() {
         this.bindEvents(true)
-        this.props.getTopicList()
-        this.props.getFriendList()
+        this.props.topicList || this.props.getTopicList()
+        this.props.friendList || this.props.getFriendList()
     }
 
     componentWillUnmount() {
@@ -89,7 +89,9 @@ class SidePanel extends Component {
 
     render() {
         const { showMenu, showSettings } = this.state
-        const { topicList, friendList, isMobile, showTag, showAboutMe } = this.props
+        const { isMobile, showTag, showAboutMe, homeYScroll } = this.props
+        const topicList = this.props.topicList || []
+        const friendList = this.props.friendList || []
         return (
             <SidePanelWrapper>
                 <ToolsWrapper>
@@ -102,15 +104,15 @@ class SidePanel extends Component {
                         MENU
                     </MenuButton>
                     <br />
-                    <SearchBar onSearch={() => {this.homeButtonRef.click()}} />
-                    <Link to='/' onClick={() => {window.scrollTo(0, 0)}} ref={(el) => {this.homeButtonRef = el}}>
+                    <SearchBar onSearch={() => {this.homeButtonRef.click(); document.querySelector('#page-header-display-wrapper').scrollIntoView({behavior: 'smooth'})}} />
+                    <Link to='/' ref={(el) => {this.homeButtonRef = el}} onClick={() => {window.scrollTo(0, homeYScroll)}}>
                         <HomeButton />
                     </Link>
                     <br />
                     {
-                      this.state.showScroll ?
-                      <ToTopButton onClick={handleScrollTop}></ToTopButton>:
-                      null
+                        this.state.showScroll ?
+                        <ToTopButton onClick={handleScrollTop}></ToTopButton>:
+                        null
                     }
                     {
                         isMobile && this.testURL(window.location.pathname) ? (
@@ -180,7 +182,8 @@ const handleScrollTop = () => {
 const mapStateToProps = (state) => ({
     topicList: state.getIn(['sidePanel', 'topicList']),
     friendList: state.getIn(['sidePanel', 'friendList']),
-    isMobile: state.getIn(['app', 'isMobile'])
+    isMobile: state.getIn(['app', 'isMobile']),
+    homeYScroll: state.getIn(['home', 'yScroll'])
 })
 
 const mapDispatchToProps = (dispatch) => ({

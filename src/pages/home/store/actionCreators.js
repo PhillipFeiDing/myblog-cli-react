@@ -39,6 +39,11 @@ export const setBlogsPerPage = (blogsPerPage) => ({
     blogsPerPage
 })
 
+export const updateYScroll = (yScroll) => ({
+    type: constants.UPDATE_Y_SCROLL,
+    yScroll
+})
+
 export const getTagList = () => {
     return async (dispatch) => {
         try {

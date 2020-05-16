@@ -18,15 +18,29 @@ import DashBoard from './DashBoard'
 
 class Home extends Component {
 
+    constructor(props) {
+        super(props)
+        this.scrollHandler = this.scrollHandler.bind(this)
+    }
+
     componentDidMount() {
-        const { getAuthorName, getTagList, getBlogList } = this.props
-        getAuthorName()
-        getTagList()
-        getBlogList()
+        const { authorName, getAuthorName, getTagList, tagList, getBlogList, blogList } = this.props
+        authorName || getAuthorName()
+        tagList || getTagList()
+        blogList || getBlogList()
+        window.addEventListener('scroll', this.scrollHandler)
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('scroll', this.scrollHandler)
+    }
+
+    scrollHandler() {
+        this.props.updateYScroll(window.scrollY)
     }
 
     render() {
-        const tagList = this.props.tagList.toJS()
+        const tagList = this.props.tagList === null ? [] : this.props.tagList.toJS()
         const currBlogList = this.props.currBlogList === null ? [] : this.props.currBlogList.toJS()
         const { currPage, isMobile, showBackground, blogsPerPage } = this.props
         return (
@@ -86,6 +100,7 @@ class Home extends Component {
 const mapStateToProps = (state) => ({
     authorName: state.getIn(['app', 'authorName']),
     tagList: state.getIn(['home', 'tagList']),
+    blogList: state.getIn(['home', 'blogList']),
     currBlogList: state.getIn(['home', 'currBlogList']),
     currPage: state.getIn(['home', 'currPage']),
     isMobile: state.getIn(['app', 'isMobile']),
@@ -103,6 +118,9 @@ const mapDispatchToProps = (dispatch) => ({
     },
     getBlogList() {
         dispatch(actionCreators.getBlogList())
+    },
+    updateYScroll(yScroll) {
+        dispatch(actionCreators.updateYScroll(yScroll))
     }
 })
 
