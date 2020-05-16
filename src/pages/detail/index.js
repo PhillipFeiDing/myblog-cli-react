@@ -12,11 +12,14 @@ import './gitment.0.0.3.min.css'
 import ParticlesContainer from '../../common/particles'
 import { actionCreators } from './store'
 import { connect } from 'react-redux'
+import { stampToDate } from '../../common/util/date'
 
 class Detail extends Component {
 
     componentDidMount() {
-        const { currBlogId, getBlogById } = this.props
+        const { getBlogById, setBlogId } = this.props
+        const currBlogId = this.props.currBlogId || this.props.match.params.id
+        setBlogId(currBlogId)
         if (currBlogId === null) {
             return
         }
@@ -38,7 +41,7 @@ class Detail extends Component {
                 <HeaderWrapper id='header-wrapper'>
                     <TitleDisplay>{blog.title}</TitleDisplay>
                     <br />
-                    <TimeDisplay>Friday, May 8, 2020 11:57 AM</TimeDisplay>
+                    <TimeDisplay>{stampToDate(blog.time)}</TimeDisplay>
                 </HeaderWrapper>
                 <ContainerWrapper id='container-wrapper'>
                     <ParticlesContainer show={showBackground}/>
@@ -60,6 +63,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
     getBlogById(blogId) {
         dispatch(actionCreators.getBlogById(blogId))
+    },
+    setBlogId(blogId) {
+        dispatch(actionCreators.setBlogId(blogId))
     }
 })
 

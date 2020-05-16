@@ -16,7 +16,7 @@ class Footer extends Component {
     componentDidMount() {
         const { getFooterIconList, footerIconList, authorName } = this.props
         footerIconList || getFooterIconList()
-        authorName === null || this.props.getAuthorName()
+        authorName || this.props.getAuthorName()
     }
 
     render() {

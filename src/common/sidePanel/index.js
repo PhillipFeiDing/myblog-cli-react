@@ -144,7 +144,7 @@ class SidePanel extends Component {
                     onClick={() => {this.setState(() => ({showMenu: true}))}}
                     className={ showMenu? '' : 'hidden'}
                 >
-                    <MenuTitle>Topics</MenuTitle>
+                    <MenuTitle>Pinned</MenuTitle>
                     {
                         topicList.map((item) => {
                             return (

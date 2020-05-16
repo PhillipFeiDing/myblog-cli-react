@@ -14,10 +14,13 @@ function App() {
       <GlobalStyle />
       <BrowserRouter>
         <Fragment>
-          <Route path='/(|home|index|detail)' exact component={SidePanel}></Route>
-          <Route path='/(|home|index)' exact component={Home}></Route>
-          <Route path='/detail' exact component={Detail}></Route>
-          <Route path='/(|home|index|detail)' exact component={Footer}></Route>
+          <Route path='/(|home|index)' exact component={SidePanel} />
+          <Route path='/(|home|index)' exact component={Home} />
+          <Route path='/(|home|index)' exact component={Footer} />
+
+          <Route path='/detail/:id' component={SidePanel} />
+          <Route path='/detail/:id' component={Detail} />
+          <Route path='/detail/:id' component={Footer} />
         </Fragment>
       </BrowserRouter>
     </Provider>
