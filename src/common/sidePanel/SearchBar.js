@@ -12,7 +12,8 @@ class SearchBar extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            showInput: false
+            showInput: false,
+            inputValue: ''
         }
         this.outInputClickHandler = this.outInputClickHandler.bind(this)
         this.handleKeyPressed = this.handleKeyPressed.bind(this)
@@ -28,6 +29,11 @@ class SearchBar extends Component {
             document.removeEventListener('click', this.outInputClickHandler)
             document.removeEventListener('keypress', this.handleKeyPressed)
         }
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener('click', this.outInputClickHandler)
+        document.removeEventListener('keypress', this.handleKeyPressed)
     }
 
     handleKeyPressed(e) {

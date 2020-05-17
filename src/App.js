@@ -3,6 +3,7 @@ import { Provider } from 'react-redux'
 import { BrowserRouter, Route } from 'react-router-dom'
 import SidePanel from './common/sidePanel'
 import Home from './pages/home'
+import Admin from './pages/admin'
 import Detail from './pages/detail'
 import Footer from './common/footer'
 import store from './store'
@@ -21,6 +22,8 @@ function App() {
           <Route path='/detail/:id' component={SidePanel} />
           <Route path='/detail/:id' component={Detail} />
           <Route path='/detail/:id' component={Footer} />
+
+          <Route path='/admin' component={Admin} />
         </Fragment>
       </BrowserRouter>
     </Provider>

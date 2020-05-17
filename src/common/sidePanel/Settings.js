@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import Switch from './Switch'
 import Dropdown from './Dropdown'
 import ButtonGroup from './ButtonGroup'
@@ -96,7 +97,9 @@ class Settings extends Component {
                 </SettingsItem>
                 <SettingsItem>
                     <SettingsComponentWrapper offset={'-5px'} style={{float: 'left'}}>
-                        <AdminIcon />
+                        <Link to='/admin'>
+                            <AdminIcon />
+                        </Link>
                     </SettingsComponentWrapper>
                     <SettingsComponentWrapper>
                         « Admin Entry

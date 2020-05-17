@@ -31,6 +31,10 @@ class DropdownWrapper extends Component {
       document.removeEventListener('click', this.outMenuClickHandler)
   }
 
+  componentWillUnmount() {
+    document.removeEventListener('click', this.outMenuClickHandler)
+  }
+
   outMenuClickHandler(e) {
     if (
         this.menuDOMRef && e.target !== this.menuDOMRef && !this.menuDOMRef.contains(e.target)
