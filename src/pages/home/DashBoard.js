@@ -98,6 +98,7 @@ class DashBoard extends Component {
                                         key={'tag-' + item.id}
                                         onClick={() => {this.handleTagClick(item.id)}}
                                         className={currTagName === item.tagName ? 'current' : ''}
+                                        id={`home-tag-${item.id}`}
                                     >{item.tagName}</TagSpan>
                                 ))
                             }

@@ -73,3 +73,35 @@ export const Content = styled.div.attrs({
   padding-top: 50px;
   padding-bottom: 50px;
 `
+
+export const TagList = styled.div`
+  margin-top: 40px;
+  text-align: center;
+`
+
+export const Tag = styled.span`
+  display: inline-block;
+  margin-right: 10px;
+  font-size: 13px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  background-color: transparent;
+  color: #555;
+  text-decoration: none;
+  outline: none;
+  border-bottom: 1px solid #999;
+  cursor: pointer;
+`
+
+export const Like = styled.div`
+  float: right;
+  cursor: pointer;
+`
+
+export const LikeImage = styled.img.attrs({
+  alt: ''
+})`
+  height: 20px;
+  width: 20px;
+  float: left;
+`

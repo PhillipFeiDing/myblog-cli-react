@@ -6,13 +6,22 @@ import {
     TimeDisplay,
     ContainerWrapper,
     Container,
-    Content
+    Content,
+    TagList,
+    // Like,
+    // LikeImage
+    Tag
 } from './style'
 import './gitment.0.0.3.min.css'
 import ParticlesContainer from '../../common/particles'
 import { actionCreators } from './store'
+import { actionCreators as homeActionCreators } from '../home/store'
 import { connect } from 'react-redux'
 import { stampToDate } from '../../common/util/date'
+import { Link } from 'react-router-dom'
+
+// const LIKED = '/detail/heartFilled.svg'
+// const NOT_LIKED = '/detail/heartEmpty.svg'
 
 class Detail extends Component {
 
@@ -25,17 +34,20 @@ class Detail extends Component {
         }
         const blogContents = this.props.blogContents.toJS()
         blogContents[currBlogId] || getBlogById(currBlogId)
+        this.props.tagList || this.props.getTagList()
     }
     
     render() {
         const { showBackground, currBlogId } = this.props
+        // const likeBlog = true
         if (currBlogId === null) {
             return null
         }
         const blog = this.props.blogContents.toJS()[currBlogId]
-        if (!blog) {
+        if (!blog || this.props.tagList === null) {
             return null
         }
+        const tagList = blog.tagList.map((tagId) => (this.props.tagList.toJS().filter((item) => (item.id === tagId))[0]))
         return (
             <MainWrapper>
                 <HeaderWrapper id='header-wrapper'>
@@ -47,6 +59,36 @@ class Detail extends Component {
                     <ParticlesContainer show={showBackground}/>
                     <Container className='main-content'>
                         <Content id='detail-content' dangerouslySetInnerHTML={{__html: blog.content}}></Content>
+                        <TagList>
+                            {
+                                tagList.map((item) => (
+                                    <Link 
+                                        to='/'
+                                        key={'detail-tag-' + item.id}
+                                        onClick={() => {
+                                            const interval = window.setInterval(() => {
+                                                const tagButton = document.querySelector(`#home-tag-${item.id}`)
+                                                if (tagButton) {
+                                                    tagButton.click()
+                                                    clearInterval(interval)
+                                                }
+                                            }, 50)
+                                        }}
+                                    >
+                                        <Tag>
+                                            # {item.tagName}
+                                        </Tag>
+                                    </Link>
+                                ))
+                            }
+                            {/*
+                            <Like>
+                                <LikeImage src={likeBlog ? LIKED : NOT_LIKED}/>
+                                1
+                            </Like>
+                            */}
+                        </TagList>
+                        <hr />
                     </Container>
                 </ContainerWrapper>
             </MainWrapper>
@@ -57,7 +99,8 @@ class Detail extends Component {
 const mapStateToProps = (state) => ({
     showBackground: state.getIn(['app', 'showBackground']),
     blogContents: state.getIn(['detail', 'blogContents']),
-    currBlogId: state.getIn(['detail', 'currBlogId'])
+    currBlogId: state.getIn(['detail', 'currBlogId']),
+    tagList: state.getIn(['home', 'tagList'])
 })
 
 const mapDispatchToProps = (dispatch) => ({
@@ -66,6 +109,9 @@ const mapDispatchToProps = (dispatch) => ({
     },
     setBlogId(blogId) {
         dispatch(actionCreators.setBlogId(blogId))
+    },
+    getTagList() {
+        dispatch(homeActionCreators.getTagList())
     }
 })
 

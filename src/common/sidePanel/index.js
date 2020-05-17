@@ -105,7 +105,7 @@ class SidePanel extends Component {
                     </MenuButton>
                     <br />
                     <SearchBar onSearch={() => {this.homeButtonRef.click(); document.querySelector('#page-header-display-wrapper').scrollIntoView({behavior: 'smooth'})}} />
-                    <Link to='/' ref={(el) => {this.homeButtonRef = el}} onClick={() => {window.scrollTo(0, homeYScroll)}}>
+                    <Link to='/' ref={(el) => {this.homeButtonRef = el}} onClick={() => {window.scrollTo(0, homeYScroll)}} id='home-button'>
                         <HomeButton />
                     </Link>
                     <br />

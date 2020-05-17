@@ -71,7 +71,7 @@ class BlogItem extends Component {
                                 className='blog-meta-list-item link-style'
                                 key={'blog-' + id + '-tag-' + item.id}
                                 style={linkStyle}
-                                onClick={() => {this.handleTagClick(index)}}
+                                onClick={() => {this.handleTagClick(index); document.querySelector('#page-header-display-wrapper').scrollIntoView({behavior: 'smooth'})}}
                             >
                                 {item.name}
                             </BlogMetaListItem>
