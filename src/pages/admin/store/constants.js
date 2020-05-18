@@ -1,0 +1,1 @@
+export const SET_ADMIN_LOGIN = '/admin/SET_ADMIN_LOGIN'
