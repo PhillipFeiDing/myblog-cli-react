@@ -27,7 +27,7 @@ class Detail extends Component {
 
     componentDidMount() {
         const { getBlogById, setBlogId } = this.props
-        const currBlogId = this.props.currBlogId || this.props.match.params.id
+        const currBlogId = this.props.match.params.id || this.props.currBlogId
         setBlogId(currBlogId)
         if (currBlogId === null) {
             return

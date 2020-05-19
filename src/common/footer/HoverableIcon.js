@@ -16,11 +16,11 @@ class HoverableIcon extends Component {
     }
 
     render() {
-        const { name, imgURL, barCodeURL } = this.props
+        const { imgURL, barCodeURL } = this.props
         const { showBarCode } = this.state
         return (
             <IconWrapper>
-                <IconLink key={name + '-icon'}>
+                <IconLink>
                     <IconImage
                         src={imgURL} alt=''
                         onMouseEnter={() => {this.setState(() => ({showBarCode: true}))}}

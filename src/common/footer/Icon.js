@@ -8,10 +8,10 @@ import {
 class Icon extends Component {
 
     render() {
-        const { to, name, imgURL } = this.props
+        const { to, imgURL } = this.props
         return (
             <IconWrapper>
-                <IconLink href={to} key={name + '-icon'}>
+                <IconLink href={to}>
                     <IconImage src={imgURL} alt='' />
                 </IconLink>
             </IconWrapper>

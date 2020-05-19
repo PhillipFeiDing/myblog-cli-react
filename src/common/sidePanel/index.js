@@ -148,7 +148,7 @@ class SidePanel extends Component {
                     {
                         topicList.map((item) => {
                             return (
-                                <Link to={item.get('link')} key={'topicList-' + item.get('id')}>
+                                <Link to={item.get('link')} key={'topicList-' + item.get('id')} onClick={() => {window.scrollTo(0, 0)}}>
                                     <MenuItem>{item.get('itemname')}</MenuItem>
                                 </Link>
                             )
