@@ -18,5 +18,15 @@ def api_admin_login():
     })
 
 
+@app.route('/api/admin/mock-post', methods=['POST'])
+def api_admin_mockPost():
+    data = request.get_json()
+    return jsonify({
+        'data': {
+            'success': True if data.get('success') else False
+        }
+    })
+
+
 if __name__ == '__main__':
     app.run(debug=True)
