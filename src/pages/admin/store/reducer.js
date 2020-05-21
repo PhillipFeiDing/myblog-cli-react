@@ -2,7 +2,7 @@ import * as constants from './constants'
 import { fromJS } from 'immutable'
 
 const defaultState = fromJS({
-    loginStatus: false
+    loginStatus: true
 })
 
 export default (state=defaultState, action) => {

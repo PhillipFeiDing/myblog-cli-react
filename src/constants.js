@@ -7,4 +7,7 @@ export const TAG_LIST = '/api/tag/list.json'
 export const BLOG_LIST = '/api/blog/list.json'
 export const BLOG_DETAIL = (id) => (`/api/blog/detail/${id}.json`)
 export const ADMIN_LOGIN = 'http://localhost:5000/api/admin/login'
+export const TAG_LIST_ADD = 'http://localhost:5000/api/admin/mock-post'
+export const TAG_LIST_DELETE = 'http://localhost:5000/api/admin/mock-post'
+export const TAG_LIST_UPDATE = 'http://localhost:5000/api/admin/mock-post'
 export const CV_URL = 'https://drive.google.com/file/d/1ot1pOLz1Eokr7z7C841Z5AAgnfoI9luq/view?usp=sharing'
