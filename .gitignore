@@ -5,6 +5,9 @@
 /.pnp
 .pnp.js
 
+# SPECIAL: mock backend python dependency
+/mockBackend/env
+
 # testing
 /coverage
 
