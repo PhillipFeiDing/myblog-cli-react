@@ -335,7 +335,7 @@ class Console extends Component {
                             />
                         </p>
                         <div style={{height: '93%', overflow: 'scroll'}}>
-                            <table className="table table-sm" style={{position: 'relative', whiteSpace: 'nowrap'}}>
+                            <table className="table table-sm" style={{position: 'relative', whiteSpace: 'nowrap', color: '#2c3e50'}}>
                                 <thead className="thead-dark">
                                     <tr>
                                         <th scope="col" style={tableHeaderStyle}>ID</th>

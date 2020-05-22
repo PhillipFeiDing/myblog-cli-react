@@ -2,6 +2,7 @@ import axios from 'axios'
 import * as apis from '../../../constants'
 import * as constants from './constants'
 import { actionCreators as homeActionCreators } from '../../home/store'
+import { actionCreators as detailActionCreators } from '../../detail/store'
 import { actionCreators as sidePanelActionCreators } from '../../../common/sidePanel/store'
 
 export const setAdminLogin = (adminLogin) => ({
@@ -191,6 +192,22 @@ export const deleteBlog = (blogId) => {
             }
         } catch {
             window.alert(`Request deleteBlog(${blogId}) failed.`)
+        }
+    }
+}
+
+export const updateBlog = (submit, callback) => {
+    return async (dispatch) => {
+        try {
+            const success = (await axios.post(apis.BLOG_UPDATE, {submit, success: true})).data.data.success
+            if (success) {
+                dispatch(detailActionCreators.getBlogById(submit.id))
+                callback()
+            } else {
+                window.alert('updateBlog() unsuccessful.')
+            }
+        } catch {
+            window.alert(`Request updateBlog({id: ${submit.id}, ...}) failed.`)
         }
     }
 }

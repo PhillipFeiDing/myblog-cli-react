@@ -9,6 +9,7 @@
     "axios": "^0.19.2",
     "immutable": "^4.0.0-rc.12",
     "moment": "^2.25.3",
+    "rc-wang-editor": "^0.9.5",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-particles-js": "^3.2.1",
