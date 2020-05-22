@@ -1,19 +1,19 @@
 {
     "data": [{
         "id": 0,
-        "itemname": "Lixing Liu",
+        "friendName": "Lixing Liu",
         "link": "https://llxxll12345.github.io/"
     }, {
         "id": 1,
-        "itemname": "Bingyao Wang",
+        "friendName": "Bingyao Wang",
         "link": "https://bennywnj.github.io/"
     },{
         "id": 2,
-        "itemname": "Ramyad Hadidi",
+        "friendName": "Ramyad Hadidi",
         "link": "https://ramyadhadidi.github.io/"
     }, {
         "id": 3,
-        "itemname": "Maki Ma",
+        "friendName": "Maki Ma",
         "link": "https://medwardz.com/"
     }],
     "errno": 0

@@ -4,6 +4,7 @@
 /node_modules
 /.pnp
 .pnp.js
+/mockBackend/env
 
 # SPECIAL: mock backend python dependency
 /mockBackend/env

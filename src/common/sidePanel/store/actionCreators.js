@@ -18,7 +18,7 @@ export const getTopicList = () => {
             const data = (await axios.get(apis.TOPIC_LIST)).data.data
             dispatch(fillTopicList(data))
         } catch {
-            window.alert('Request getMenuList() failed.')
+            window.alert('Request getTopicList() failed.')
         }
     }
 }

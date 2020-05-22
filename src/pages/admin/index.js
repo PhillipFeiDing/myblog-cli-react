@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Login from './Login'
 import Console from './Console'
+import EditBlog from './EditBlog'
 import {
     AdminWrapper
 } from './style'
@@ -9,12 +10,16 @@ import {
 class Admin extends Component {
     
     render() {
-        const { loginStatus } = this.props
+        const { loginStatus, editBlogId } = this.props
         return (
             <AdminWrapper>
                 {
                     loginStatus ? (
-                        <Console />
+                        editBlogId !== null ? (
+                            <EditBlog />
+                        ) : (
+                            <Console />
+                        )
                     ) : (
                         <Login />
                     )
@@ -25,7 +30,8 @@ class Admin extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    loginStatus: state.getIn(['admin', 'loginStatus'])
+    loginStatus: state.getIn(['admin', 'loginStatus']),
+    editBlogId: state.getIn(['admin', 'editBlogId'])
 })
 
 export default connect(mapStateToProps, null)(Admin)
