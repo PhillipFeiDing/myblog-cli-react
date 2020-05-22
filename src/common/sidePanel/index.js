@@ -20,6 +20,7 @@ import SearchBar from './SearchBar'
 import Settings from './Settings'
 import { actionCreators } from './store'
 import { actionCreators as appActionCreators } from '../../store'
+import { actionCreators as detailActionCreators } from '../../pages/detail/store'
 import { CV_URL } from '../../constants'
 
 
@@ -104,7 +105,11 @@ class SidePanel extends Component {
                         MENU
                     </MenuButton>
                     <br />
-                    <SearchBar onSearch={() => {this.homeButtonRef.click(); document.querySelector('#page-header-display-wrapper').scrollIntoView({behavior: 'smooth'})}} />
+                    <SearchBar onSearch={() => {
+                            this.homeButtonRef.click()
+                            document.querySelector('#page-header-display-wrapper').scrollIntoView({behavior: 'smooth'})
+                        }} 
+                    />
                     <Link to='/' ref={(el) => {this.homeButtonRef = el}} onClick={() => {window.scrollTo(0, homeYScroll)}} id='home-button'>
                         <HomeButton />
                     </Link>
@@ -148,8 +153,15 @@ class SidePanel extends Component {
                     {
                         topicList.map((item) => {
                             return (
-                                <Link to={item.get('link')} key={'topicList-' + item.get('id')} onClick={() => {window.scrollTo(0, 0)}}>
-                                    <MenuItem>{item.get('itemname')}</MenuItem>
+                                <Link 
+                                    to={'/detail/' + item.get('blogId')}
+                                    key={'topicList-' + item.get('id')} 
+                                    onClick={() => {
+                                        window.scrollTo(0, 0)
+                                        this.props.setBlogId(parseInt(item.get('blogId')))
+                                    }}
+                                >
+                                    <MenuItem>{item.get('topicName')}</MenuItem>
                                 </Link>
                             )
                         })
@@ -160,7 +172,7 @@ class SidePanel extends Component {
                         friendList.map((item) => {
                             return (
                                 <a href={item.get('link')} key={'friendList-' + item.get('id')} rel='noopener noreferrer' target='_blank'>
-                                    <MenuItem>{item.get('itemname')}</MenuItem>
+                                    <MenuItem>{item.get('friendName')}</MenuItem>
                                 </a>
                             )
                         })
@@ -198,6 +210,9 @@ const mapDispatchToProps = (dispatch) => ({
     },
     showAboutMe() {
         dispatch(appActionCreators.showAboutMeBoard(true))
+    },
+    setBlogId(currBlogId) {
+        dispatch(detailActionCreators.setBlogId(currBlogId))
     }
 })
 

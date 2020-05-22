@@ -26,27 +26,34 @@ import { Link } from 'react-router-dom'
 class Detail extends Component {
 
     componentDidMount() {
-        const { getBlogById, setBlogId } = this.props
+        const { setBlogId } = this.props
         const currBlogId = this.props.match.params.id || this.props.currBlogId
-        setBlogId(currBlogId)
         if (currBlogId === null) {
             return
         }
-        const blogContents = this.props.blogContents.toJS()
-        blogContents[currBlogId] || getBlogById(currBlogId)
+        setBlogId(parseInt(currBlogId))
         this.props.tagList || this.props.getTagList()
+        this.props.blogList || this.props.getBlogList()
     }
     
     render() {
-        const { showBackground, currBlogId } = this.props
+        const { showBackground, currBlogId, getBlogById, getTagList } = this.props
+
         // const likeBlog = true
         if (currBlogId === null) {
             return null
         }
         const blog = this.props.blogContents.toJS()[currBlogId]
         if (!blog || this.props.tagList === null) {
+            if (!blog) {
+                getBlogById(currBlogId)
+            }
+            if (this.props.tagList == null) {
+                getTagList()
+            }
             return null
         }
+
         const tagList = blog.tagList.map((tagId) => (this.props.tagList.toJS().filter((item) => (item.id === tagId))[0]))
         return (
             <MainWrapper>
@@ -100,7 +107,8 @@ const mapStateToProps = (state) => ({
     showBackground: state.getIn(['app', 'showBackground']),
     blogContents: state.getIn(['detail', 'blogContents']),
     currBlogId: state.getIn(['detail', 'currBlogId']),
-    tagList: state.getIn(['home', 'tagList'])
+    tagList: state.getIn(['home', 'tagList']),
+    blogList: state.getIn(['home', 'blogList'])
 })
 
 const mapDispatchToProps = (dispatch) => ({
@@ -112,6 +120,9 @@ const mapDispatchToProps = (dispatch) => ({
     },
     getTagList() {
         dispatch(homeActionCreators.getTagList())
+    },
+    getBlogList() {
+        dispatch(homeActionCreators.getBlogList())
     }
 })
 

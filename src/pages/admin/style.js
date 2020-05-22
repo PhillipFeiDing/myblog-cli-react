@@ -35,14 +35,22 @@ export const moduleStyle = {
   borderRadius: '10px',
   margin: '20px',
   boxShadow: '0 0 15px #777',
-  padding: '10px'
+  padding: '10px',
+  maxHeight: '85vh'
 }
 
 export const minorModuleStyle = {
-  width:'min(300px, 85vw)',
-  height: 'min(300px, 85vw)',
+  width:'min(400px, 85vw)',
+  height: '400px',
   display: 'inline-block',
   overflow: 'hidden',
+  textAlign: 'left'
+}
+
+export const majorModuleStyle = {
+  width:'min(840px, 85vw)',
+  overflow: 'hidden',
+  display: 'inline-block',
   textAlign: 'left'
 }
 
@@ -62,15 +70,37 @@ export const minorModuleInputButtonStyle = {
 
 export const minorModuleListStyle = {
   overflow: 'auto', 
-  maxHeight: '68%', 
+  maxHeight: '76%', 
   fontSize: '14px'
 }
 
-export const minorModuleListItemSpanStyle = {
+export const minorModuleListItemContentSpanStyle = {
+  display: 'inline-block',
+  overflow: 'auto',
+  whiteSpace: 'nowrap',
+  cursor: 'cell'
+}
+
+export const minorModuleListItemIconSpanStyle = {
   padding: '0',
   position: 'relative',
   height: '14px', 
   width: '14px', 
   background: '#ffffff',
   cursor: 'pointer'
+}
+
+export const bottomButtonWrapperStyle = {
+  overflow: 'hidden',
+  width: 'min(85vw, 840px)',
+  display: 'inline-block',
+  textAlign: 'center',
+  paddingTop: '20px',
+  paddingBottom: '50px'
+}
+
+export const tableHeaderStyle = {
+  position: 'sticky',
+  top: '0',
+  border: '0'
 }
