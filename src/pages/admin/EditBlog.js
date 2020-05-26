@@ -138,7 +138,7 @@ class EditBlog extends Component {
                         </div>
                     </div>
                     <div>
-                        <div style={{...moduleStyle, ...majorModuleStyle, ...{overflowX: 'scroll', minHeight: '400px'}}}>
+                        <div style={{...moduleStyle, ...majorModuleStyle, ...{overflowX: 'auto', minHeight: '400px'}}}>
                             <p style={subTitleStyle}>Content</p>
                             <div style={{background: '#fff', minWidth: '750px'}}>
                                 <RcWangEditor 

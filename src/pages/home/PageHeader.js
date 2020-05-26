@@ -11,23 +11,7 @@ import {
 } from './style'
 import Typing from './Typing'
 import TopicDisplay from './TopicDisplay.js'
-
-const typingStrings = [
-    "I'm Fei (Phillip). Glad to meet you here",
-    "I study at Georgia Tech and major in CS",
-    "I enjoy doing web dev, big data, and ML",
-    "I love cycling, badminton, and movies"
-]
-
-const typingParams = {
-    strings: typingStrings,
-    typeSpeed: 30,
-    backSpeed: 20,
-    startDelay: 25,
-    showCursor: true,
-    shuffle: false,
-    loop:true
-}
+import { AUTHOR, MOTTO, TYPING_LEFT, TYPING_RIGHT, TYPING_PARAMS } from '../../constants'
 
 class PageHeader extends Component {
 
@@ -58,9 +42,9 @@ class PageHeader extends Component {
             <Fragment>
                 <PageHeaderImage imgURL='/home/page_background.jpg'/>
                 <PageHeaderImageTitle>
-                    <TitleLine paddingLeft='30vw' className='italic'>Welcome to Phillip Ding's</TitleLine>
+                    <TitleLine paddingLeft='30vw' className='italic'>Welcome to {AUTHOR}'s</TitleLine>
                     <TitleLine paddingLeft='35vw' className='italic'>Personal Website &amp; Blog!</TitleLine>
-                    <TitleLine paddingLeft='40vw' className='italic cursive'>-- Stay hungry, stay foolish</TitleLine>
+                    <TitleLine paddingLeft='40vw' className='italic cursive'>{MOTTO}</TitleLine>
                 </PageHeaderImageTitle>
                 <PageHeaderDisplayWrapper id='page-header-display-wrapper' ref={(el) => {this.pageHeaderDisplayWrapperDOMRef = el}}>
                     <PageHeaderDisplay className={this.state.pageLoaded ? 'animation-after' : 'animation-before'}>
@@ -68,11 +52,11 @@ class PageHeader extends Component {
                             <img src='/home/avatar.jpg' alt='' />
                         </AuthorAvatarImage>
                         <AuthorIntroduction id='author-introduction'>
-                            Hi,
+                            {TYPING_LEFT}
                                 <Typing
-                                    params={typingParams}
+                                    params={TYPING_PARAMS}
                                 />
-                            !
+                            {TYPING_RIGHT}
                         </AuthorIntroduction>
                         <TopicDisplay />
                     </PageHeaderDisplay>

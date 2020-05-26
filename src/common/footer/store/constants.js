@@ -1,1 +1,0 @@
-export const FILL_FOOTER_ICON_LIST = '/common/sidePanel/FILL_FOOTER_ICON_LIST'

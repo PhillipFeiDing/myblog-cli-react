@@ -36,13 +36,15 @@ class Console extends Component {
         this.isValidBlogId = this.isValidBlogId.bind(this)
         this.handleBlogDeleteClick = this.handleBlogDeleteClick.bind(this)
         this.handleBlogEditClick = this.handleBlogEditClick.bind(this)
+        this.goBackToHome = this.goBackToHome.bind(this)
     }
 
     componentDidMount() {
-        const { tagList, getTagList, friendList, getFriendList, blogList, getBlogList, pinnedList, getPinnedList } = this.props
+        const { tagList, getTagList, friendList, getFriendList, getBlogList, pinnedList, getPinnedList } = this.props
         tagList || getTagList()
         friendList || getFriendList()
-        blogList || getBlogList()
+        // getBlogList() must be executed no matter what because user may come from EditBlog
+        getBlogList()
         pinnedList || getPinnedList()
     }
 
@@ -156,13 +158,22 @@ class Console extends Component {
         this.props.setEditBlogId(blogId)
     }
 
+    goBackToHome() {
+        const homeYScroll = this.props.homeYScroll || 0
+        window.setTimeout(() => {window.scrollTo(0, homeYScroll)}, 0)
+        const { getTagList, getBlogList, getFriendList, getPinnedList } = this.props
+        getTagList()
+        getBlogList()
+        getFriendList()
+        getPinnedList()
+    }
+
     render() {
 
         const tagList = this.props.tagList ? this.props.tagList.toJS() : []
         const friendList = this.props.friendList ? this.props.friendList.toJS() : []
         const pinnedList = this.props.pinnedList ? this.props.pinnedList.toJS() : []
         const blogList = this.props.blogList ? this.props.blogList.toJS() : []
-        const homeYScroll = this.props.homeYScroll || 0
 
         return (
             <Fragment>
@@ -307,7 +318,7 @@ class Console extends Component {
                                             >
                                                 {
                                                     blogList.length === 0 ? null :
-                                                    blogList.filter((blogItem) => (blogItem.id === item.blogId))[0].title
+                                                    (blogList.filter((blogItem) => (blogItem.id === item.blogId))[0] || {} ).title
                                                 }
                                             </span>
                                             <span
@@ -334,7 +345,7 @@ class Console extends Component {
                                 }}
                             />
                         </p>
-                        <div style={{height: '93%', overflow: 'scroll'}}>
+                        <div style={{height: '93%', overflow: 'auto'}}>
                             <table className="table table-sm" style={{position: 'relative', whiteSpace: 'nowrap', color: '#2c3e50'}}>
                                 <thead className="thead-dark">
                                     <tr>
@@ -354,7 +365,9 @@ class Console extends Component {
                                                 <td className='align-middle'>{stampToDateShort(blogItem.time)}</td>
                                                 <td className='align-middle'>
                                                     {
-                                                        blogItem.tagList.map(item => (
+                                                        blogItem.tagList.filter((item) => (
+                                                            tagList.map((tagItem) => (tagItem.id)).indexOf(item) !== -1
+                                                        )).map(item => (
                                                             tagList.length === 0 ? null :
                                                             <span key={'blog-' + blogItem.id + '-tag-' + item}>
                                                                 {tagList.filter((tagItem) => (tagItem.id === item))[0].tagName}
@@ -371,7 +384,7 @@ class Console extends Component {
                                                     />
                                                     <img
                                                         src='/admin/edit.svg' alt='' 
-                                                        style={{width: '14px', cursor: 'pointer', marginLeft: '20px', height: '14px', transform: 'scale(0.995, 1.02)'}}
+                                                        style={{width: '14px', cursor: 'pointer', marginLeft: '20px'}}
                                                         onClick={() => {
                                                             this.handleBlogEditClick(blogItem.id)
                                                             window.scrollTo(0, 0)
@@ -389,7 +402,7 @@ class Console extends Component {
                         <div style={{float:'left'}} className="btn btn-primary" onClick={() => {this.props.logout()}}>
                             Log Out
                         </div>
-                        <Link style={{margin: '0 auto', float: 'right'}} to='/' onClick={() => {window.setTimeout(() => {window.scrollTo(0, homeYScroll)}, 0)}}>
+                        <Link style={{margin: '0 auto', float: 'right'}} to='/' onClick={this.goBackToHome}>
                             <div className="btn btn-primary">
                                 Preview
                             </div>

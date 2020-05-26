@@ -18,14 +18,14 @@ export const setEditBlogId = (blogId) => ({
 export const adminLogin = (credentials) => {
     return async (dispatch) => {
         try {
-            const loginSuccess = (await axios.post(apis.ADMIN_LOGIN, credentials)).data.data.loginSuccess
+            const loginSuccess = (await axios.post(apis.ADMIN_LOGIN, credentials)).data.success
             if (!loginSuccess) {
                 window.alert('Incorrect email address and/or email.')
                 dispatch(setAdminLogin(false))
             } else {
                 dispatch(setAdminLogin(true))
             }
-        } catch {
+        } catch (error) {
             window.alert('Request adminLogin(***) failed.')
         }
     }
@@ -34,7 +34,7 @@ export const adminLogin = (credentials) => {
 export const addTag = (tagName) => {
     return async (dispatch) => {
         try {
-            const success = (await axios.post(apis.TAG_LIST_ADD, {tagName, success: true})).data.data.success
+            const success = (await axios.post(apis.TAG_LIST_ADD, {tagName, success: true})).data.success
             if (success) {
                 dispatch(homeActionCreators.getTagList())
             } else {
@@ -49,7 +49,7 @@ export const addTag = (tagName) => {
 export const deleteTag = (tagId) => {
     return async (dispatch) => {
         try {
-            const success = (await axios.post(apis.TAG_LIST_DELETE, {tagId, success: true})).data.data.success
+            const success = (await axios.post(apis.TAG_LIST_DELETE, {tagId, success: true})).data.success
             if (success) {
                 dispatch(homeActionCreators.getTagList())
             } else {
@@ -64,7 +64,7 @@ export const deleteTag = (tagId) => {
 export const updateTag = (tagId, newTagName) => {
     return async (dispatch) => {
         try {
-            const success = (await axios.post(apis.TAG_LIST_UPDATE, {tagId, newTagName, success: true})).data.data.success
+            const success = (await axios.post(apis.TAG_LIST_UPDATE, {tagId, newTagName, success: true})).data.success
             if (success) {
                 dispatch(homeActionCreators.getTagList())
             } else {
@@ -79,7 +79,7 @@ export const updateTag = (tagId, newTagName) => {
 export const addFriend = (friendName, link) => {
     return async (dispatch) => {
         try {
-            const success = (await axios.post(apis.FRIEND_LIST_ADD, {friendName, link, success: true})).data.data.success
+            const success = (await axios.post(apis.FRIEND_LIST_ADD, {friendName, link, success: true})).data.success
             if (success) {
                 dispatch(sidePanelActionCreators.getFriendList())
             } else {
@@ -94,7 +94,7 @@ export const addFriend = (friendName, link) => {
 export const deleteFriend = (friendId) => {
     return async (dispatch) => {
         try {
-            const success = (await axios.post(apis.FRIEND_LIST_DELETE, {friendId, success: true})).data.data.success
+            const success = (await axios.post(apis.FRIEND_LIST_DELETE, {friendId, success: true})).data.success
             if (success) {
                 dispatch(sidePanelActionCreators.getFriendList())
             } else {
@@ -109,7 +109,7 @@ export const deleteFriend = (friendId) => {
 export const updateFriend = (friendId, newFriendName, newLink) => {
     return async (dispatch) => {
         try {
-            const success = (await axios.post(apis.FRIEND_LIST_UPDATE, {friendId, newFriendName, newLink, success: true})).data.data.success
+            const success = (await axios.post(apis.FRIEND_LIST_UPDATE, {friendId, newFriendName, newLink, success: true})).data.success
             if (success) {
                 dispatch(sidePanelActionCreators.getFriendList())
             } else {
@@ -124,7 +124,7 @@ export const updateFriend = (friendId, newFriendName, newLink) => {
 export const addPinned = (blogId, blogTopic) => {
     return async (dispatch) => {
         try {
-            const success = (await axios.post(apis.PINNED_LIST_ADD, {blogId, blogTopic, success: true})).data.data.success
+            const success = (await axios.post(apis.PINNED_LIST_ADD, {blogId, blogTopic, success: true})).data.success
             if (success) {
                 dispatch(sidePanelActionCreators.getTopicList())
             } else {
@@ -139,7 +139,7 @@ export const addPinned = (blogId, blogTopic) => {
 export const deletePinned = (pinnedId) => {
     return async (dispatch) => {
         try {
-            const success = (await axios.post(apis.PINNED_LIST_DELETE, {pinnedId, success: true})).data.data.success
+            const success = (await axios.post(apis.PINNED_LIST_DELETE, {pinnedId, success: true})).data.success
             if (success) {
                 dispatch(sidePanelActionCreators.getTopicList())
             } else {
@@ -154,7 +154,7 @@ export const deletePinned = (pinnedId) => {
 export const updatePinned = (pinnedId, blogId, topicName) => {
     return async (dispatch) => {
         try {
-            const success = (await axios.post(apis.PINNED_LIST_UPDATE, {pinnedId, blogId, topicName, success: true})).data.data.success
+            const success = (await axios.post(apis.PINNED_LIST_UPDATE, {pinnedId, blogId, topicName, success: true})).data.success
             if (success) {
                 dispatch(sidePanelActionCreators.getTopicList())
             } else {
@@ -169,7 +169,7 @@ export const updatePinned = (pinnedId, blogId, topicName) => {
 export const createBlog = () => {
     return async (dispatch) => {
         try {
-            const success = (await axios.post(apis.BLOG_CREATE, {success: true})).data.data.success
+            const success = (await axios.post(apis.BLOG_CREATE, {success: true})).data.success
             if (success) {
                 dispatch(homeActionCreators.getBlogList())
             } else {
@@ -184,7 +184,7 @@ export const createBlog = () => {
 export const deleteBlog = (blogId) => {
     return async (dispatch) => {
         try {
-            const success = (await axios.post(apis.BLOG_DELETE, {blogId, success: true})).data.data.success
+            const success = (await axios.post(apis.BLOG_DELETE, {blogId, success: true})).data.success
             if (success) {
                 dispatch(homeActionCreators.getBlogList())
             } else {
@@ -199,7 +199,7 @@ export const deleteBlog = (blogId) => {
 export const updateBlog = (submit, callback) => {
     return async (dispatch) => {
         try {
-            const success = (await axios.post(apis.BLOG_UPDATE, {submit, success: true})).data.data.success
+            const success = (await axios.post(apis.BLOG_UPDATE, {submit, success: true})).data.success
             if (success) {
                 dispatch(detailActionCreators.getBlogById(submit.id))
                 callback()

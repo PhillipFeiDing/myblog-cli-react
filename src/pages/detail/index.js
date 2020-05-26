@@ -19,6 +19,7 @@ import { actionCreators as homeActionCreators } from '../home/store'
 import { connect } from 'react-redux'
 import { stampToDate } from '../../common/util/date'
 import { Link } from 'react-router-dom'
+import Loading from '../../common/loading'
 
 // const LIKED = '/detail/heartFilled.svg'
 // const NOT_LIKED = '/detail/heartEmpty.svg'
@@ -43,7 +44,9 @@ class Detail extends Component {
         if (currBlogId === null) {
             return null
         }
-        const blog = this.props.blogContents.toJS()[currBlogId]
+        let blog = this.props.blogContents.toJS()[currBlogId]
+        let tagList = []
+        let loading = false
         if (!blog || this.props.tagList === null) {
             if (!blog) {
                 getBlogById(currBlogId)
@@ -51,10 +54,12 @@ class Detail extends Component {
             if (this.props.tagList == null) {
                 getTagList()
             }
-            return null
+            blog = {}
+            loading = true
+        } else {
+            tagList = blog.tagList.map((tagId) => (this.props.tagList.toJS().filter((item) => (item.id === tagId))[0]))
         }
 
-        const tagList = blog.tagList.map((tagId) => (this.props.tagList.toJS().filter((item) => (item.id === tagId))[0]))
         return (
             <MainWrapper>
                 <HeaderWrapper id='header-wrapper'>
@@ -65,10 +70,18 @@ class Detail extends Component {
                 <ContainerWrapper id='container-wrapper'>
                     <ParticlesContainer show={showBackground}/>
                     <Container className='main-content'>
-                        <Content id='detail-content' dangerouslySetInnerHTML={{__html: blog.content}}></Content>
+                        {
+                            loading ? (
+                                <Content id='detail-content'>
+                                    <Loading />
+                                </Content>
+                            ) : (
+                                <Content id='detail-content' dangerouslySetInnerHTML={{__html: blog.content}}></Content>
+                            )
+                        }
                         <TagList>
                             {
-                                tagList.map((item) => (
+                                tagList.filter((item) => (item)).map((item) => (
                                     <Link 
                                         to='/'
                                         key={'detail-tag-' + item.id}

@@ -1,5 +1,4 @@
 export const NONE_DISPLAY = null
-export const FILL_AUTHOR_NAME = '/app/FILL_AUTHOR_NAME'
 export const UPDATE_LAYOUT = '/app/UPDATE_LAYOUT'
 export const SHOW_TAG_BOARD = '/app/SHOW_TAG_BOARD'
 export const SHOW_ABOUT_ME_BOARD = '/app/SHOW_ABOUT_ME_BOARD'

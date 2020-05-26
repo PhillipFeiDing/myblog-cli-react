@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { actionCreators as appActionCreators } from '../../store'
 import { actionCreators } from './store'
 import {
     MainWrapper,
@@ -15,6 +14,7 @@ import BlogItem from './BlogItem'
 import ParticlesContainer from '../../common/particles'
 import Paging from './Paging'
 import DashBoard from './DashBoard'
+import Loading from '../../common/loading'
 
 class Home extends Component {
 
@@ -24,8 +24,7 @@ class Home extends Component {
     }
 
     componentDidMount() {
-        const { authorName, getAuthorName, getTagList, tagList, getBlogList, blogList } = this.props
-        authorName || getAuthorName()
+        const { getTagList, tagList, getBlogList, blogList } = this.props
         tagList || getTagList()
         blogList || getBlogList()
         window.addEventListener('scroll', this.scrollHandler)
@@ -40,6 +39,7 @@ class Home extends Component {
     }
 
     render() {
+        const showBlogLoading = this.props.currBlogList === null
         const tagList = this.props.tagList === null ? [] : this.props.tagList.toJS()
         const currBlogList = this.props.currBlogList === null ? [] : this.props.currBlogList.toJS()
         const { currPage, isMobile, showBackground, blogsPerPage } = this.props
@@ -52,28 +52,35 @@ class Home extends Component {
                         <BlogListWrapper className={isMobile ? 'mobile' : 'desktop'}>
                             <BlogList>
                                 {
-                                    currBlogList.splice(currPage * blogsPerPage, blogsPerPage).map((item) => {
-                                        return (
-                                            <BlogItem
-                                                key={'blog-' + item.id}
-                                                data={{
-                                                    id: item.id,
-                                                    time: item.time,
-                                                    title: item.title,
-                                                    exerpt: item.exerpt,
-                                                    imageURL: item.imageURL,
-                                                    tagList: tagList.length === 0 ? [] : item.tagList.map((tagId) => {
-                                                        return {
-                                                            id: tagId,
-                                                            name: tagList.filter((tagItem) => {
-                                                                return tagItem.id === tagId
-                                                            })[0].tagName
-                                                        }
-                                                    })
-                                                }}
-                                            />
-                                        )
-                                    })
+                                    showBlogLoading ? (
+                                        <Loading />
+                                    ) : (
+                                        currBlogList.splice(currPage * blogsPerPage, blogsPerPage).map((item) => {
+                                            return (
+                                                <BlogItem
+                                                    key={'blog-' + item.id}
+                                                    data={{
+                                                        id: item.id,
+                                                        time: item.time,
+                                                        title: item.title,
+                                                        exerpt: item.exerpt,
+                                                        imageURL: item.imageURL,
+                                                        tagList: tagList.length === 0 ? [] : item.tagList.filter(
+                                                            (tagId) => (
+                                                                tagList.map((tagItem) => (tagItem.id)).indexOf(tagId) !== -1
+                                                            )).map((tagId) => {
+                                                            return {
+                                                                id: tagId,
+                                                                name: tagList.filter((tagItem) => {
+                                                                    return tagItem.id === tagId
+                                                                })[0].tagName
+                                                            }
+                                                        })
+                                                    }}
+                                                />
+                                            )
+                                        })
+                                    )
                                 }
                                 <Paging contentDOMNode={this.contentDOMNode}/>
                             </BlogList>
@@ -98,7 +105,6 @@ class Home extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    authorName: state.getIn(['app', 'authorName']),
     tagList: state.getIn(['home', 'tagList']),
     blogList: state.getIn(['home', 'blogList']),
     currBlogList: state.getIn(['home', 'currBlogList']),
@@ -110,9 +116,6 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    getAuthorName() {
-        dispatch(appActionCreators.getAuthorName())
-    },
     getTagList() {
         dispatch(actionCreators.getTagList())
     },

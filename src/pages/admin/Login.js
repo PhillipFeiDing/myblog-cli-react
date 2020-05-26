@@ -26,7 +26,7 @@ class Login extends Component {
                     <h2 style={{textAlign: 'center', marginBottom: '20px'}}>Admin Login</h2>
                     <div className="form-group">
                         <label>Email address</label>
-                        <input type='email' className='form-control' 
+                        <input type='email' autoComplete='on' className='form-control' 
                             ref={(el) => {this.emailInputDOMRef = el}}
                         />
                     </div>
