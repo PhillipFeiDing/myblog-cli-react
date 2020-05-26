@@ -161,11 +161,12 @@ class Console extends Component {
     goBackToHome() {
         const homeYScroll = this.props.homeYScroll || 0
         window.setTimeout(() => {window.scrollTo(0, homeYScroll)}, 0)
-        const { getTagList, getBlogList, getFriendList, getPinnedList } = this.props
+        const { getTagList, getBlogList, getFriendList, getPinnedList, refreshHome } = this.props
         getTagList()
         getBlogList()
         getFriendList()
         getPinnedList()
+        refreshHome()
     }
 
     render() {
@@ -473,6 +474,9 @@ const mapDispatchToProps = (dispatch) => ({
     },
     setEditBlogId(blogId) {
         dispatch(actionCreators.setEditBlogId(blogId))
+    },
+    refreshHome() {
+        dispatch(homeActionCreators.setTagName(null, null))
     }
 })
 
