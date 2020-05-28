@@ -106,7 +106,7 @@ export const tableHeaderStyle = {
 }
 
 export const tagSelectStyle = {
-  transform: 'scale(1.82,1.82) translate(0,2.5%)',
+  transform: 'translate(0,2.5%)',
   marginRight: '10px',
   marginLeft: '10px',
   cursor: 'pointer'
