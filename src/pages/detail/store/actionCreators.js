@@ -18,8 +18,8 @@ export const getBlogById = (id) => {
         try {
             const blog = (await axios.get(apis.BLOG_DETAIL(id))).data.data
             dispatch(fillBlogContentById(id, blog))
-        } catch {
-            window.alert(`Request getBlogById(${id}) failed.`)
+        } catch (error) {
+            window.alert(`Request getBlogById(${id}) failed. ` + error)
         }
     }
 }

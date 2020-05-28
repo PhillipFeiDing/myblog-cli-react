@@ -44,13 +44,18 @@ export const updateYScroll = (yScroll) => ({
     yScroll
 })
 
+export const setChannel = (channel) => ({
+    type: constants.SET_CHANNEL,
+    channel
+})
+
 export const getTagList = () => {
     return async (dispatch) => {
         try {
             const tagList = (await axios.get(apis.TAG_LIST)).data.data
             dispatch(fillTagList(tagList))
-        } catch {
-            window.alert('Request getTagList() failed.')
+        } catch (error) {
+            window.alert('Request getTagList() failed. ' + error)
         }
     }
 }
@@ -60,8 +65,8 @@ export const getBlogList = () => {
         try {
             const blogList = (await axios.get(apis.BLOG_LIST)).data.data
             dispatch(fillBlogList(blogList))
-        } catch {
-            window.alert('Request getBlogList() failed.')
+        } catch (error) {
+            window.alert('Request getBlogList() failed. ' + error)
         }
     }
 }

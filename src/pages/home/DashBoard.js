@@ -67,7 +67,7 @@ class DashBoard extends Component {
     render() {
         const showTagLoading = this.props.tagList === null
         const tagList = this.props.tagList === null ? [] : this.props.tagList.toJS()
-        const { currTagName, currTitleName, isMobile, showTag, showAboutMe,closeTagBoard, closeAboutMeBoard } = this.props
+        const { currTagName, currTitleName, isMobile, showTag, showAboutMe,closeTagBoard, closeAboutMeBoard, setChannel, channel } = this.props
         return (
             <Fragment>
                 <DashBoardItemWrapper
@@ -84,15 +84,30 @@ class DashBoard extends Component {
                         ) : null
                     }
                     <DashBoardContentWrapper className={isMobile ? 'mobile ' : 'desktop '}>
+                        <TitleSpan className='dashboard-title-span'>CHANNELS</TitleSpan>
                         <TagGroup>
                             <TagSpan
-                                className={currTagName === null && currTitleName === null ? 'current bold' : 'bold'}
+                                className={'rect' + (channel === 'en' ? ' current' : '')}
+                                onClick={() => {setChannel('en')}}
+                            >
+                                English
+                            </TagSpan>
+                            <TagSpan
+                                className={'rect' + (channel === 'cn' ? ' current' : '')}
+                                onClick={() => {setChannel('cn')}}
+                            >
+                                中文
+                            </TagSpan>
+                        </TagGroup>
+                        <hr />
+                        <TagGroup style={{textAlign: 'right'}}>
+                            <TagSpan
+                                className={currTagName === null && currTitleName === null ? 'current bold tall' : 'bold tall'}
                                 onClick={() => {this.handleTagClick(null)}}
                             >
                                 ALL BLOGS
                             </TagSpan>
                         </TagGroup>
-                        <hr />
                         <TitleSpan className='dashboard-title-span'>FEATURED TAGS</TitleSpan>
                         <TagGroup>
                             {
@@ -146,6 +161,7 @@ const mapStateToProps = (state) => ({
     isMobile: state.getIn(['app', 'isMobile']),
     showTag: state.getIn(['app', 'mobile', 'showTag']),
     showAboutMe: state.getIn(['app', 'mobile', 'showAboutMe']),
+    channel: state.getIn(['home', 'channel'])
 })
 
 const mapDispatchToProps = (dispatch) => ({
@@ -161,6 +177,9 @@ const mapDispatchToProps = (dispatch) => ({
     },
     closeAboutMeBoard() {
         dispatch(appActionCreators.showAboutMeBoard(false))
+    },
+    setChannel(channel) {
+        dispatch(actionCreators.setChannel(channel))
     }
 })
 

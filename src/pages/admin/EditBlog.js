@@ -45,7 +45,8 @@ class EditBlog extends Component {
             imageURL: this.imageURLInputDOMRef.value,
             tagList: Array.from(document.querySelectorAll('.tag-input')).filter((item) => (item.checked)).map((item) => (parseInt(item.value))),
             exerpt: this.exerptInputDOMRef.value,
-            content: this.richTextEditorDOMRef.state.html
+            content: this.richTextEditorDOMRef.state.html,
+            channel: (document.querySelector('input[name="channel-select"]:checked') || {}).value || 'en'
         }
         this.props.updateBlog(submit, this.goBackToConsole)
     }
@@ -105,6 +106,30 @@ class EditBlog extends Component {
                     </div>
                     <div>
                         <div style={{...moduleStyle, ...majorModuleStyle}}>
+                            <p style={subTitleStyle}>Channel</p>
+                            <div>
+                                <div className="form-check form-check-inline" style={{display: 'block'}}>
+                                    {
+                                        [{display: 'English', value: 'en'}, {display: '中文', value: 'cn'}].map((item) => (
+                                            <span style={{whiteSpace: 'nowrap'}} key={'channel-key-' + item.value}>
+                                                <input
+                                                    style={tagSelectStyle} className="form-check-input channel-input" type="radio"
+                                                    id={'channel-' + item.value} value={item.value}
+                                                    name='channel-select'
+                                                />
+                                                <label 
+                                                    style={{marginRight: '20px'}}
+                                                    className="form-check-label"
+                                                    htmlFor={'channel-' + item.value}
+                                                >
+                                                    {item.display}
+                                                </label>
+                                            </span>
+                                        ))
+                                    }
+                                </div>
+                            </div>
+                            <hr />
                             <p style={subTitleStyle}>Tags</p>
                             <div>
                                 <div className="form-check form-check-inline" style={{display: 'block'}}>
@@ -173,6 +198,11 @@ class EditBlog extends Component {
             if (tagList.indexOf(parseInt(item.value)) !== -1) {
                 item.checked = true
             } 
+        })
+        document.querySelectorAll('.channel-input').forEach((item) => {
+            if (blogContent.channel === item.value) {
+                item.checked = true
+            }
         })
         document.querySelector('.w-e-text-container').style.height = '70vh'
     }

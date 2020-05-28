@@ -353,6 +353,7 @@ class Console extends Component {
                                         <th scope="col" style={tableHeaderStyle}>ID</th>
                                         <th scope="col" style={tableHeaderStyle}>Title</th>
                                         <th scope="col" style={tableHeaderStyle}>Time</th>
+                                        <th scope="col" style={tableHeaderStyle}>Channel</th>
                                         <th scope="col" style={tableHeaderStyle}>Tags</th>
                                         <th scope="col" style={tableHeaderStyle}>Action</th>
                                     </tr>
@@ -364,6 +365,7 @@ class Console extends Component {
                                                 <th className='align-middle' scope="row">{blogItem.id}</th>
                                                 <td className='align-middle'>{blogItem.title}</td>
                                                 <td className='align-middle'>{stampToDateShort(blogItem.time)}</td>
+                                                <td className='align-middle'>{blogItem.channel === 'en' ? 'En' : (blogItem.channel === 'cn' ? '中' : '?')}</td>
                                                 <td className='align-middle'>
                                                     {
                                                         blogItem.tagList.filter((item) => (

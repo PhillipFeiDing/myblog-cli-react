@@ -70,7 +70,7 @@ export const FOOTER_LIST =
         "hoverable": true
     },{
         "name": "qq",
-        "barCodeURL": "/common/footer/qq-qr.png",
+        "barCodeURL": "/common/footer/qq-qr.jpg",
         "imgURL": "/common/footer/qq.svg",
         "hoverable": true
     }
@@ -79,30 +79,25 @@ export const FOOTER_LIST =
 // Author introduction. You need to provide html here.
 export const INTRODUCTION = `
   <p>
-    Hi, I am Fei Ding (Phillip), a second-year computer science student studying at Georgia Tech 
-    with concentrations in information internetwork and intelligence. I am looking for a summer 
-    internship (2021) as a software engineer or data analyst.
+    Hi, I am Fei Ding (Phillip), a computer science student studying at Georgia Tech with threads in 
+    information internetwork and intelligence. I am looking for a summer 2021 SWE internship.
   </p>
   <p>
-    I gained full stack experience in developing web and mobile applications by working on my 
-    personal and group projects where I would like to explore and teach myself new technologies 
-    in development. I am also interested in various fields in machine learning and their 
-    applications to real-world situations.
+    I am experienced in developing web and mobile applications. By working on my personal and 
+    group projects I'd like to explore and teach myself new technologies on the way. I am also 
+    interested in various fields in AI/ML and their applications in the real world.
   </p>
   <p>
-    I am currently involved in undergraduate research programs. My interest lies in machine 
-    learning and their applications. I've worked closely with graduate students in developing 
-    sophisticated NLP models, and I am currently collaborating in a robotics vision lab to 
-    evaluate the effectiveness of different CV algorithms in terms of their performances in 
-    robotics tasks.
+    I am also an undergraduate researcher. I've worked closely with graduate students in developing 
+    sophisticated NLP models, and I am currently collaborating in a robotics vision lab to evaluate 
+    different CV algorithms in terms of their performances in various robotics tasks.
   </p>
   <p>
-    I code in Java, Python, and JavaScript most of the time. I have experiences using frameworks 
-    such as TensorFlow, and I am also teaching myself some PyTorch. I primarily use ExpressJS &amp; 
-    MongoDB or Python Flask &amp; MySQL for backend web development. I am also experienced in using 
-    jQuery or ReactJS for crafting web UIs. I regularly maintain my portfolio on a 
-      <a href='/'>blog system</a> 
-    developed and deployed by myself, which is what you are viewing now!
+    I code in Java, Python, JavaScript, and C. As an experienced web developer, I primarily use 
+    ExpressJS &amp; MongoDB or Python Flask &amp; MySQL for server side development and can 
+    proficiently craft responsive web UIs using jQuery or ReactJS. I regularly maintain my portfolio 
+    on a <a href='/'>website&amp;blog</a> designed, built, and deployed by myself, which is what you 
+    are seeing now!
   </p>
 `
 
@@ -111,7 +106,7 @@ export const INTRODUCTION = `
  * This section defines APIs for this application to get and manipulate on its data.
  * Don't change anything here if you have no idea what you are doing.
  */
-const debug = false
+const debug = false // turn it on if debugging against backend.
 const domain = debug ? 'http://localhost:8000' : '' // This is for debugging purpose only
 // Data Retrieval: supports server or serverless.
 export const TOPIC_LIST = !server ? '/api/topic/list.json' : domain + '/api/menu/topic/list'

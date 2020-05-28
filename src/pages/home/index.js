@@ -55,7 +55,9 @@ class Home extends Component {
                                     showBlogLoading ? (
                                         <Loading />
                                     ) : (
-                                        currBlogList.splice(currPage * blogsPerPage, blogsPerPage).map((item) => {
+                                        currBlogList
+                                        .splice(currPage * blogsPerPage, blogsPerPage)
+                                        .map((item) => {
                                             return (
                                                 <BlogItem
                                                     key={'blog-' + item.id}
@@ -112,7 +114,8 @@ const mapStateToProps = (state) => ({
     isMobile: state.getIn(['app', 'isMobile']),
     showAboutMeBoard: state.getIn(['app', 'mobile', 'showAboutMe']),
     showBackground: state.getIn(['app', 'showBackground']),
-    blogsPerPage: state.getIn(['home', 'blogsPerPage'])
+    blogsPerPage: state.getIn(['home', 'blogsPerPage']),
+    channel: state.getIn(['home', 'channel'])
 })
 
 const mapDispatchToProps = (dispatch) => ({

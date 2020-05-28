@@ -26,7 +26,7 @@ export const adminLogin = (credentials) => {
                 dispatch(setAdminLogin(true))
             }
         } catch (error) {
-            window.alert('Request adminLogin(***) failed.')
+            window.alert('Request adminLogin(***) failed. ' + error)
         }
     }
 }
@@ -40,8 +40,8 @@ export const addTag = (tagName) => {
             } else {
                 window.alert('addTag() unsuccessful.')
             }
-        } catch {
-            window.alert(`Request addTag(${tagName}) failed.`)
+        } catch (error) {
+            window.alert(`Request addTag(${tagName}) failed. ` + error)
         }
     }
 }
@@ -55,8 +55,8 @@ export const deleteTag = (tagId) => {
             } else {
                 window.alert('deleteTag() unsuccessful.')
             }
-        } catch {
-            window.alert(`Request deleteTag(${tagId}) failed.`)
+        } catch (error) {
+            window.alert(`Request deleteTag(${tagId}) failed. ` + error)
         }
     }
 }
@@ -70,8 +70,8 @@ export const updateTag = (tagId, newTagName) => {
             } else {
                 window.alert('updateTag() unsuccessful.')
             }
-        } catch {
-            window.alert(`Request updateTag(${tagId}, ${newTagName}) failed.`)
+        } catch (error) {
+            window.alert(`Request updateTag(${tagId}, ${newTagName}) failed. ` + error)
         }
     }
 }
@@ -85,8 +85,8 @@ export const addFriend = (friendName, link) => {
             } else {
                 window.alert('addFriend() unsuccessful.')
             }
-        } catch {
-            window.alert(`Request addFriend(${friendName}, ${link}) failed.`)
+        } catch (error) {
+            window.alert(`Request addFriend(${friendName}, ${link}) failed. ` + error)
         }
     }
 }
@@ -100,8 +100,8 @@ export const deleteFriend = (friendId) => {
             } else {
                 window.alert('deleteFriend() unsuccessful.')
             }
-        } catch {
-            window.alert(`Request deleteFriend(${friendId}) failed.`)
+        } catch (error) {
+            window.alert(`Request deleteFriend(${friendId}) failed. ` + error)
         }
     }
 }
@@ -115,8 +115,8 @@ export const updateFriend = (friendId, newFriendName, newLink) => {
             } else {
                 window.alert('updateFriend() unsuccessful.')
             }
-        } catch {
-            window.alert(`Request updateFriend(${friendId}, ${newFriendName}, ${newLink}) failed.`)
+        } catch (error) {
+            window.alert(`Request updateFriend(${friendId}, ${newFriendName}, ${newLink}) failed. ` + error)
         }
     }
 }
@@ -130,8 +130,8 @@ export const addPinned = (blogId, blogTopic) => {
             } else {
                 window.alert('addPinned() unsuccessful.')
             }
-        } catch {
-            window.alert(`Request addPinned(${blogId}, ${blogTopic}) failed.`)
+        } catch (error) {
+            window.alert(`Request addPinned(${blogId}, ${blogTopic}) failed. ` + error)
         }
     }
 }
@@ -145,8 +145,8 @@ export const deletePinned = (pinnedId) => {
             } else {
                 window.alert('deletePinned() unsuccessful.')
             }
-        } catch {
-            window.alert(`Request deletePinned(${pinnedId}) failed.`)
+        } catch (error) {
+            window.alert(`Request deletePinned(${pinnedId}) failed. ` + error)
         }
     }
 }
@@ -160,8 +160,8 @@ export const updatePinned = (pinnedId, blogId, topicName) => {
             } else {
                 window.alert('updatePinned() unsuccessful.')
             }
-        } catch {
-            window.alert(`Request updatePinned(${pinnedId}, ${blogId}, ${topicName}) failed.`)
+        } catch (error) {
+            window.alert(`Request updatePinned(${pinnedId}, ${blogId}, ${topicName}) failed. ` + error)
         }
     }
 }
@@ -175,8 +175,8 @@ export const createBlog = () => {
             } else {
                 window.alert('createBlog() unsuccessful.')
             }
-        } catch {
-            window.alert(`Request createBlog() failed.`)
+        } catch (error) {
+            window.alert(`Request createBlog() failed. ` + error)
         }
     }
 }
@@ -190,8 +190,8 @@ export const deleteBlog = (blogId) => {
             } else {
                 window.alert('deleteBlog() unsuccessful.')
             }
-        } catch {
-            window.alert(`Request deleteBlog(${blogId}) failed.`)
+        } catch (error) {
+            window.alert(`Request deleteBlog(${blogId}) failed. ` + error)
         }
     }
 }
@@ -206,8 +206,8 @@ export const updateBlog = (submit, callback) => {
             } else {
                 window.alert('updateBlog() unsuccessful.')
             }
-        } catch {
-            window.alert(`Request updateBlog({id: ${submit.id}, ...}) failed.`)
+        } catch (error) {
+            window.alert(`Request updateBlog({id: ${submit.id}, ...}) failed. ` + error)
         }
     }
 }
