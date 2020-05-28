@@ -395,6 +395,12 @@ export const TagSpan = styled.span`
     color: rgb(44, 62, 80);
     background-color: rgb(206, 210, 211);
   }
+  &.tall {
+    margin-bottom: 10px;
+  }
+  &.rect {
+    border-radius: 0;
+  }
   cursor: pointer;
 `
 

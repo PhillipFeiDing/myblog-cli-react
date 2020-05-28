@@ -17,8 +17,8 @@ export const getTopicList = () => {
         try {
             const data = (await axios.get(apis.TOPIC_LIST)).data.data
             dispatch(fillTopicList(data))
-        } catch {
-            window.alert('Request getTopicList() failed.')
+        } catch (error) {
+            window.alert('Request getTopicList() failed. ' + error)
         }
     }
 }
@@ -28,8 +28,8 @@ export const getFriendList = () => {
         try {
             const data = (await axios.get(apis.FRIEND_LIST)).data.data
             dispatch(fillFriendList(data))
-        } catch {
-            window.alert('Request getFriendList() failed.')
+        } catch (error) {
+            window.alert('Request getFriendList() failed. ' + error)
         }
     }
 }

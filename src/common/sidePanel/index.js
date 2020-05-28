@@ -22,6 +22,7 @@ import { actionCreators } from './store'
 import { actionCreators as appActionCreators } from '../../store'
 import { actionCreators as detailActionCreators } from '../../pages/detail/store'
 import { CV_URL } from '../../constants'
+import Loading from '../../common/loading'
 
 
 class SidePanel extends Component {
@@ -91,6 +92,8 @@ class SidePanel extends Component {
     render() {
         const { showMenu, showSettings } = this.state
         const { isMobile, showTag, showAboutMe, homeYScroll } = this.props
+        const showTopicLoading = this.props.topicList === null
+        const showFriendLoading = this.props.friendList === null
         const topicList = this.props.topicList || []
         const friendList = this.props.friendList || []
         return (
@@ -151,31 +154,39 @@ class SidePanel extends Component {
                 >
                     <MenuTitle>Pinned</MenuTitle>
                     {
-                        topicList.map((item) => {
-                            return (
-                                <Link 
-                                    to={'/detail/' + item.get('blogId')}
-                                    key={'topicList-' + item.get('id')} 
-                                    onClick={() => {
-                                        window.scrollTo(0, 0)
-                                        this.props.setBlogId(parseInt(item.get('blogId')))
-                                    }}
-                                >
-                                    <MenuItem>{item.get('topicName')}</MenuItem>
-                                </Link>
-                            )
-                        })
+                        showTopicLoading ? (
+                            <Loading />
+                        ) : (
+                            topicList.map((item) => {
+                                return (
+                                    <Link 
+                                        to={'/detail/' + item.get('blogId')}
+                                        key={'topicList-' + item.get('id')} 
+                                        onClick={() => {
+                                            window.scrollTo(0, 0)
+                                            this.props.setBlogId(parseInt(item.get('blogId')))
+                                        }}
+                                    >
+                                        <MenuItem>{item.get('topicName')}</MenuItem>
+                                    </Link>
+                                )
+                            })
+                        )
                     }
                     <hr />
                     <MenuTitle>Friends</MenuTitle>
                     {
-                        friendList.map((item) => {
-                            return (
-                                <a href={item.get('link')} key={'friendList-' + item.get('id')} rel='noopener noreferrer' target='_blank'>
-                                    <MenuItem>{item.get('friendName')}</MenuItem>
-                                </a>
-                            )
-                        })
+                        showFriendLoading ? (
+                            <Loading />
+                        ) : (
+                            friendList.map((item) => {
+                                return (
+                                    <a href={item.get('link')} key={'friendList-' + item.get('id')} rel='noopener noreferrer' target='_blank'>
+                                        <MenuItem>{item.get('friendName')}</MenuItem>
+                                    </a>
+                                )
+                            })
+                        )
                     }
                 </Menu>
             </SidePanelWrapper>

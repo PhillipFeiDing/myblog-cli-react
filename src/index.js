@@ -8,6 +8,14 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
+// fix IOS click bug
+if (isIOSDevice()) {
+  document.getElementById('root').style.cursor = 'pointer'
+}
+function isIOSDevice(){
+  return !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform)
+}
+
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA

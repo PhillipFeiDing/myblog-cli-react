@@ -8611,6 +8611,14 @@ raw-body@2.4.0:
     iconv-lite "0.4.24"
     unpipe "1.0.0"
 
+rc-wang-editor@^0.9.5:
+  version "0.9.5"
+  resolved "https://registry.yarnpkg.com/rc-wang-editor/-/rc-wang-editor-0.9.5.tgz#edbc6fa8d459595e3a075e58d2c31a1c057546e5"
+  integrity sha512-1r3R/4EYzwEgNrmkT7OoKwMI4QsYvBY+t2+An63jjTIOaQqw71TyldGBcImUy0hlcoq+p0w2xmDfz65N3MRNvQ==
+  dependencies:
+    prop-types "^15.6.2"
+    wangeditor "^3.1.1"
+
 react-app-polyfill@^1.0.6:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/react-app-polyfill/-/react-app-polyfill-1.0.6.tgz#890f8d7f2842ce6073f030b117de9130a5f385f0"
@@ -10585,6 +10593,11 @@ walker@^1.0.7, walker@~1.0.5:
   integrity sha1-L3+bj9ENZ3JisYqITijRlhjgKPs=
   dependencies:
     makeerror "1.0.x"
+
+wangeditor@^3.1.1:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/wangeditor/-/wangeditor-3.1.1.tgz#fbd3c1d4976923c9edebb85b29d30b35512ad039"
+  integrity sha1-+9PB1JdpI8nt67hbKdMLNVEq0Dk=
 
 watchpack@^1.6.0:
   version "1.6.0"

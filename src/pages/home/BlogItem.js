@@ -16,6 +16,7 @@ import {
     linkStyle
 } from './style'
 import { stampToDate } from '../../common/util/date'
+import { AUTHOR } from '../../constants'
 
 class BlogItem extends Component {
 
@@ -35,7 +36,7 @@ class BlogItem extends Component {
 
     render() {
         const { id, time, title, exerpt, imageURL, tagList } = this.props.data
-        const { authorName, setBlogId } = this.props
+        const { setBlogId } = this.props
         const { hovering, hasImage } = this.state
         return (
             <BlogItemWrapper
@@ -64,7 +65,7 @@ class BlogItem extends Component {
                     </BlogExerptImageWrapper>
                 </BlogExerptWrapper>
                 <BlogMetaList>
-                    <BlogMetaListItem className='blog-meta-list-item-authorName'>{authorName}</BlogMetaListItem>
+                    <BlogMetaListItem className='blog-meta-list-item-authorName'>{AUTHOR}</BlogMetaListItem>
                     {
                         tagList.map((item, index) => (
                             <BlogMetaListItem
@@ -83,10 +84,6 @@ class BlogItem extends Component {
     }
 }
 
-const mapStateToProps = (state) => ({
-    authorName: state.getIn(['app', 'authorName'])
-})
-
 const mapDispatchToProps = (dispatch) => ({
     setTagName(tagName, tagId) {
         dispatch(actionCreators.setTagName(tagName, tagId))
@@ -96,4 +93,4 @@ const mapDispatchToProps = (dispatch) => ({
     }
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(BlogItem)
+export default connect(null, mapDispatchToProps)(BlogItem)
