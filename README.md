@@ -1,3 +1,16 @@
+## Author Words
+This repository is my development space for frontend portion of my blog project using ReactJS.
+
+### Build
+
+*Please refer to my another repository, `myblog-server-express-mongo`, for integrating this project to a real backend!*
+
+1. `yarn build`
+2. change `build` folder to `public` and move the built folder to the root directory of the aforesaid project.
+3. start the express server using either nodemon (development) or pm2 (production).
+
+---
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
