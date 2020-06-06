@@ -68,7 +68,7 @@ class Detail extends Component {
                     <TimeDisplay>{stampToDate(blog.time)}</TimeDisplay>
                 </HeaderWrapper>
                 <ContainerWrapper id='container-wrapper'>
-                    <ParticlesContainer show={showBackground}/>
+                    <ParticlesContainer show={showBackground} offset={56}/>
                     <Container className='main-content'>
                         {
                             loading ? (

@@ -106,8 +106,8 @@ export const INTRODUCTION = `
  * This section defines APIs for this application to get and manipulate on its data.
  * Don't change anything here if you have no idea what you are doing.
  */
-const debug = false // turn it on if debugging against backend.
-const domain = debug ? 'http://localhost:8000' : '' // This is for debugging purpose only
+const useLocal = false // turn it on if debugging against backend.
+const domain = useLocal ? 'http://localhost:8000' : '' // This is for debugging purpose only
 // Data Retrieval: supports server or serverless.
 export const TOPIC_LIST = !server ? '/api/topic/list.json' : domain + '/api/menu/topic/list'
 export const FRIEND_LIST = !server ? '/api/friend/list.json' : domain + '/api/menu/friend/list'

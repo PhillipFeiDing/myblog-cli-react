@@ -68,6 +68,18 @@ class DashBoard extends Component {
         const showTagLoading = this.props.tagList === null
         const tagList = this.props.tagList === null ? [] : this.props.tagList.toJS()
         const { currTagName, currTitleName, isMobile, showTag, showAboutMe,closeTagBoard, closeAboutMeBoard, setChannel, channel } = this.props
+
+        let blogList = this.props.blogList === null ? [] : this.props.blogList.toJS()
+        blogList = blogList.filter((blog) => (blog.channel === channel))
+        let legalTagIds = []
+        blogList.forEach((blog) => {
+            blog.tagList.forEach((tagId) => {
+                if (legalTagIds.indexOf(tagId) === -1) {
+                    legalTagIds.push(tagId)
+                }
+            })
+        })
+
         return (
             <Fragment>
                 <DashBoardItemWrapper
@@ -114,7 +126,7 @@ class DashBoard extends Component {
                                 showTagLoading ? (
                                     <Loading />
                                 ) : (
-                                    tagList.map((item) => (
+                                    tagList.filter((tag) => (legalTagIds.indexOf(tag.id) !== -1)).map((item) => (
                                         <TagSpan
                                             key={'tag-' + item.id}
                                             onClick={() => {this.handleTagClick(item.id)}}
@@ -161,7 +173,8 @@ const mapStateToProps = (state) => ({
     isMobile: state.getIn(['app', 'isMobile']),
     showTag: state.getIn(['app', 'mobile', 'showTag']),
     showAboutMe: state.getIn(['app', 'mobile', 'showAboutMe']),
-    channel: state.getIn(['home', 'channel'])
+    channel: state.getIn(['home', 'channel']),
+    blogList: state.getIn(['home', 'blogList'])
 })
 
 const mapDispatchToProps = (dispatch) => ({

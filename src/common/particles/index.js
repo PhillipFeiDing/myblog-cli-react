@@ -21,7 +21,7 @@ class ParticlesContainer extends Component {
 
     setComputeDistanceToTop() {
         this.setState({
-            distanceToTop: window.pageYOffset + this.domNode.getBoundingClientRect().top,
+            distanceToTop: window.pageYOffset + this.domNode.getBoundingClientRect().top + (this.props.offset || 0),
             height: this.domNode.offsetHeight
         })
         this.changePositioning()

@@ -38,9 +38,10 @@ class PageHeader extends Component {
     }
 
     render() {
+        const { display } = this.props
         return (
             <Fragment>
-                <PageHeaderImage imgURL='/home/page_background.jpg'/>
+                <PageHeaderImage imgURL={'/home/page_background_' + (display === 'Light' ? 'light' : 'dark') + '.jpg'}/>
                 <PageHeaderImageTitle>
                     <TitleLine paddingLeft='30vw' className='italic'>Welcome to {AUTHOR}'s</TitleLine>
                     <TitleLine paddingLeft='35vw' className='italic'>Personal Website &amp; Blog!</TitleLine>
@@ -78,7 +79,8 @@ class PageHeader extends Component {
 const mapStateToProps = (state) => ({
     tagName: state.getIn(['home', 'tagName']),
     titleName: state.getIn(['home', 'titleName']),
-    showTagBoard: state.getIn(['app', 'mobile', 'showTag'])
+    showTagBoard: state.getIn(['app', 'mobile', 'showTag']),
+    display: state.getIn(['app', 'display'])
 }) 
 
 export default connect(mapStateToProps, null)(PageHeader)

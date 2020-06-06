@@ -12,8 +12,10 @@ export const MainWrapper = styled.div`
 export const PageHeaderImage = styled.div`
   width: 100%;
   height: 70vh;
+  max-height: 768px;
   position: relative;
-  background: url(${(props) => (props.imgURL)}) no-repeat;
+  background: url(${(props) => (props.imgURL)});
+  background-position: center;
 `
 
 export const PageHeaderImageTitle = styled.div`
@@ -299,7 +301,7 @@ export const BlogExerptImage = styled.img`
 export const BlogMetaList = styled.ul`
   margin-top: 20px;
   border: 1px solid #ccd0d1;
-  border-width: 1px 0 0 0;
+  border-width: 1px 0 1px 0;
   padding: 22px 10px;
   font-size: 9px;
   color: #7f8c8d;
