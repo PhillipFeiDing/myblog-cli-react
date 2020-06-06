@@ -10,7 +10,7 @@ const defaultState = fromJS({
     },
     showBackground: true,
     fontFamily: 'Arial',
-    display: 'Light'
+    display: 'Dark'
 })
 
 export const reducer = (state=defaultState, action) => {
