@@ -8,8 +8,8 @@ import {
     Container,
     Content,
     TagList,
-    // Like,
-    // LikeImage
+    Like,
+    LikeImage,
     Tag
 } from './style'
 import './gitment.0.0.3.min.css'
@@ -21,8 +21,8 @@ import { stampToDate } from '../../common/util/date'
 import { Link } from 'react-router-dom'
 import Loading from '../../common/loading'
 
-// const LIKED = '/detail/heartFilled.svg'
-// const NOT_LIKED = '/detail/heartEmpty.svg'
+const LIKED = '/detail/heartFilled.svg'
+const NOT_LIKED = '/detail/heartEmpty.svg'
 
 class Detail extends Component {
 
@@ -40,7 +40,9 @@ class Detail extends Component {
     render() {
         const { showBackground, currBlogId, getBlogById, getTagList } = this.props
 
-        // const likeBlog = true
+        const likeBlog = false
+        const numLikes = 10
+
         if (currBlogId === null) {
             return null
         }
@@ -79,7 +81,7 @@ class Detail extends Component {
                                 <Content id='detail-content' dangerouslySetInnerHTML={{__html: blog.content}}></Content>
                             )
                         }
-                        <TagList>
+                        <TagList id='detail-tag-list'>
                             {
                                 tagList.filter((item) => (item)).map((item) => (
                                     <Link 
@@ -101,12 +103,10 @@ class Detail extends Component {
                                     </Link>
                                 ))
                             }
-                            {/*
                             <Like>
                                 <LikeImage src={likeBlog ? LIKED : NOT_LIKED}/>
-                                1
+                                {numLikes}
                             </Like>
-                            */}
                         </TagList>
                         <hr />
                     </Container>

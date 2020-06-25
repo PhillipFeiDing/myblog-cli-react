@@ -93,9 +93,10 @@ export const Tag = styled.span`
   cursor: pointer;
 `
 
-export const Like = styled.div`
+export const Like = styled.span`
   float: right;
   cursor: pointer;
+  display: block;
 `
 
 export const LikeImage = styled.img.attrs({
@@ -104,4 +105,6 @@ export const LikeImage = styled.img.attrs({
   height: 20px;
   width: 20px;
   float: left;
+  margin-right: 5px;
+  transform: translate(0, 1px);
 `
