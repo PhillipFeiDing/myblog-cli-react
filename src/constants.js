@@ -17,7 +17,7 @@ document.title = 'I\'m Phillip Ding'
 export const AUTHOR = 'Phillip Ding'
 
 // URL to your CV/resume page. It is recommended to share a Google document here.
-export const CV_URL = 'https://drive.google.com/file/d/1ot1pOLz1Eokr7z7C841Z5AAgnfoI9luq/view?usp=sharing'
+export const CV_URL = 'https://drive.google.com/file/d/1xKFtZ9jbb06LNKAF0Lk33-6BvUxcDC09/view?usp=sharing'
 
 // Your motto. Set to empty string If you don't want it.
 export const MOTTO = '-- Stay hungry, stay foolish'
