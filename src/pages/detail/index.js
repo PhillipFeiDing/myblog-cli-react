@@ -9,8 +9,11 @@ import {
     Content,
     TagList,
     // Like,
-    // LikeImage
-    Tag
+    // LikeImage,
+    Tag,
+    BlogLinks,
+    BlogLinkWrapper,
+    BlogLinkText
 } from './style'
 import './gitment.0.0.3.min.css'
 import ParticlesContainer from '../../common/particles'
@@ -38,9 +41,11 @@ class Detail extends Component {
     }
     
     render() {
-        const { showBackground, currBlogId, getBlogById, getTagList } = this.props
+        const { showBackground, currBlogId, getBlogById, getTagList, setBlogId } = this.props
 
-        // const likeBlog = true
+        // const likeBlog = false
+        // const numLikes = 10
+
         if (currBlogId === null) {
             return null
         }
@@ -59,6 +64,9 @@ class Detail extends Component {
         } else {
             tagList = blog.tagList.map((tagId) => (this.props.tagList.toJS().filter((item) => (item.id === tagId))[0]))
         }
+        const currBlogList = this.props.currBlogList ? this.props.currBlogList.toJS() : []
+        let currBlogIdx = currBlogList.map((item) => (item.id)).indexOf(currBlogId)
+        currBlogIdx = currBlogIdx === -1 ? -2 : currBlogIdx
 
         return (
             <MainWrapper>
@@ -70,6 +78,36 @@ class Detail extends Component {
                 <ContainerWrapper id='container-wrapper'>
                     <ParticlesContainer show={showBackground} offset={56}/>
                     <Container className='main-content'>
+                        <BlogLinks>
+                            <BlogLinkWrapper style={{textAlign: 'left'}}>
+                                <BlogLinkText>
+                                    {
+                                        currBlogIdx - 1 >= 0 && currBlogIdx - 1 < currBlogList.length ?
+                                        <Link 
+                                            to={`/detail/${currBlogList[currBlogIdx - 1].id}`}
+                                            onClick={() => {setBlogId(currBlogList[currBlogIdx - 1].id)}}
+                                        >
+                                            <b>Prev</b>: {currBlogList[currBlogIdx - 1].title}
+                                        </Link>
+                                        : (null)
+                                    }
+                                </BlogLinkText>
+                            </BlogLinkWrapper>
+                            <BlogLinkWrapper style={{textAlign: 'right'}}>
+                                <BlogLinkText>
+                                    {
+                                        currBlogIdx + 1 >= 0 && currBlogIdx + 1 < currBlogList.length ?
+                                        <Link
+                                            to={`/detail/${currBlogList[currBlogIdx + 1].id}`}
+                                            onClick={() => {setBlogId(currBlogList[currBlogIdx + 1].id)}}
+                                        >
+                                            <b>Next</b>: {currBlogList[currBlogIdx + 1].title}
+                                        </Link>
+                                        : (null)
+                                    }
+                                </BlogLinkText>
+                            </BlogLinkWrapper>
+                        </BlogLinks>
                         {
                             loading ? (
                                 <Content id='detail-content'>
@@ -79,7 +117,7 @@ class Detail extends Component {
                                 <Content id='detail-content' dangerouslySetInnerHTML={{__html: blog.content}}></Content>
                             )
                         }
-                        <TagList>
+                        <TagList id='detail-tag-list'>
                             {
                                 tagList.filter((item) => (item)).map((item) => (
                                     <Link 
@@ -104,7 +142,7 @@ class Detail extends Component {
                             {/*
                             <Like>
                                 <LikeImage src={likeBlog ? LIKED : NOT_LIKED}/>
-                                1
+                                {numLikes}
                             </Like>
                             */}
                         </TagList>
@@ -121,7 +159,8 @@ const mapStateToProps = (state) => ({
     blogContents: state.getIn(['detail', 'blogContents']),
     currBlogId: state.getIn(['detail', 'currBlogId']),
     tagList: state.getIn(['home', 'tagList']),
-    blogList: state.getIn(['home', 'blogList'])
+    blogList: state.getIn(['home', 'blogList']),
+    currBlogList: state.getIn(['home', 'currBlogList'])
 })
 
 const mapDispatchToProps = (dispatch) => ({

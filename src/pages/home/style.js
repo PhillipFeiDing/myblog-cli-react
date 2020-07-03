@@ -272,7 +272,7 @@ export const BlogExerptWrapper = styled.div`
 
 export const BlogExerptText = styled.p`
   float: left;
-  font-size: 11px;
+  font-size: 12px;
   color: #7f8c8d;
   line-height: 1.5;
   margin: 0;
