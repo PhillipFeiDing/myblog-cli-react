@@ -93,9 +93,34 @@ export const Tag = styled.span`
   cursor: pointer;
 `
 
-export const Like = styled.div`
+export const BlogLinks = styled.div`
+  margin-top: 20px;
+  width: 100%;
+  overflow: hidden;
+  height: 24px;
+`
+
+export const BlogLinkWrapper = styled.div.attrs({
+  className: 'detail-blog-link-wrapper'
+})`
+  display: inline-block;
+  width: 50%;
+  height: 100%;
+  position: relative;
+`
+
+export const BlogLinkText = styled.span`
+  white-space: nowrap;
+  max-width: 80%;
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`
+
+export const Like = styled.span`
   float: right;
   cursor: pointer;
+  display: block;
 `
 
 export const LikeImage = styled.img.attrs({
@@ -104,4 +129,6 @@ export const LikeImage = styled.img.attrs({
   height: 20px;
   width: 20px;
   float: left;
+  margin-right: 5px;
+  transform: translate(0, 1px);
 `

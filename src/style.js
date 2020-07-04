@@ -103,5 +103,13 @@ export const DarkMode = createGlobalStyle`
         border: #4a4a4a solid 1px;
       }
     }
+    #detail-tag-list {
+      span {
+        color: #ccc;
+        img {
+          filter: invert(83%) sepia(10%) saturate(12%) hue-rotate(2deg) brightness(94%) contrast(102%);
+        }
+      }
+    }
   }
 `
