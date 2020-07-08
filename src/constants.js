@@ -4,7 +4,7 @@
  * Set to false if you want to turn it into a static project.
  */
 
-const server = true
+const server = false
 
 /**
  * Static Data.
@@ -21,6 +21,9 @@ export const CV_URL = 'https://drive.google.com/file/d/1TQgGnnaY4lAOBSbf8z_eWKvi
 
 // Your motto. Set to empty string If you don't want it.
 export const MOTTO = '-- Stay hungry, stay foolish'
+
+// Your email.
+export const EMAIL = 'phillipfeiding@gmail.com'
 
 // Typing special effect.
 // If you don't want it: Set TYPING_LEFT and TYPING_RIGHT to empty strings, set TYPING_STRINGS to empty array, and set showCursor in TYPING_PARAMS to false

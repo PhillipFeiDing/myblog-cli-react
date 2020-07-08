@@ -215,7 +215,18 @@ export const TagButton = styled.img.attrs({
 
 export const CVButton = styled.img.attrs({
   src: '/common/sidePanel/cv.svg',
-  id: constants.CV_BUTTON,
+  alt: ''
+})`
+  opacity: 0.6;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  pointer-events: auto;
+  margin-top: 8px;
+`
+
+export const EmailButton = styled.img.attrs({
+  src: '/common/sidePanel/email.svg',
   alt: ''
 })`
   opacity: 0.6;
