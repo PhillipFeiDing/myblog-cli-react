@@ -12,6 +12,7 @@ import {
     MenuItem,
     TagButton,
     CVButton,
+    EmailButton,
     AboutMeButton,
     SettingsBox,
     SettingsButton
@@ -21,7 +22,7 @@ import Settings from './Settings'
 import { actionCreators } from './store'
 import { actionCreators as appActionCreators } from '../../store'
 import { actionCreators as detailActionCreators } from '../../pages/detail/store'
-import { CV_URL } from '../../constants'
+import { CV_URL, EMAIL } from '../../constants'
 import Loading from '../../common/loading'
 
 
@@ -134,6 +135,10 @@ class SidePanel extends Component {
                     }
                     <a href={CV_URL} rel='noopener noreferrer' target='_blank'>
                         <CVButton />
+                    </a>
+                    <br />
+                    <a href={'mailto:' + EMAIL}>
+                        <EmailButton />
                     </a>
                     <br />
                     <SettingsBox>
