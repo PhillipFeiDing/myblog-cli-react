@@ -4,7 +4,7 @@
  * Set to false if you want to turn it into a static project.
  */
 
-const server = false
+const server = true
 
 /**
  * Static Data.
