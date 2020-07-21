@@ -234,105 +234,107 @@ class Console extends Component {
                             </div>
                         </div>
                     </div>
-                    <div style={{...moduleStyle, ...minorModuleStyle}}>
-                        <p style={subTitleStyle}>Tags</p>
-                        <div className="input-group input-group-sm mb-3">
-                            <div className="input-group-prepend">
-                                <span className="input-group-text" id="inputGroup-sizing-sm">New</span>
+                    <div>
+                        <div style={{...moduleStyle, ...minorModuleStyle}}>
+                            <p style={subTitleStyle}>Tags</p>
+                            <div className="input-group input-group-sm mb-3">
+                                <div className="input-group-prepend">
+                                    <span className="input-group-text" id="inputGroup-sizing-sm">New</span>
+                                </div>
+                                <input type="text" placeholder='Tag Name' className="form-control" ref={(el) => {this.tagInputDOMRef = el}}/>
+                                <button
+                                    type="button"
+                                    className="btn btn-primary btn-sm"
+                                    style={minorModuleInputButtonStyle}
+                                    onClick={this.handleTagListAddButtonClick}
+                                >
+                                    Add
+                                </button>
                             </div>
-                            <input type="text" placeholder='Tag Name' className="form-control" ref={(el) => {this.tagInputDOMRef = el}}/>
-                            <button
-                                type="button"
-                                className="btn btn-primary btn-sm"
-                                style={minorModuleInputButtonStyle}
-                                onClick={this.handleTagListAddButtonClick}
-                            >
-                                Add
-                            </button>
-                        </div>
-                        <div style={minorModuleListStyle}>
-                            <ul className="list-group">
-                                {
-                                    tagList.map((item) => (
-                                        <li key={'tag-' + item.id} className="list-group-item d-flex justify-content-between align-items-center py-1">
-                                            <span
-                                                onClick={() => {this.handleTagUpdateClick(item.id, item.tagName)}}
-                                                style={minorModuleListItemContentSpanStyle}
-                                            >
-                                                {item.tagName}
-                                            </span>
-                                            <span
-                                                className="badge badge-danger badge-pill" 
-                                                style={minorModuleListItemIconSpanStyle}
-                                                onClick={() => {this.handleTagDeleteButtonClick(item.id, item.tagName)}}
-                                            >
-                                                <img src='/admin/delete.svg' alt='' style={{width: '100%'}}/>
-                                            </span>
-                                        </li>
-                                    ))
-                                }
-                            </ul>
-                        </div>
-                    </div>
-                    <div style={{...moduleStyle, ...minorModuleStyle}}>
-                        <p style={subTitleStyle}>Pinned</p>
-                        <div className="input-group input-group-sm mb-3">
-                            <div className="input-group-prepend">
-                                <span className="input-group-text" id="inputGroup-sizing-sm">New</span>
+                            <div style={minorModuleListStyle}>
+                                <ul className="list-group">
+                                    {
+                                        tagList.map((item) => (
+                                            <li key={'tag-' + item.id} className="list-group-item d-flex justify-content-between align-items-center py-1">
+                                                <span
+                                                    onClick={() => {this.handleTagUpdateClick(item.id, item.tagName)}}
+                                                    style={minorModuleListItemContentSpanStyle}
+                                                >
+                                                    {item.tagName}
+                                                </span>
+                                                <span
+                                                    className="badge badge-danger badge-pill" 
+                                                    style={minorModuleListItemIconSpanStyle}
+                                                    onClick={() => {this.handleTagDeleteButtonClick(item.id, item.tagName)}}
+                                                >
+                                                    <img src='/admin/delete.svg' alt='' style={{width: '100%'}}/>
+                                                </span>
+                                            </li>
+                                        ))
+                                    }
+                                </ul>
                             </div>
-                            <input style={{maxWidth: '80px'}}type="text" className="form-control" placeholder='Blog ID' ref={(el) => {this.pinnedBlogIdInputDOMRef = el}}/>
-                            <input type="text" className="form-control" placeholder='Blog Topic' ref={(el) => {this.pinnedBlogTopicInputDOMRef = el}}/>
-                            <button
-                                type="button"
-                                className="btn btn-primary btn-sm"
-                                style={minorModuleInputButtonStyle}
-                                onClick={this.handlePinnedBlogAddButtonClick}
-                            >
-                                Add
-                            </button>
                         </div>
-                        <div style={minorModuleListStyle}>
-                            <ul className="list-group">
-                                {
-                                    pinnedList.map((item) => (
-                                        <li
-                                            key={'pinned-' + item.id}
-                                            className="list-group-item d-flex justify-content-between align-items-center py-1"
-                                            style={{overflow: 'hidden'}}
-                                        >
-                                            <span
-                                                onClick={() => {this.handlePinnedBlogIdUpdateClick(item.id, item.blogId, item.topicName)}}
-                                                style={{...{width: '8%'}, ...minorModuleListItemContentSpanStyle}}
+                        <div style={{...moduleStyle, ...minorModuleStyle}}>
+                            <p style={subTitleStyle}>Pinned</p>
+                            <div className="input-group input-group-sm mb-3">
+                                <div className="input-group-prepend">
+                                    <span className="input-group-text" id="inputGroup-sizing-sm">New</span>
+                                </div>
+                                <input style={{maxWidth: '80px'}}type="text" className="form-control" placeholder='Blog ID' ref={(el) => {this.pinnedBlogIdInputDOMRef = el}}/>
+                                <input type="text" className="form-control" placeholder='Blog Topic' ref={(el) => {this.pinnedBlogTopicInputDOMRef = el}}/>
+                                <button
+                                    type="button"
+                                    className="btn btn-primary btn-sm"
+                                    style={minorModuleInputButtonStyle}
+                                    onClick={this.handlePinnedBlogAddButtonClick}
+                                >
+                                    Add
+                                </button>
+                            </div>
+                            <div style={minorModuleListStyle}>
+                                <ul className="list-group">
+                                    {
+                                        pinnedList.map((item) => (
+                                            <li
+                                                key={'pinned-' + item.id}
+                                                className="list-group-item d-flex justify-content-between align-items-center py-1"
+                                                style={{overflow: 'hidden'}}
                                             >
-                                                {item.blogId}
-                                            </span>
-                                            <span style={{color: '#ced4da'}}>|</span>
-                                            <span
-                                                onClick={() => {this.handlePinnedTopicNameUpdateClick(item.id, item.blogId, item.topicName)}}
-                                                style={{...{width: '24%'}, ...minorModuleListItemContentSpanStyle}}
-                                            >
-                                                {item.topicName}
-                                            </span>
-                                            <span style={{color: '#ced4da'}}>|</span>
-                                            <span
-                                                style={{...minorModuleListItemContentSpanStyle, ...{width: '58%', cursor: 'text'}}}
-                                            >
-                                                {
-                                                    blogList.length === 0 ? null :
-                                                    (blogList.filter((blogItem) => (blogItem.id === item.blogId))[0] || {} ).title
-                                                }
-                                            </span>
-                                            <span
-                                                className="badge badge-danger badge-pill" 
-                                                style={minorModuleListItemIconSpanStyle}
-                                                onClick={() => {this.handlePinnedDeleteButtonClick(item.id, item.blogId, item.topicName)}}
-                                            >
-                                                <img src='/admin/delete.svg' alt='' style={{width: '100%'}}/>
-                                            </span>
-                                        </li>
-                                    ))
-                                }
-                            </ul>
+                                                <span
+                                                    onClick={() => {this.handlePinnedBlogIdUpdateClick(item.id, item.blogId, item.topicName)}}
+                                                    style={{...{width: '8%'}, ...minorModuleListItemContentSpanStyle}}
+                                                >
+                                                    {item.blogId}
+                                                </span>
+                                                <span style={{color: '#ced4da'}}>|</span>
+                                                <span
+                                                    onClick={() => {this.handlePinnedTopicNameUpdateClick(item.id, item.blogId, item.topicName)}}
+                                                    style={{...{width: '24%'}, ...minorModuleListItemContentSpanStyle}}
+                                                >
+                                                    {item.topicName}
+                                                </span>
+                                                <span style={{color: '#ced4da'}}>|</span>
+                                                <span
+                                                    style={{...minorModuleListItemContentSpanStyle, ...{width: '58%', cursor: 'text'}}}
+                                                >
+                                                    {
+                                                        blogList.length === 0 ? null :
+                                                        (blogList.filter((blogItem) => (blogItem.id === item.blogId))[0] || {} ).title
+                                                    }
+                                                </span>
+                                                <span
+                                                    className="badge badge-danger badge-pill" 
+                                                    style={minorModuleListItemIconSpanStyle}
+                                                    onClick={() => {this.handlePinnedDeleteButtonClick(item.id, item.blogId, item.topicName)}}
+                                                >
+                                                    <img src='/admin/delete.svg' alt='' style={{width: '100%'}}/>
+                                                </span>
+                                            </li>
+                                        ))
+                                    }
+                                </ul>
+                            </div>
                         </div>
                     </div>
                     <div style={{...moduleStyle, ...majorModuleStyle, ...{height: '600px'}}} id='admin-blog-table-wrapper'>
