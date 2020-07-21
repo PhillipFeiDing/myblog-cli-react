@@ -337,70 +337,72 @@ class Console extends Component {
                             </div>
                         </div>
                     </div>
-                    <div style={{...moduleStyle, ...majorModuleStyle, ...{height: '600px'}}} id='admin-blog-table-wrapper'>
-                        <p style={subTitleStyle}>
-                            Blogs
-                            <img
-                                src='/admin/plus.svg' alt=''
-                                style={{width: '14px', cursor: 'pointer', marginLeft: '24px', transform: 'scale(2, 2)'}} 
-                                onClick={() => {
-                                    this.props.createBlog()
-                                }}
-                            />
-                        </p>
-                        <div style={{height: '93%', overflow: 'auto'}}>
-                            <table className="table table-sm" style={{position: 'relative', whiteSpace: 'nowrap', color: '#2c3e50'}}>
-                                <thead className="thead-dark">
-                                    <tr>
-                                        <th scope="col" style={tableHeaderStyle}>ID</th>
-                                        <th scope="col" style={tableHeaderStyle}>Title</th>
-                                        <th scope="col" style={tableHeaderStyle}>Time</th>
-                                        <th scope="col" style={tableHeaderStyle}>Channel</th>
-                                        <th scope="col" style={tableHeaderStyle}>Tags</th>
-                                        <th scope="col" style={tableHeaderStyle}>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {
-                                        blogList.map((blogItem) => (
-                                            <tr key={'blog-' + blogItem.id}>
-                                                <th className='align-middle' scope="row">{blogItem.id}</th>
-                                                <td className='align-middle'>{blogItem.title}</td>
-                                                <td className='align-middle'>{stampToDateShort(blogItem.time)}</td>
-                                                <td className='align-middle'>{blogItem.channel === 'en' ? 'En' : (blogItem.channel === 'cn' ? '中' : '?')}</td>
-                                                <td className='align-middle'>
-                                                    {
-                                                        blogItem.tagList.filter((item) => (
-                                                            tagList.map((tagItem) => (tagItem.id)).indexOf(item) !== -1
-                                                        )).map(item => (
-                                                            tagList.length === 0 ? null :
-                                                            <span key={'blog-' + blogItem.id + '-tag-' + item}>
-                                                                {tagList.filter((tagItem) => (tagItem.id === item))[0].tagName}
-                                                                <br />
-                                                            </span>
-                                                        ))
-                                                    }
-                                                </td>
-                                                <td className='align-middle' style={{overflow: 'hidden'}}>
-                                                    <img
-                                                        src='/admin/delete.svg' alt='' 
-                                                        style={{width: '14px', cursor: 'pointer'}} 
-                                                        onClick={() => {this.handleBlogDeleteClick(blogItem.id, blogItem.title)}}
-                                                    />
-                                                    <img
-                                                        src='/admin/edit.svg' alt='' 
-                                                        style={{width: '14px', cursor: 'pointer', marginLeft: '20px'}}
-                                                        onClick={() => {
-                                                            this.handleBlogEditClick(blogItem.id)
-                                                            window.scrollTo(0, 0)
-                                                        }}
-                                                    />
-                                                </td>
-                                            </tr>
-                                        ))
-                                    }
-                                </tbody>
-                            </table>
+                    <div>
+                        <div style={{...moduleStyle, ...majorModuleStyle, ...{height: '600px'}}} id='admin-blog-table-wrapper'>
+                            <p style={subTitleStyle}>
+                                Blogs
+                                <img
+                                    src='/admin/plus.svg' alt=''
+                                    style={{width: '14px', cursor: 'pointer', marginLeft: '24px', transform: 'scale(2, 2)'}} 
+                                    onClick={() => {
+                                        this.props.createBlog()
+                                    }}
+                                />
+                            </p>
+                            <div style={{height: '93%', overflow: 'auto'}}>
+                                <table className="table table-sm" style={{position: 'relative', whiteSpace: 'nowrap', color: '#2c3e50'}}>
+                                    <thead className="thead-dark">
+                                        <tr>
+                                            <th scope="col" style={tableHeaderStyle}>ID</th>
+                                            <th scope="col" style={tableHeaderStyle}>Title</th>
+                                            <th scope="col" style={tableHeaderStyle}>Time</th>
+                                            <th scope="col" style={tableHeaderStyle}>Channel</th>
+                                            <th scope="col" style={tableHeaderStyle}>Tags</th>
+                                            <th scope="col" style={tableHeaderStyle}>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {
+                                            blogList.map((blogItem) => (
+                                                <tr key={'blog-' + blogItem.id}>
+                                                    <th className='align-middle' scope="row">{blogItem.id}</th>
+                                                    <td className='align-middle'>{blogItem.title}</td>
+                                                    <td className='align-middle'>{stampToDateShort(blogItem.time)}</td>
+                                                    <td className='align-middle'>{blogItem.channel === 'en' ? 'En' : (blogItem.channel === 'cn' ? '中' : '?')}</td>
+                                                    <td className='align-middle'>
+                                                        {
+                                                            blogItem.tagList.filter((item) => (
+                                                                tagList.map((tagItem) => (tagItem.id)).indexOf(item) !== -1
+                                                            )).map(item => (
+                                                                tagList.length === 0 ? null :
+                                                                <span key={'blog-' + blogItem.id + '-tag-' + item}>
+                                                                    {tagList.filter((tagItem) => (tagItem.id === item))[0].tagName}
+                                                                    <br />
+                                                                </span>
+                                                            ))
+                                                        }
+                                                    </td>
+                                                    <td className='align-middle' style={{overflow: 'hidden'}}>
+                                                        <img
+                                                            src='/admin/delete.svg' alt='' 
+                                                            style={{width: '14px', cursor: 'pointer'}} 
+                                                            onClick={() => {this.handleBlogDeleteClick(blogItem.id, blogItem.title)}}
+                                                        />
+                                                        <img
+                                                            src='/admin/edit.svg' alt='' 
+                                                            style={{width: '14px', cursor: 'pointer', marginLeft: '20px'}}
+                                                            onClick={() => {
+                                                                this.handleBlogEditClick(blogItem.id)
+                                                                window.scrollTo(0, 0)
+                                                            }}
+                                                        />
+                                                    </td>
+                                                </tr>
+                                            ))
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                     <div style={bottomButtonWrapperStyle}>
